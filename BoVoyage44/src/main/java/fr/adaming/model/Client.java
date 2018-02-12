@@ -27,7 +27,7 @@ public class Client extends Participant {
 
 	// associations UML en java
 	@OneToOne
-	@JoinColumn(name = "res_id", referencedColumnName = "id_res")
+	@JoinColumn(name = "resa_id", referencedColumnName = "id_res")
 	private Reservation reservation;
 
 	@OneToMany(mappedBy = "client")

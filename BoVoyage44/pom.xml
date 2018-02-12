@@ -56,6 +56,14 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.38</version>
 		</dependency>
+		
+		<dependency>
+		<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>4.2.21.Final</version>
+			</dependency>
+		
+		
 
 
 		<!-- ***** 3 : Spring -->
