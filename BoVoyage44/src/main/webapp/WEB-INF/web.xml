@@ -5,18 +5,21 @@
 	version="3.1">
 	<display-name>BoVoyage44</display-name>
 
+
+	<!-- Spécification du fichier de config du context spring Ioc et du context 
+		Spring Security -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:applicationContext.xml /WEB-INF/security-context.xml</param-value>
+	</context-param>
+
+
 	<!-- Déclaration du listener pour le chargement du context spring Ioc (le 
 		context applicatif web) -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- Spécification du fichier de config du context spring Ioc et du context 
-		Spring Security -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/security-context.xml</param-value>
-	</context-param>
 
 
 	<!-- Déclaration de la servlet unique de spring mvc -->
