@@ -24,13 +24,10 @@ public class Client extends Participant {
 	private String mail;
 
 	private String mdp;
-	
+
 	private boolean active;
 
 	// associations UML en java
-	@OneToOne
-	@JoinColumn(name = "resa_id", referencedColumnName = "id_res")
-	private Reservation reservation;
 
 	@OneToMany(mappedBy = "client")
 	List<Role> listeRoles;
@@ -79,14 +76,6 @@ public class Client extends Participant {
 		this.mdp = mdp;
 	}
 
-	public Reservation getReservation() {
-		return reservation;
-	}
-
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
-	}
-
 	public List<Role> getListeRoles() {
 		return listeRoles;
 	}
@@ -97,8 +86,7 @@ public class Client extends Participant {
 
 	@Override
 	public String toString() {
-		return "Client [numCB=" + numCB + ", mail=" + mail + ", mdp=" + mdp + ", reservation=" + reservation
-				+ ", listeRoles=" + listeRoles + "]";
+		return "Client [numCB=" + numCB + ", mail=" + mail + ", mdp=" + mdp + ", listeRoles=" + listeRoles + "]";
 	}
 
 }

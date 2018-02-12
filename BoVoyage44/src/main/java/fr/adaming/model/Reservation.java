@@ -42,9 +42,6 @@ public class Reservation {
 	@OneToMany(mappedBy = "reservation")
 	private List<Participant> listeParticipants;
 
-	@OneToOne
-	@JoinColumn(name = "p_id", referencedColumnName = "id_p")
-	private Client client;
 
 	@ManyToOne
 	@JoinColumn(name = "voy_id", referencedColumnName = "id_voy")
@@ -123,13 +120,6 @@ public class Reservation {
 		this.listeParticipants = listeParticipants;
 	}
 
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
 
 	public Voyage getVoyage() {
 		return voyage;
@@ -151,7 +141,7 @@ public class Reservation {
 	public String toString() {
 		return "Reservation [id=" + id + ", statut=" + statut + ", prix=" + prix + ", dateReservation="
 				+ dateReservation + ", nbPlaceReservees=" + nbPlaceReservees + ", listeParticipants="
-				+ listeParticipants + ", client=" + client + ", voyage=" + voyage + ", listeAssurances="
+				+ listeParticipants + ", voyage=" + voyage + ", listeAssurances="
 				+ listeAssurances + "]";
 	}
 

@@ -19,9 +19,10 @@ import javax.persistence.Table;
  * @author inti-0257
  *
  */
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+
 @Entity
 @Table(name = "participants")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Participant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
