@@ -24,6 +24,8 @@ public class Client extends Participant {
 	private String mail;
 
 	private String mdp;
+	
+	private boolean active;
 
 	// associations UML en java
 	@OneToOne
