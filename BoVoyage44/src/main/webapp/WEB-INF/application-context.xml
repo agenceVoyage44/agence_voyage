@@ -22,7 +22,6 @@
 	<bean id="persistenceUnitManager"
 		class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
 		<property name="defaultDataSource" ref="datasource"></property>
-		<property name="defaultDataSource" ref="datasource"></property>
 		<property name="loadTimeWeaver">
 		<bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"></bean>
 		</property>
