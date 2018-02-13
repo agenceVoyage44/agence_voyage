@@ -73,7 +73,7 @@ return null;
 	@Override
 	public List<Hebergement> getAllHebergement() {
 		// construire la requete 
-				String req = "SELECT * FROM Hebergement";
+				String req = "FROM Hebergement";
 
 				// creer la query
 				Query query = em.createQuery(req);
