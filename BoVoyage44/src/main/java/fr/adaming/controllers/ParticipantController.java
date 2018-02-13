@@ -88,7 +88,7 @@ public class ParticipantController {
 
 	// La méthode pour soumettre le formulaire en Post
 
-	@RequestMapping(value = "/soumettreAdd", method = RequestMethod.POST)
+	@RequestMapping(value = "/soumettreUpdate", method = RequestMethod.POST)
 	public String soumettreFormPartM(Model modele, @ModelAttribute("partModif") Participant p) {
 
 		// appel de la methode service
