@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<h1 style="color: darkred ; text-align : center">Formulaire d'ajout de voyage</h1>
+<h1 style="color: darkred ; text-align : center">Formulaire de suppression de voyage</h1>
 
 <form:form method="POST" action="soumettreDelete"
 		modelAttribute="voyageSupprim" cssClass="form-horizontal">

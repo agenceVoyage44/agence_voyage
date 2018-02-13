@@ -7,14 +7,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Formulaire d'ajout</title>
+<title>Formulaire de modification</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"/>
 
 </head>
 <body>
 
-<h1 style="color: darkred ; text-align : center">Formulaire d'ajout de voyage</h1>
+<h1 style="color: darkred ; text-align : center">Formulaire de modification de voyage</h1>
 
 <form:form method="POST" action="soumettreUpdate"
 		modelAttribute="voyageModif" cssClass="form-horizontal">
