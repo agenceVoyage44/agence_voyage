@@ -32,7 +32,7 @@ Participant p;
 	}
 	
 	//#######TEST AJOUT PARTICIPANT##################
-	@Ignore
+	//@Ignore
 	@Test
 	@Transactional
 	@Rollback(true)
