@@ -1,4 +1,6 @@
-package fr.adaming.service.tests;
+package fr.adaming.dao.tests;
+
+import static org.junit.Assert.*;
 
 import java.util.Date;
 
@@ -11,15 +13,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.adaming.dao.IParticipantsDao;
 import fr.adaming.model.Participant;
 import fr.adaming.service.IParticipantService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml" })
-public class ParticipantServiceTest {
+public class ParticipantDaoTest {
 	
 	@Autowired
-	IParticipantService participantService;
+	IParticipantsDao participantDao;
 	
 Participant p;
 
@@ -32,18 +35,18 @@ Participant p;
 	@Test
 	@Transactional
 	@Rollback(true)
-	public void addCargATest() {
+	public void addParticipantTest() {
 
-		int tailleAvant = participantService.getAllParticipant().size();
-		participantService.addParticipant(p);
-		assertEquals(tailleAvant + 1, participantService.getAllParticipant().size());
+		int tailleAvant = participantDao.getAllParticipant().size();
+		participantDao.addParticipant(p);
+		assertEquals(tailleAvant + 1, participantDao.getAllParticipant().size());
 	}
 	
-	// ########TEST GET ALL PARTICIPANTS#############
-		@Transactional(readOnly = true)
-		@Test
-		public void getAllCargATest() {
-			assertEquals(3, transportService.getAllCargaisonsA().size());
-		}
+//	// ########TEST GET ALL PARTICIPANTS#############
+//		@Transactional(readOnly = true)
+//		@Test
+//		public void getAllCargATest() {
+//			assertEquals(3, transportService.getAllCargaisonsA().size());
+//		}
 
 }
