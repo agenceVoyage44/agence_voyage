@@ -12,68 +12,79 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.adaming.dao.IAssuranceDao;
-import fr.adaming.model.Assurance;
+import fr.adaming.dao.IClientDao;
+import fr.adaming.model.Client;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml" })
 @Transactional
-public class AssuranceDaoTest {
-	
+public class ClientDaoTest {
 	@Autowired
-	IAssuranceDao assuranceDao;
+	IClientDao clientDao;
 	
-	Assurance a =new Assurance("annulation", 20);
-	Assurance a1 =new Assurance(4,"annulation", 20);
+	Client c=new Client("TOTO", "titi", 22, "Mr", 23, "rue crebillon", 44000, "Nantes", "France", null, 2, "c@c", "c");
+	Client c1=new Client(9,"TOTO", "titi", 22, "Mr", 23, "rue crebillon", 44000, "Nantes", "France", null, 2, "c@c", "c");
 	@Ignore
 	@Test
 	@Transactional(readOnly = true)
 	public void testGetAll(){
 		
-		assertNotNull(assuranceDao.getAllAssurance());
-		
+		assertNotNull(clientDao.getAllClient());
 	}
 	@Ignore
 	@Test
 	@Rollback(true)
 	@Transactional
 	public void testAdd(){
-		int tailleAvant=assuranceDao.getAllAssurance().size();
-		assuranceDao.addAssurance(a);
 		
-		assertEquals(tailleAvant+1, assuranceDao.getAllAssurance().size());
+		int tailleAvant=clientDao.getAllClient().size();
+		
+		clientDao.addClient(c);
+		
+		assertEquals(tailleAvant+1,clientDao.getAllClient().size());
+	}
+	@Ignore
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void testDelete(){
+		
+		clientDao.addClient(c);		
+		int tailleAvant=clientDao.getAllClient().size();
+		int verif=clientDao.deleteClient(c.getId());
+		assertEquals(tailleAvant-1, clientDao.getAllClient().size());
 	}
 	@Ignore
 	@Test
 	@Rollback(true)
 	@Transactional
 	public void testUpdate(){
-		a.setId(1);
-		a.setPrix(40);
-		assuranceDao.updateAssurance(a);
-		assertEquals(40,0, a.getPrix());
-	}
-	
-	@Ignore
-	@Test
-	@Rollback(true)
-	@Transactional
-	public void testDelete(){
-		int tailleAvant=assuranceDao.getAllAssurance().size();		
-		assuranceDao.deleteAssurance(a1.getId());
-		assertEquals(tailleAvant-1, assuranceDao.getAllAssurance().size());
+		c.setNom("FOFO");
+		clientDao.updateClient(c);
+		assertEquals("FOFO", c.getNom());
 	}
 	@Ignore
 	@Test
 	@Transactional(readOnly = true)
 	public void testGet(){
-		assertNotNull(assuranceDao.getAssuranceById(a1.getId()));
+		
+		
+		
+		Client cOut=clientDao.getClientById(c1.getId());
+		
+		assertNotNull(cOut);
+		
 	}
 	@Ignore
 	@Test
 	@Transactional(readOnly = true)
 	public void testGet2(){
-		Assurance aOut=assuranceDao.getAssuranceById(a1.getId());
-		assertEquals("annulation", aOut.getType() );
+			
+		
+		Client cOut=clientDao.getClientById(c1.getId());
+		
+		assertEquals("TOTO", cOut.getNom());
+		
 	}
 }
+

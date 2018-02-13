@@ -13,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
+ * <b>Classe voiture</b> comprenant le modèle du véhicule, le nom du loueur, le nombre
+ * de place et la photo du modèle. Plusieurs voitures peuvent être associées à une
+ * formule.
+ * 
  * @author inti-0257
  *
  */
@@ -25,7 +29,7 @@ public class Voiture {
 	private int id;
 
 	private String modele;
-	
+
 	private String loueur;
 
 	private int nbPlaces;

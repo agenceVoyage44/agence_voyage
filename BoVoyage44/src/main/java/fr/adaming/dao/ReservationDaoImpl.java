@@ -19,10 +19,14 @@ import fr.adaming.model.Reservation;
 @Repository
 public class ReservationDaoImpl implements IReservationDao {
 
-	@PersistenceContext(unitName = "BoVoyage44")
+	@PersistenceContext(unitName="BoVoyage44")
 	private EntityManager em;
 
 	// injectons Dépendances
+	public EntityManager getEm() {
+		return em;
+	}
+
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
@@ -34,6 +38,8 @@ public class ReservationDaoImpl implements IReservationDao {
 
 		return reservation;
 	}
+
+
 
 	@Override
 	public Reservation updateReservation(Reservation reservation) {

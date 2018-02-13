@@ -96,7 +96,7 @@ public class HebergementController {
 		public String soumettreDeleteHebergement(@ModelAttribute("hebergDelete") Hebergement h) {
 
 			// appelle de la methode service
-			Hebergement hOut = hebergementService.updateHebergement(h);;
+			Hebergement hOut = hebergementService.updateHebergement(h);
 
 			if (hOut.getId() != 0) {
 

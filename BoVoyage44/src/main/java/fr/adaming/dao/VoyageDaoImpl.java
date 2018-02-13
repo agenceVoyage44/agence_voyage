@@ -12,7 +12,7 @@ import fr.adaming.model.Voyage;
 
 /**
  * La classe VoyageDaoImpl implémente l'interface IVoyageDao.
- * @author intiformation
+ * @author Alain Térieur
  *
  */
 @Repository

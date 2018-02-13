@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IAssuranceDao;
+import fr.adaming.dao.IReservationDao;
 import fr.adaming.model.Assurance;
+import fr.adaming.model.Reservation;
 
 @Service
 @Transactional
@@ -19,7 +21,8 @@ import fr.adaming.model.Assurance;
 public class AssuranceServiceImpl implements IAssuranceService {
 	@Autowired
 	IAssuranceDao assuranceDao;
-	
+	@Autowired
+	IReservationDao resaDao;
 	
 	public void setAssuranceDao(IAssuranceDao assuranceDao) {
 		this.assuranceDao = assuranceDao;
@@ -53,6 +56,15 @@ public class AssuranceServiceImpl implements IAssuranceService {
 	public Assurance updateAssurance(Assurance assurance) {
 		
 		return assuranceDao.updateAssurance(assurance);
+	}
+
+	@Override
+	public Assurance setResa(int idResa, int idAssur) {
+		Assurance a = assuranceDao.getAssuranceById(idAssur);
+		List<Reservation>liste=a.getListeReservations();
+		liste.add(resaDao.getReservationByID(idResa));
+		a.setListeReservations(liste);
+		return a;
 	}
 
 }
