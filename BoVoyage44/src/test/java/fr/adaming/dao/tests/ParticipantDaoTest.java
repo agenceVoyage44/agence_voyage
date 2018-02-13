@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IParticipantsDao;
 import fr.adaming.model.Participant;
-import fr.adaming.service.IParticipantService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml" })
@@ -32,6 +32,7 @@ Participant p;
 	}
 	
 	//#######TEST AJOUT PARTICIPANT##################
+	@Ignore
 	@Test
 	@Transactional
 	@Rollback(true)
