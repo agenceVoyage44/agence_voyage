@@ -8,7 +8,7 @@
 
 
 	<!-- Activation de l'auto scan du composant controller: @Controller -->
-	<context:component-scan base-package="fr.adaming" />
+	<context:component-scan base-package="fr.adaming.controllers" />
 
 	<!-- Activation des annotations de spring mvc : @RequestMapping, @RequestParm, 
 		@ModelAttribute -->
