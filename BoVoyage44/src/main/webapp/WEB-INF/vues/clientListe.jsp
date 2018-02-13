@@ -49,9 +49,9 @@
 					<td class="danger">${c.dateNaissance}</td>
 
 					<td class="active"><a
-						href="${pageContext.request.contextPath}/agent/client/suprimLienCa?pId=${c.id}">Supprimer</a>
+						href="${pageContext.request.contextPath}/agent/client/supprimLien?pId=${c.id}">Supprimer</a>
 						| <a
-						href="${pageContext.request.contextPath}/agent/client/voirMarchLien?pId=${c.id}">Modifier</a></td>
+						href="${pageContext.request.contextPath}/agent/client/ModifLien?pId=${c.id}">Modifier</a></td>
 
 
 				</tr>

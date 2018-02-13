@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-        <!-- Ajout de la taglib spring mvc form -->
+	pageEncoding="ISO-8859-1"%>
+
+<!-- Ajout de la taglib spring mvc form -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!-- Ajouter la librairie JSTL -->
@@ -15,25 +15,27 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-	
+
 </head>
 <body>
 
-<h1 style="color: dodgerblue; text-align: center">Formulaire de suppression</h1>
-<br/>
+	<h1 style="color: dodgerblue; text-align: center">Formulaire de
+		suppression</h1>
+	<br />
 	<form:form method="POST" action="soumettreSupprClient"
-		modelAttribute="clientSuppr" cssClass="form-horizontal" style="margin-left:600px">
+		modelAttribute="clientSuppr" cssClass="form-horizontal"
+		style="margin-left:600px">
 
 		<div class="form-group">
-			<form:label path="clientSuppr" cssClass="col-sm-2 control-label">Id Client</form:label>
+			<form:label path="id" cssClass="col-sm-2 control-label">Id Client</form:label>
 			<div class="col-sm-3">
-				<form:input path="clientSuppr" cssClass="form-control" />
+				<form:input path="id" cssClass="form-control" />
 			</div>
 		</div>
 
-		
-<br/>
-		<div class="col-sm-offset-2 col-sm-10" style="margin-left:300px">
+
+		<br />
+		<div class="col-sm-offset-2 col-sm-10" style="margin-left: 300px">
 			<input type="submit" class="btn btn-info" value="Supprimer">
 		</div>
 

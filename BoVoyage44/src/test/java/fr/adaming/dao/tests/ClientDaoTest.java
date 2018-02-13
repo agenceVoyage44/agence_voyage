@@ -59,9 +59,10 @@ public class ClientDaoTest {
 	@Rollback(true)
 	@Transactional
 	public void testUpdate(){
+		clientDao.addClient(c);		
 		c.setNom("FOFO");
 		clientDao.updateClient(c);
-		assertEquals("FOFO", c.getNom());
+		assertEquals("FOFO", clientDao.getClientById(c.getId()).getNom());
 	}
 	@Ignore
 	@Test

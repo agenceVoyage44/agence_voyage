@@ -63,18 +63,18 @@
 			<tr>
 				<td class="success">${client.id}</td>
 				<td class="danger">${client.civilite}</td>
-				<td class="info">${client.nom}${client.prenom}</td>
+				<td class="info">${client.nom} ${client.prenom}</td>
 
 				<td class="warning">${client.mail}</td>
-				<td class="success">${client.numero}${client.rue}
+				<td class="success">${client.numero} ${client.rue}
 					${client.codePostal} ${client.ville}</td>
 				<td class="danger">${client.tel}</td>
 				<td class="danger">${client.dateNaissance}</td>
 
 				<td class="active"><a
-					href="${pageContext.request.contextPath}/agent/client/suprimLienCa?pId=${client.id}">Supprimer</a>
+					href="${pageContext.request.contextPath}/agent/client/supprimLien?pId=${client.id}">Supprimer</a>
 					| <a
-					href="${pageContext.request.contextPath}/agent/client/voirMarchLien?pId=${client.id}">Modifier</a></td>
+					href="${pageContext.request.contextPath}/agent/client/ModifLien?pId=${client.id}">Modifier</a></td>
 
 
 			</tr>

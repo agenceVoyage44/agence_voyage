@@ -19,13 +19,10 @@ import fr.adaming.service.IClientService;
 @Controller
 @RequestMapping("/agent/client")
 public class ClientController {
-	
+
 	@Autowired
 	private IClientService clientService;
-	
-	
 
-	
 	public IClientService getClientService() {
 		return clientService;
 	}
@@ -41,6 +38,27 @@ public class ClientController {
 		return new ModelAndView("clientListe", "clientList", liste);
 	}
 
+	// Supprimer avec le lien
+	@RequestMapping(value = "/supprimLien", method = RequestMethod.GET)
+	public String suprimerLienClient(Model model, @RequestParam("pId") int id) {
+
+		// appel de la méthode service
+		clientService.deleteClient(id);
+
+		return "redirect:liste";
+
+	}
+
+	@RequestMapping(value = "/ModifLien", method = RequestMethod.GET)
+	public String modifClientLien(Model model, @RequestParam("pId") int id) {
+
+		
+
+		Client clientOut = clientService.getClientById(id);
+		model.addAttribute("clientModif", clientOut);
+
+		return "clientModifier";
+	}
 	// ##############AJOUT CLIENT######################
 
 	// La methode pour afficher le formulaire en GET
@@ -55,15 +73,15 @@ public class ClientController {
 
 	@RequestMapping(value = "/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreFormClientA(Model modele, @ModelAttribute("clientAjout") Client c) {
-System.out.println("#######test ajout client############"+c);
+		System.out.println("#######test ajout client############" + c);
 		// appel de la methode service
 		Client cOut = clientService.addClient(c);
 
 		if (cOut.getId() != 0) {
-		
+
 			return "redirect:liste";
 		} else {
-		
+
 			return "redirect:afficheAdd";
 		}
 
@@ -72,13 +90,14 @@ System.out.println("#######test ajout client############"+c);
 	// ################ SUPPRESSION CLIENT #############
 
 	@RequestMapping(value = "/afficheDelete", method = RequestMethod.GET)
-	public ModelAndView afficheSupprClient() {
-		return new ModelAndView("clientSupprimer", "clientSuppr", new Client());
+	public String afficheSupprClient(Model modele) {
+		modele.addAttribute("clientSuppr", new Client());
+		return "clientSupprimer";
 	}
 
 	@RequestMapping(value = "/soumettreSupprClient", method = RequestMethod.POST)
-	public String soumettreFormSupprClient(Model model, @RequestParam("clientSuppr") int id) {
-		int verif = clientService.deleteClient(id);
+	public String soumettreFormSupprClient(Model model, @ModelAttribute("clientSuppr") Client c) {
+		int verif = clientService.deleteClient(c.getId());
 
 		if (verif != 0) {
 			return "redirect:liste";
@@ -95,7 +114,7 @@ System.out.println("#######test ajout client############"+c);
 	public String afficheModifClient(Model modele) {
 		modele.addAttribute("clientModif", new Client());
 		return "clientModifier";
-		
+
 	}
 
 	// La méthode pour soumettre le formulaire en Post
@@ -104,13 +123,13 @@ System.out.println("#######test ajout client############"+c);
 	public String soumettreFormClientM(Model modele, @ModelAttribute("clientModif") Client c) {
 
 		// appel de la methode service
-		Client cOut=clientService.updateClient(c);
+		Client cOut = clientService.updateClient(c);
 
 		if (cOut != null) {
-		
+
 			return "redirect:liste";
 		} else {
-	
+
 			return "redirect:afficheUpdate";
 		}
 
@@ -133,7 +152,7 @@ System.out.println("#######test ajout client############"+c);
 	public String soumettreRecherche(RedirectAttributes ra, Model modele, @ModelAttribute("clientRech") Client c) {
 
 		// appel de la methode service
-		Client cOut=clientService.getClientById(c.getId());
+		Client cOut = clientService.getClientById(c.getId());
 
 		if (cOut != null) {
 			modele.addAttribute("client", cOut);
@@ -147,37 +166,36 @@ System.out.println("#######test ajout client############"+c);
 		}
 	}
 
-	
 	// ##########RECHERCHE CLIENT par reservation##########""
 
-		// La methode pour afficher le formulaire en GET
+	// La methode pour afficher le formulaire en GET
 
-		@RequestMapping(value = "/afficheRechercheResa", method = RequestMethod.GET)
-		public String afficheRechercheClientResa(Model modele) {
-			modele.addAttribute("clientRechResa", new Client());
-			modele.addAttribute("indice", false);
+	@RequestMapping(value = "/afficheRechercheResa", method = RequestMethod.GET)
+	public String afficheRechercheClientResa(Model modele) {
+		modele.addAttribute("clientRechResa", new Client());
+		modele.addAttribute("indice", false);
+		return "clientRechercherResa";
+	}
+
+	// La méthode pour soumettre le formulaire en Post
+
+	@RequestMapping(value = "/soumettreRechResa", method = RequestMethod.POST)
+	public String soumettreRechercheResa(RedirectAttributes ra, Model modele,
+			@ModelAttribute("clientRechResa") int idResa) {
+
+		// appel de la methode service
+		Client cOut = clientService.getClientByReservation(idResa);
+
+		if (cOut != null) {
+			modele.addAttribute("client", cOut);
+			modele.addAttribute("indice", true);
 			return "clientRechercherResa";
+		} else {
+			// affichage message
+			ra.addFlashAttribute("message", "Client inexistant");
+
+			return "redirect:afficheRechercheResa";
 		}
-
-		// La méthode pour soumettre le formulaire en Post
-
-		@RequestMapping(value = "/soumettreRechResa", method = RequestMethod.POST)
-		public String soumettreRechercheResa(RedirectAttributes ra, Model modele, @ModelAttribute("clientRechResa") int idResa) {
-
-			// appel de la methode service
-			Client cOut=clientService.getClientByReservation(idResa);
-
-			if (cOut != null) {
-				modele.addAttribute("client", cOut);
-				modele.addAttribute("indice", true);
-				return "clientRechercherResa";
-			} else {
-				// affichage message
-				ra.addFlashAttribute("message", "Client inexistant");
-
-				return "redirect:afficheRechercheResa";
-			}
-		}
-
+	}
 
 }

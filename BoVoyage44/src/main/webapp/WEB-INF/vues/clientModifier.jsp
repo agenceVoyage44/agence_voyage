@@ -22,7 +22,7 @@
 	<h1 style="color: dodgerblue; text-align: center">Formulaire de Modification
 		client</h1>
 	<br />
-	<form:form method="POST" action="afficheUpdate"
+	<form:form method="POST" action="soumettreUpdate"
 		modelAttribute="clientModif" cssClass="form-horizontal"
 		style="margin-left:600px">
 
