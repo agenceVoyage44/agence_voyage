@@ -34,7 +34,7 @@ public class VoyageController {
 	
 	/**
 	 * La méthode afficheListe gère l'affichage de la liste des voyage.
-	 * @return
+	 * @return La liste des voyages et la page dans laquelle ils sont affichés. 
 	 */
 	@RequestMapping(value = "/agent/liste", method = RequestMethod.GET)
 	public ModelAndView afficheListe() {
@@ -52,7 +52,7 @@ public class VoyageController {
 	}
 	
 	@RequestMapping(value = "/agent/soumettreAdd", method = RequestMethod.POST)
-	public String soumettreAjouter(@ModelAttribute("etudAjout") Voyage v) {
+	public String soumettreAjouter(@ModelAttribute("voyageAjout") Voyage v) {
 
 		Voyage vOut = voyageService.addVoyage(v);
 
