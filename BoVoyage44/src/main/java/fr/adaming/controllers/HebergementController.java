@@ -5,14 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Hebergement;
-import fr.adaming.model.Reservation;
 import fr.adaming.service.IHebergementService;
 
 @Controller
@@ -32,7 +34,7 @@ public class HebergementController {
 			// recuperer la liste de la bd
 			List<Hebergement> liste = hebergementService.getAllHebergement();
 
-			return new ModelAndView("HebergementListe", "hList", liste);
+			return new ModelAndView("hebergementListe", "hList", liste);
 		}
 	
 	// ---------------------------Ajouter un Hebergement --------------------
@@ -40,7 +42,7 @@ public class HebergementController {
 	@RequestMapping(value = "/afficheAdd", method = RequestMethod.GET)
 	public ModelAndView addHebergement() {
 
-		return new ModelAndView("ajouterHebergement", "addHebergement", new Hebergement());
+		return new ModelAndView("hebergementAjout", "addHebergement", new Hebergement());
 	}
 
 	// *****Pour soumettre le formulaire*****
@@ -65,7 +67,7 @@ public class HebergementController {
 		@RequestMapping(value = "/afficheUpdate", method = RequestMethod.GET)
 		public String updateHeberg(Model modele) {
 			modele.addAttribute("hebergUpdate", new Hebergement());
-			return "afficheUpdate";
+			return "hebergementUpdate";
 		}
 
 		// ******soumettre le formulaire update******
@@ -88,7 +90,7 @@ public class HebergementController {
 		@RequestMapping(value = "/afficheDelete", method = RequestMethod.GET)
 		public String deleteHeberg(Model modele) {
 			modele.addAttribute("hebergDelete", new Hebergement());
-			return "afficheDelete";
+			return "hebergementDelete";
 		}
 
 		// *****soumettre le formulaire ******
@@ -113,7 +115,7 @@ public class HebergementController {
 		public String searchHeberg(Model modele) {
 			modele.addAttribute("hebergSearch", new Hebergement());
 			modele.addAttribute("indice", false);
-			return "afficheGet";
+			return "hebergementGet";
 		}
 
 		// ******soumettre le formulaire *********
@@ -128,7 +130,7 @@ public class HebergementController {
 
 				model.addAttribute("hebergement", hOut);
 				model.addAttribute("indice", true);
-				return "afficheGet";
+				return "hebergementGet";
 			} else {
 
 				rs.addFlashAttribute("message", "L'hebergement souhaité n'existe pas");
@@ -137,6 +139,45 @@ public class HebergementController {
 				return "redirect:afficheGet";
 			}
 
+		}
+		
+		//--------Lien Tableau Pour Supprimer ou Modifier l'Hebergement----------
+		
+		// ----------------supprime(lien)-------------------
+		@RequestMapping(value = "/supprimeLien/{pId}", method = RequestMethod.GET)
+		public String supprimerlien(Model model, @PathVariable("pId") int id) {
+			Hebergement h = new Hebergement();
+
+			h.setId(id);
+
+			// appel de la methode service
+			hebergementService.deleteHebergement(id);
+
+			// recuperer la liste de la bd
+			List<Hebergement> liste = hebergementService.getAllHebergement();
+
+			model.addAttribute("hList", liste);
+
+			return "hebergementListe";
+
+		}
+
+		// ------------ modifier(lien)-------------
+		@RequestMapping(value = "/modifieLien", method = RequestMethod.GET)
+		public String modifielien(ModelMap model, @RequestParam("pId") int id) {
+
+			// @PathVariable: prend pId est la stock dans le int id
+
+			Hebergement hIn = new Hebergement();
+
+			hIn.setId(id);
+
+			// recup hebergment de la bd
+			Hebergement hOut = hebergementService.getHebergementByID(id);
+
+			model.addAttribute("hebergUpdate", hOut);
+
+			return "hebergementUpdate";
 		}
 	
 }

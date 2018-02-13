@@ -5,22 +5,18 @@
 	version="3.1">
 	<display-name>BoVoyage44</display-name>
 
-
-	<!-- Spécification du fichier de config du context spring Ioc et du context 
-		Spring Security -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/application-context.xml /WEB-INF/security-context.xml</param-value>
-	</context-param>
-
-
-	<!-- Déclaration du listener pour le chargement du context spring Ioc (le 
+		<!-- Déclaration du listener pour le chargement du context spring Ioc (le 
 		context applicatif web) -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
-
+	
+	<!-- Spécification du fichier de config du context spring Ioc et du context 
+		Spring Security -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/application-context.xml </param-value>
+	</context-param>
 
 	<!-- Déclaration de la servlet unique de spring mvc -->
 	<servlet>
@@ -41,15 +37,15 @@
 
 
 	<!-- ***** Déclaration du filtre de spring security ***** -->
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name> <!-- c'est juste un alias, ça pourrait être 'toto' -->
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
+<!-- 	<filter> -->
+<!-- 		<filter-name>springSecurityFilterChain</filter-name> c'est juste un alias, ça pourrait être 'toto' -->
+<!-- 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> -->
+<!-- 	</filter> -->
 	<!-- Le mapping du filtre -->
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
 
 
 	<!-- Page d'accueil du projet -->

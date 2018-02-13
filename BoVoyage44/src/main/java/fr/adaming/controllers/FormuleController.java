@@ -32,7 +32,7 @@ public class FormuleController {
 		// Récupérer la liste de la BDD
 		List<Formule> listeFormules = formuleService.getAllFormule();
 
-		return new ModelAndView("formuleAll", "formulesList", listeFormules);
+		return new ModelAndView("formuleListe", "formulesList", listeFormules);
 
 	}
 
@@ -64,13 +64,13 @@ public class FormuleController {
 	// Méthode pour afficher le formulaire en GET
 	@RequestMapping(value = "/afficheAdd", method = RequestMethod.GET)
 	public ModelAndView afficheAddFormule() {
-		return new ModelAndView("formuleAjout", "formule", new Formule());
+		return new ModelAndView("formuleAjouter", "formuleAjout", new Formule());
 
 	}
 
 	// Méthode pour soumettre le formulaire en POST
 	@RequestMapping(value = "/soumettreAdd", method = RequestMethod.POST)
-	public String soumettreAddFormule(Model modele, @ModelAttribute("formule") Formule formule) {
+	public String soumettreAddFormule(Model modele, @ModelAttribute("formuleAjout") Formule formule) {
 
 		// Appel de la méthode service
 

@@ -53,7 +53,7 @@ public class VoyageController {
 	
 	@RequestMapping(value = "/agent/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjouter(@ModelAttribute("voyageAjout") Voyage v) {
-
+		v.setDispo(true);
 		Voyage vOut = voyageService.addVoyage(v);
 
 		if (vOut.getId() != 0) {

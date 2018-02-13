@@ -12,14 +12,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajouter Client</title>
 
-
+<script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
 	
 </head>
 <body>
 
-<h1 style="color: dodgerblue; text-align: center">Inscription client</h1>
+<h1 >Inscription client</h1>
 <br/>
 	<form:form method="POST" action="soumettreAdd"
 		modelAttribute="clientAjout" cssClass="form-horizontal" style="margin-left:600px">

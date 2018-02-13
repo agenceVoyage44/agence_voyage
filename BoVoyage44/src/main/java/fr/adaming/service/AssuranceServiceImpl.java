@@ -10,14 +10,13 @@ import fr.adaming.dao.IAssuranceDao;
 import fr.adaming.dao.IReservationDao;
 import fr.adaming.model.Assurance;
 import fr.adaming.model.Reservation;
-
-@Service
-@Transactional
 /**
  * Classe Assurance Service implementé par l'interface IAssuranceService
  * @author Adaming
  *
  */
+@Service
+@Transactional
 public class AssuranceServiceImpl implements IAssuranceService {
 	@Autowired
 	IAssuranceDao assuranceDao;
