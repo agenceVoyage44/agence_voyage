@@ -3,6 +3,7 @@ package fr.adaming.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +31,7 @@ public class AssuranceController {
 		this.assuranceService = assuranceService;
 	}
 	
-	@RequestMapping(value="liste", method = RequestMethod.GET)
+	@RequestMapping(value="/liste", method = RequestMethod.GET)
 	public ModelAndView listeA(){
 		List<Assurance>liste=assuranceService.getAllAssurance();
 		return new ModelAndView("AssuranceListe", "ListeAssurance", liste);
@@ -43,13 +44,13 @@ public class AssuranceController {
 		return new ModelAndView("AssuranceAjout", "AssurAjout", new Assurance());
 		
 	}
-	@RequestMapping(value="soummettreAdd", method = RequestMethod.POST)
+	@RequestMapping(value="soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjouter(Model modele,@ModelAttribute("AssurAjout") Assurance assurance){
 		
 		assuranceService.addAssurance(assurance);
 		
 		//rediriger vers la methode afficheliste
-		return "redirect:AssuranceListe";
+		return "redirect:liste";
 		
 		
 	}
@@ -58,16 +59,16 @@ public class AssuranceController {
 	@RequestMapping(value="afficheDelete", method = RequestMethod.GET)
 	public ModelAndView afficheSupprimer(){
 		
-		return new ModelAndView("AssuranceSupprimer", "AssurSuppr", new Assurance());
+		return new ModelAndView("AssuranceDelete", "AssurSuppr", new Assurance());
 		
 	}
-	@RequestMapping(value="soummettreDelete", method = RequestMethod.DELETE)
+	@RequestMapping(value="soumettreDelete", method = RequestMethod.DELETE)
 	public String soumettreSupprimer(Model modele,@ModelAttribute("AssurSuppr") Assurance assurance){
 		
 		assuranceService.deleteAssurance(assurance.getId());
 		
 		//rediriger vers la methode afficheliste
-		return "redirect:AssuranceList";
+		return "redirect:AssuranceListe";
 		
 		
 	}
@@ -79,13 +80,13 @@ public class AssuranceController {
 			return new ModelAndView("AssuranceUpdate", "AssurModif", new Assurance());
 			
 		}
-		@RequestMapping(value="soummettreUpdate", method = RequestMethod.PUT)
+		@RequestMapping(value="soumettreUpdate", method = RequestMethod.PUT)
 		public String soumettreModifier(Model modele,@ModelAttribute("AssurModif") Assurance assurance){
 			
 			assuranceService.updateAssurance(assurance);
 			
 			//rediriger vers la methode afficheliste
-			return "redirect:AssuranceList";
+			return "redirect:AssuranceListe";
 			
 			
 		}
@@ -97,7 +98,7 @@ public class AssuranceController {
 			return new ModelAndView("AssuranceGet", "AssurRecherche", new Assurance());
 			
 		}
-		@RequestMapping(value="soummettreGet", method = RequestMethod.PUT)
+		@RequestMapping(value="soumettreGet", method = RequestMethod.POST)
 		public String soumettreRecherche(RedirectAttributes ra,Model modele,@ModelAttribute("AssurRecherche") Assurance assurance){
 			
 			Assurance aOut=assuranceService.updateAssurance(assurance);
@@ -115,7 +116,7 @@ public class AssuranceController {
 			return new ModelAndView("AssuranceAjoutResa", "AssurAjoutResa", new Assurance());
 			
 		}
-		@RequestMapping(value="soummettreAddResa", method = RequestMethod.POST)
+		@RequestMapping(value="soumettreAddResa", method = RequestMethod.POST)
 		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Assurance assurance,Reservation reservation){
 			
 			assuranceService.setResa(reservation.getId(), assurance.getId());
