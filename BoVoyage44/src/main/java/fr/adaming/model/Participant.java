@@ -3,6 +3,8 @@ package fr.adaming.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +25,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "participants")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type")
+@DiscriminatorValue(value="part")
 public class Participant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import javax.persistence.Table;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "clients")
+@DiscriminatorValue(value = "client")
 public class Client extends Participant {
 
 	private long numCB;
