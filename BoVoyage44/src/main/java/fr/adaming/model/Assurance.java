@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 /**
  * @author inti-0257
+ *Classe Assurance
  *
  */
 

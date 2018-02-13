@@ -25,14 +25,14 @@ public class ParticipantDaoTest {
 	IParticipantsDao participantDao;
 	
 Participant p;
-
+	@Ignore
 	@Before
 	public void setUp() {
 	p=new Participant(1, "TOTO", "Titi", 1236547896, "M", 3, "rue des chenes", 44000,"Nantes", "France", new Date(1996-04-18));
 	}
 	
 	//#######TEST AJOUT PARTICIPANT##################
-	//@Ignore
+	@Ignore
 	@Test
 	@Transactional
 	@Rollback(true)
