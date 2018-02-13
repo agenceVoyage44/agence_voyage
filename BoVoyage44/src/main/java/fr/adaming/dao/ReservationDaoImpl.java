@@ -6,14 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import fr.adaming.model.Reservation;
 
 /**
- * Classe de défintion des méthodes, en utilisant des reqûetes communiquant
+ * Classe de défintion des méthodes, des objets de type Reservation en utilisant des reqûetes communiquant
  * directment avec la base de données
  *
  */
 
+@Repository
 public class ReservationDaoImpl implements IReservationDao {
 
 	@PersistenceContext(unitName = "BoVoyage44")
@@ -48,6 +51,7 @@ public class ReservationDaoImpl implements IReservationDao {
 		return rOut;
 
 	}
+
 
 	@Override
 	public int deleteReservation(int idReservation) {
