@@ -23,14 +23,17 @@ public class FormuleDaoTest {
 	IFormuleDao formuleDao;
 
 	Formule f;
+	Formule f1;
 
 	@Before
 	public void setUp(){
-		f=new Formule(4, "Avion+Hôtel", 150);
+		f=new Formule("Avion+Hôtel", 150);
+		f1=new Formule(5, "Avion+Voiture", 300);
 	}
 	
 	// ########## TEST GET ALL FORMULE ##########
 	
+	@Ignore
 	@Test
 	@Transactional(readOnly=true)
 	public void getAllFormuleTest(){
@@ -40,6 +43,7 @@ public class FormuleDaoTest {
 
 	// ########## TEST AJOUT FORMULE ##########
 
+	@Ignore
 	@Test
 	@Transactional
 	@Rollback(true)
@@ -49,6 +53,18 @@ public class FormuleDaoTest {
 		formuleDao.addFormule(f);
 		
 		assertEquals(tailleAvant+1, formuleDao.getAllFormule().size());
+	}
+	
+	// ########## TEST GET FORMULE BY ID ##########
+	
+	@Ignore
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void getFormuleTest() {
+		formuleDao.addFormule(f1);
+		Formule formule=formuleDao.getFormuleById(f1.getId());
+		assertEquals(f1.getType(),formule.getType());
 	}
 	
 }
