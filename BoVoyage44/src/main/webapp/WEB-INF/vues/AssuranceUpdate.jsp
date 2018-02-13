@@ -20,7 +20,7 @@
 <body>
 	<h1 style="text-align: center">Formulaire de modif Assurance</h1>
 
-	<form:form method="PUT" action="soumettreUpdate"
+	<form:form method="POST" action="soumettreUpdate"
 		modelAttribute="AssurModif" cssClass="form-horizontal">
 		<div class="form-group">
 			<form:label path="id" class="col-sm-2 control-label">ID</form:label>

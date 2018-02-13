@@ -44,8 +44,6 @@
 					<td>${a.type}</td>
 					<td>${a.prix}</td>
 				</tr>
-	
-
 		</c:forEach>
 
 	</table>

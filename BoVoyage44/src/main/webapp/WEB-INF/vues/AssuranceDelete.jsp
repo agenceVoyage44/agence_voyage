@@ -19,8 +19,8 @@
 <body>
 	<h1 style="text-align: center">Formulaire de suppresion Assurance</h1>
 
-	<form:form method="DELETE" action="soumettreDelete"
-		modelAttribute="AssurModif" cssClass="form-horizontal">
+	<form:form method="POST" action="soumettreDelete"
+		modelAttribute="AssurSuppr" cssClass="form-horizontal">
 		<div class="form-group">
 			<form:label path="id" class="col-sm-2 control-label">ID</form:label>
 			<div class="col-sm-5">

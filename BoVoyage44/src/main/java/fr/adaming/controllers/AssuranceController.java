@@ -62,13 +62,13 @@ public class AssuranceController {
 		return new ModelAndView("AssuranceDelete", "AssurSuppr", new Assurance());
 		
 	}
-	@RequestMapping(value="soumettreDelete", method = RequestMethod.DELETE)
+	@RequestMapping(value="soumettreDelete", method = RequestMethod.POST)
 	public String soumettreSupprimer(Model modele,@ModelAttribute("AssurSuppr") Assurance assurance){
 		
 		assuranceService.deleteAssurance(assurance.getId());
 		
 		//rediriger vers la methode afficheliste
-		return "redirect:AssuranceListe";
+		return "redirect:liste";
 		
 		
 	}
@@ -80,13 +80,13 @@ public class AssuranceController {
 			return new ModelAndView("AssuranceUpdate", "AssurModif", new Assurance());
 			
 		}
-		@RequestMapping(value="soumettreUpdate", method = RequestMethod.PUT)
+		@RequestMapping(value="soumettreUpdate", method = RequestMethod.POST)
 		public String soumettreModifier(Model modele,@ModelAttribute("AssurModif") Assurance assurance){
 			
 			assuranceService.updateAssurance(assurance);
 			
 			//rediriger vers la methode afficheliste
-			return "redirect:AssuranceListe";
+			return "redirect:liste";
 			
 			
 		}
@@ -104,7 +104,7 @@ public class AssuranceController {
 			Assurance aOut=assuranceService.updateAssurance(assurance);
 			 modele.addAttribute("assurance",aOut);
 			//rediriger vers la methode afficheliste
-			return "redirect:AssuranceGet";
+			return "redirect:afficheGet";
 			
 			
 		}
@@ -117,12 +117,12 @@ public class AssuranceController {
 			
 		}
 		@RequestMapping(value="soumettreAddResa", method = RequestMethod.POST)
-		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Assurance assurance,Reservation reservation){
+		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Assurance assurance,@ModelAttribute("ResaAjout") Reservation reservation){
 			
 			assuranceService.setResa(reservation.getId(), assurance.getId());
 			
 			//rediriger vers la methode afficheliste
-			return "redirect:AssuranceListe";
+			return "redirect:liste";
 			
 			
 		}
