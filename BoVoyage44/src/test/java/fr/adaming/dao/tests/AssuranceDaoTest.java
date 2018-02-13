@@ -24,7 +24,7 @@ public class AssuranceDaoTest {
 	IAssuranceDao assuranceDao;
 	
 	Assurance a =new Assurance("annulation", 20);
-	Assurance a1 =new Assurance(4,"voiture", 20);
+	Assurance a1 =new Assurance(4,"annulation", 20);
 	@Ignore
 	@Test
 	@Transactional(readOnly = true)
@@ -74,6 +74,6 @@ public class AssuranceDaoTest {
 	@Transactional(readOnly = true)
 	public void testGet2(){
 		Assurance aOut=assuranceDao.getAssuranceById(a1.getId());
-		assertEquals("voiture", aOut.getType() );
+		assertEquals("annulation", aOut.getType() );
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Assurance;
+import fr.adaming.model.Reservation;
 import fr.adaming.service.IAssuranceService;
 /**
  * Classe Assurance Controller
@@ -106,5 +107,25 @@ public class AssuranceController {
 			
 			
 		}
+		
+		//******************* AJOUT Resa**********************************************************************************
+		@RequestMapping(value="afficheAddResa", method = RequestMethod.GET)
+		public ModelAndView afficheAjoutResa(){
+			
+			return new ModelAndView("AssuranceAjoutResa", "AssurAjoutResa", new Assurance());
+			
+		}
+		@RequestMapping(value="soummettreAddResa", method = RequestMethod.POST)
+		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Assurance assurance,Reservation reservation){
+			
+			assuranceService.setResa(reservation.getId(), assurance.getId());
+			
+			//rediriger vers la methode afficheliste
+			return "redirect:AssuranceListe";
+			
+			
+		}
+		
+		
 		
 }

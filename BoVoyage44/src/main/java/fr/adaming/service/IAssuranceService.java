@@ -34,5 +34,6 @@ public interface IAssuranceService {
 	 * @return retourne un objet Assurance
 	 */
 	public Assurance updateAssurance (Assurance assurance);
+	public Assurance setResa(int idResa,int idAssur);
 
 }
