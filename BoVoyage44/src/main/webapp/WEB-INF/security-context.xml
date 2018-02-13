@@ -18,7 +18,7 @@
 		<property name="password" value="root" />
 	</bean>
 
-
+	<!-- ***** Authentification Agent ******* -->
 	<!-- ***** 1: Configuration de la partie autorisation -->
 	<!-- La balise http sert à spécifier les url à sécuriser et les droits d'accés -->
 	<security:http>
@@ -27,20 +27,17 @@
 		<security:intercept-url pattern="/agent/**"
 			access="ROLE_AGENT" />
 
-		<security:intercept-url pattern="/client/**"
-			access="ROLE_CLIENT" />
-
 		<!-- Utilisation d'un formulaire login perso -->
-		<security:form-login login-page="/login"
-			authentication-failure-url="/loginEchec" />
+		<security:form-login login-page="/loginAgent"
+			authentication-failure-url="/loginAgentEchec" />
 
 		<!-- Se déconnecter -->
 		<security:logout logout-success-url="/logout"
 			logout-url="/deconnexion" />
 
 		<!-- La balise dans le cas où l'accés est refusé -->
-		<!-- <security:access-denied-handler -->
-		<!-- error-page="/refus" /> -->
+		<security:access-denied-handler
+			error-page="/refus" />
 	</security:http>
 
 
@@ -50,10 +47,45 @@
 
 			<!-- Utilisation de la base de donnée pour l'authentification -->
 			<security:jdbc-user-service
-				data-source-ref="dataSourceBean1" users-by-username-query="select mail,mdp,activ from formateurs where mail=?"
-				authorities-by-username-query="SELECT f.mail, r.role_name FROM formateurs f, roles r WHERE f.id_f=r.f_id AND f.mail=?" />
+				data-source-ref="dataSourceBean1" users-by-username-query="select mail,mdp,activ from agents where mail=?"
+				authorities-by-username-query="SELECT a.mail, r.rolename FROM agents a, roles r WHERE a.id_a=r.a_id AND a.mail=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 
+
+	<!-- ***** Authentification Client ******* -->
+	<!-- ***** 1: Configuration de la partie autorisation -->
+	<!-- La balise http sert à spécifier les url à sécuriser et les droits d'accés -->
+	<security:http>
+		<!-- Spécifier les URL à protéger avec l'attribut pattern et les autorisation 
+			supportées par ces URL -->
+		<security:intercept-url pattern="/client/**"
+			access="ROLE_CLIENT" />
+
+		<!-- Utilisation d'un formulaire login perso -->
+		<security:form-login login-page="/loginClient"
+			authentication-failure-url="/loginClientEchec" />
+
+		<!-- Se déconnecter -->
+		<security:logout logout-success-url="/logout"
+			logout-url="/deconnexion" />
+
+		<!-- La balise dans le cas où l'accés est refusé -->
+		<security:access-denied-handler
+			error-page="/refus" />
+	</security:http>
+
+
+	<!-- 2: Configuration de la partie authentification -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+
+			<!-- Utilisation de la base de donnée pour l'authentification -->
+			<security:jdbc-user-service
+				data-source-ref="dataSourceBean1"
+				users-by-username-query="select mail,mdp,activ from participants where mail=?"
+				authorities-by-username-query="SELECT p.mail, r.rolename FROM participant p, roles r WHERE p.id_p=r.p_id AND p.mail=?" />
+		</security:authentication-provider>
+	</security:authentication-manager>
 
 </beans>

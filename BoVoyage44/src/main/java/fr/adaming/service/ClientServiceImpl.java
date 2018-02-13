@@ -52,4 +52,10 @@ public class ClientServiceImpl implements IClientService {
 		return clientDao.getClientById(id);
 	}
 
+	@Override
+	public Client isExistClient(String mail, String mdp) {
+		
+		return clientDao.isExistClient(mail, mdp);
+	}
+
 }

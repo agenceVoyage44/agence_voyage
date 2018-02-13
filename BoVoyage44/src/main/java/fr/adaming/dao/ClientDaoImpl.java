@@ -63,7 +63,7 @@ public class ClientDaoImpl implements IClientDao {
 
 	@Override
 	public int deleteClient(int id) {
-		String req = "delete from Client as c where c.id =:cId";
+		String req = "delete from Client as c where c.id =:pId";
 
 		Query query = em.createQuery(req);
 
@@ -75,6 +75,19 @@ public class ClientDaoImpl implements IClientDao {
 	@Override
 	public Client getClientById(int id) {
 		Client cOut = em.find(Client.class, id);
+		return cOut;
+	}
+
+	@Override
+	public Client isExistClient(String mail, String mdp) {
+		String req = "select c from Client as c where c.mail=:pMail and c.mdp=:pMdp ";
+		Query query = em.createQuery(req);
+
+		query.setParameter("pMail", mail);
+		query.setParameter("pMdp", mdp);
+
+		Client cOut = (Client) query.getSingleResult();
+
 		return cOut;
 	}
 
