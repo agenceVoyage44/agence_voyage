@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IHebergementDao;
 import fr.adaming.model.Hebergement;
-import fr.adaming.model.Voiture;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml" })
@@ -27,6 +27,7 @@ public class HebergementDaoTest {
 	
 	private Hebergement h=new Hebergement("hotel", 500);
 	
+	//------Test pour avoir la liste des hebergements-----
 	@Ignore
 	@Test
 	@Transactional(readOnly = true)
@@ -37,7 +38,7 @@ public class HebergementDaoTest {
 		assertNotNull(liste);
 	}
 	
-	
+	//------Test pour ajouter un Hebergement-------
 	@Ignore
 	@Test
 	@Rollback(true)
@@ -49,7 +50,7 @@ public class HebergementDaoTest {
 	assertEquals(tailleAvant+1, hebergementDao.getAllHebergement().size());
 	}
 	
-	
+	//-------Test Supprimer Hebergement--------
 	@Ignore
 	@Test
 	@Rollback(true)
@@ -62,6 +63,30 @@ public class HebergementDaoTest {
 		 assertEquals(tailleAvant-1, hebergementDao.getAllHebergement().size());
 		 }
 	
+	// ---------------- Test Modifer Hebergement ---------------
+		@Ignore
+		@Test
+		@Transactional
+		@Rollback(true)
+		public void updateHebergementTest() {
+
+			hebergementDao.addHebergement(h);
+
+			h.setPrix(900);
+			Hebergement hOut = hebergementDao.updateHebergement(h);
+
+			assertEquals(900, hOut.getPrix());
+
+		}
+		
+		//------Test pour rechercher un hebergement par id-------
+		@Ignore
+		@Test
+		@Transactional(readOnly = true)
+		public void testGetHebergement(){
+			Hebergement htest = new Hebergement(5, "cabane", 350);
+		assertNotNull(hebergementDao.getHebergementByID(htest.getId()));
+		}
 	
 
 }
