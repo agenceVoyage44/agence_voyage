@@ -6,7 +6,7 @@ import fr.adaming.model.Voyage;
 
 /**
  * L'interface IVoyageService référence les méthodes du pack Service de la classe Voyage.
- * @author intiformation
+ * @author Jean Michel apeupré
  *
  */
 public interface IVoyageService {
