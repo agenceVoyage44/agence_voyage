@@ -9,8 +9,13 @@ import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 /**
- * @author inti-0257
+ * La classe Formule permet de gérer les différentes formules associées aux
+ * voyages, aux hebergements et aux voitures. Cette classe a pour attribut un
+ * String 'type', ainsi qu'un double 'prix'.
+ * 
+ * @author Bouddha
  *
  */
 @Entity
