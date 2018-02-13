@@ -88,7 +88,7 @@ public class ClientController {
 
 	// La méthode pour soumettre le formulaire en Post
 
-	@RequestMapping(value = "/soumettreAdd", method = RequestMethod.POST)
+	@RequestMapping(value = "/soumettreUpdate", method = RequestMethod.POST)
 	public String soumettreFormClientM(Model modele, @ModelAttribute("clientModif") Client c) {
 
 		// appel de la methode service
