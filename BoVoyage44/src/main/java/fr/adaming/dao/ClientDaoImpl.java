@@ -78,4 +78,17 @@ public class ClientDaoImpl implements IClientDao {
 		return cOut;
 	}
 
+	@Override
+	public Client isExistClient(String mail, String mdp) {
+		String req = "select c from Client as c where c.mail=:pMail and c.mdp=:pMdp ";
+		Query query = em.createQuery(req);
+
+		query.setParameter("pMail", mail);
+		query.setParameter("pMdp", mdp);
+
+		Client cOut = (Client) query.getSingleResult();
+
+		return cOut;
+	}
+
 }

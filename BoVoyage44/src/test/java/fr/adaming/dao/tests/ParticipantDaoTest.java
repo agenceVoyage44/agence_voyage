@@ -16,22 +16,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IParticipantsDao;
 import fr.adaming.model.Participant;
+import fr.adaming.model.Reservation;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml" })
 public class ParticipantDaoTest {
-	
+
 	@Autowired
 	IParticipantsDao participantDao;
-	
-Participant p;
+
+	Participant p;
+
 	@Ignore
 	@Before
 	public void setUp() {
-	p=new Participant(1, "TOTO", "Titi", 1236547896, "M", 3, "rue des chenes", 44000,"Nantes", "France", new Date(1996-04-18));
+		p = new Participant("TOTO", "Titi", 1236547896, "M", 3, "rue des chenes", 44000, "Nantes", "France",
+				new Date(1996 - 04 - 18));
 	}
-	
-	//#######TEST AJOUT PARTICIPANT##################
+
+	// #######TEST AJOUT ET GET ALL PARTICIPANTS##################
 	@Ignore
 	@Test
 	@Transactional
@@ -40,14 +43,47 @@ Participant p;
 
 		int tailleAvant = participantDao.getAllParticipant().size();
 		participantDao.addParticipant(p);
+		// assertEquals("TOTO", participantDao.getParticipantById(1).getNom());
 		assertEquals(tailleAvant + 1, participantDao.getAllParticipant().size());
 	}
-	
-//	// ########TEST GET ALL PARTICIPANTS#############
-//		@Transactional(readOnly = true)
-//		@Test
-//		public void getAllCargATest() {
-//			assertEquals(3, transportService.getAllCargaisonsA().size());
-//		}
+
+	// // ########TEST UPDATE ET GET BY ID PARTICIPANTS#############
+	@Ignore
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void UpdateParticipantTest() {
+		participantDao.addParticipant(p);
+		p.setNom("RORO");
+		participantDao.updateParticipant(p);
+		assertEquals(p, participantDao.getParticipantById(p.getId()));
+	}
+
+	// #########TEST DELETE PARTICIPANTS############################
+	@Ignore
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void deleteParticipantTest() {
+		int tailleAvant = participantDao.getAllParticipant().size();
+		participantDao.addParticipant(p);
+		participantDao.deleteParticipant(p.getId());
+		assertEquals(tailleAvant, participantDao.getAllParticipant().size());
+	}
+
+	// ###########TEST getParticipantsByReservation#############
+	// @Test
+	// @Transactional
+	// @Rollback(true)
+	// public void getParticipantsByReservationTest() {
+	//
+	// System.out.println("##########");
+	// //p.setReservation(new Reservation(1, "aaa", 123, new Date(1996 - 05 -
+	// 18), 15));
+	// System.out.println(p);
+	// participantDao.addParticipant(p);
+	// assertEquals(p.getNom(),
+	// participantDao.getParticipantById(p.getId()).getNom());
+	// }
 
 }

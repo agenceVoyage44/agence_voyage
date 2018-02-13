@@ -4,6 +4,11 @@ import java.util.List;
 
 import fr.adaming.model.Participant;
 
+/**
+ * @author inti-0257 Interface IparticipantService définissant les méthodes
+ *         service de la classe Participant
+ *
+ */
 public interface IParticipantService {
 
 	public List<Participant> getAllParticipant();
