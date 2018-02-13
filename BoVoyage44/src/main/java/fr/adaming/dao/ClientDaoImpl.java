@@ -14,6 +14,7 @@ import fr.adaming.model.Client;
  * méthodes concernant les clients, implémente l'Interface Client DAO
  *
  */
+
 @Repository
 public class ClientDaoImpl implements IClientDao {
 
