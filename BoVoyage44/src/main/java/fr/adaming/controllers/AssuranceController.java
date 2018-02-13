@@ -14,7 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Assurance;
 import fr.adaming.model.Reservation;
+import fr.adaming.model.Temp;
 import fr.adaming.service.IAssuranceService;
+import fr.adaming.service.IReservationService;
 /**
  * Classe Assurance Controller
  * @author Adaming
@@ -26,11 +28,17 @@ public class AssuranceController {
 	
 	@Autowired
 	IAssuranceService assuranceService;
-
+	@Autowired
+	IReservationService reservationService;
+	
 	public void setAssuranceService(IAssuranceService assuranceService) {
 		this.assuranceService = assuranceService;
 	}
 	
+	public void setReservationService(IReservationService reservationService) {
+		this.reservationService = reservationService;
+	}
+
 	@RequestMapping(value="/liste", method = RequestMethod.GET)
 	public ModelAndView listeA(){
 		List<Assurance>liste=assuranceService.getAllAssurance();
@@ -113,13 +121,19 @@ public class AssuranceController {
 		@RequestMapping(value="afficheAddResa", method = RequestMethod.GET)
 		public ModelAndView afficheAjoutResa(){
 			
-			return new ModelAndView("AssuranceAjoutResa", "AssurAjoutResa", new Assurance());
+			return new ModelAndView("AssuranceAjoutResa", "AssurAjoutResa", new Temp());
 			
 		}
 		@RequestMapping(value="soumettreAddResa", method = RequestMethod.POST)
-		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Assurance assurance,@ModelAttribute("ResaAjout") Reservation reservation){
+		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Temp temp){
 			
-			assuranceService.setResa(reservation.getId(), assurance.getId());
+			Assurance assurance=assuranceService.getAssuranceById(temp.getId());
+			assurance.setType(temp.getType());
+			assurance.setPrix(temp.getPrix());
+			
+			List<Reservation>liste=assurance.getListeReservations();
+			liste.add(reservationService.getReservationByID(temp.getIdResa()));
+			assurance.setListeReservations(liste);
 			
 			//rediriger vers la methode afficheliste
 			return "redirect:liste";
