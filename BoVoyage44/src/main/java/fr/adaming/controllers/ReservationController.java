@@ -34,6 +34,7 @@ public class ReservationController {
 	 * Méthode pour afficher le formulaire
 	 * 
 	 * @return ModelAndView
+	 * 
 	 */
 	@RequestMapping(value = "/client/afficherAdd", method = RequestMethod.GET)
 	public ModelAndView afficherAjouterReservation() {
