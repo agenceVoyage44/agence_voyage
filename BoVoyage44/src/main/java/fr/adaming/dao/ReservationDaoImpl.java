@@ -67,7 +67,7 @@ public class ReservationDaoImpl implements IReservationDao {
 
 	@Override
 	public List<Reservation> getAllReservation() {
-		String req = "SELECT * FROM Reservation";
+		String req = "SELECT r FROM Reservation AS r";
 
 		Query query = em.createQuery(req);
 
