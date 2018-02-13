@@ -8,7 +8,7 @@ import fr.adaming.model.Voyage;
 /**
  * L'interface IVoyageDao référence les méthodes du pack DAO de la classe Voyage.
  * 
- * @author intiformation
+ * @author Sarah Croche
  *
  */
 public interface IVoyageDao {

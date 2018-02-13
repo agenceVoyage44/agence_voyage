@@ -11,7 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * @author inti-0257
+ * Le Classe contenant le modèle d'Hébergement avec les différents attributs associés tel que le type et le prix.
+ * Cette classe possède une association ManyToOne avec la classe Formule.
+ * Elle contient aussi trois constructeurs un vide,un sans id et un avec id.
+ * @author Folo7
  *
  */
 @Entity

@@ -11,7 +11,7 @@ import fr.adaming.model.Voyage;
 
 /**
  * La classe VoyageServiceImpl implémente l'interface IVoyageService.
- * @author intiformation
+ * @author Loulou le poux
  *
  */
 @Transactional
