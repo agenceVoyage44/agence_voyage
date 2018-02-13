@@ -8,14 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
-	@RequestMapping(value = "/loginAgent", method = RequestMethod.GET)
-	public String afficheLoginAgent() {
-		return "loginAgent";
-	}
-	
-	@RequestMapping(value = "/loginClient", method = RequestMethod.GET)
-	public String afficheLoginClient() {
-		return "loginClient";
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String afficheLogin() {
+		return "login";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -28,17 +23,10 @@ public class LoginController {
 		return "pageDenied";
 	}
 
-	@RequestMapping(value = "/loginAgentEchec", method = RequestMethod.GET)
-	public String echecLoginAgent(Model model) {
+	@RequestMapping(value = "/loginEchec", method = RequestMethod.GET)
+	public String echecLogin(Model model) {
 		model.addAttribute("msg", true);
-		return "loginAgent";
+		return "login";
 	}
-	
-	@RequestMapping(value = "/loginClientEchec", method = RequestMethod.GET)
-	public String echecLoginClient(Model model) {
-		model.addAttribute("msg", true);
-		return "loginClient";
-	}
-
 
 }
