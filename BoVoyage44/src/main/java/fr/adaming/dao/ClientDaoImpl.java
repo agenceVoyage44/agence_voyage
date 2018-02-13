@@ -63,7 +63,7 @@ public class ClientDaoImpl implements IClientDao {
 
 	@Override
 	public int deleteClient(int id) {
-		String req = "delete from Client as c where c.id =:cId";
+		String req = "delete from Client as c where c.id =:pId";
 
 		Query query = em.createQuery(req);
 
