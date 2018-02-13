@@ -18,7 +18,7 @@
 		<property name="password" value="root" />
 	</bean>
 
-
+	<!-- ***** Authentification Agent ******* -->
 	<!-- ***** 1: Configuration de la partie autorisation -->
 	<!-- La balise http sert à spécifier les url à sécuriser et les droits d'accés -->
 	<security:http>
@@ -27,15 +27,12 @@
 		<security:intercept-url pattern="/agent/**"
 			access="ROLE_AGENT" />
 
-		<security:intercept-url pattern="/client/**"
-			access="ROLE_CLIENT" />
-
 		<!-- Utilisation d'un formulaire login perso -->
-		<security:form-login login-page="/login"
-			authentication-failure-url="/loginEchec" />
+		<security:form-login login-page="/loginAgent"
+			authentication-failure-url="/loginAgentEchec" />
 
 		<!-- Se déconnecter -->
-		<security:logout logout-success-url="/logout"
+		<security:logout logout-success-url="/logoutAgent"
 			logout-url="/deconnexion" />
 
 		<!-- La balise dans le cas où l'accés est refusé -->
