@@ -1,6 +1,8 @@
 package fr.adaming.dao.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -28,7 +30,6 @@ public class FormuleDaoTest {
 	@Before
 	public void setUp(){
 		f=new Formule("Avion+Hôtel", 150);
-		f1=new Formule(5, "Avion+Voiture", 300);
 	}
 	
 	// ########## TEST GET ALL FORMULE ##########
@@ -37,7 +38,8 @@ public class FormuleDaoTest {
 	@Test
 	@Transactional(readOnly=true)
 	public void getAllFormuleTest(){
-		assertEquals(3, formuleDao.getAllFormule().size());
+		// 1 Formule ajoutée manuellement dans la BDD pour les tests
+		assertEquals(1, formuleDao.getAllFormule().size());
 	}
 	
 
@@ -62,9 +64,35 @@ public class FormuleDaoTest {
 	@Transactional
 	@Rollback(true)
 	public void getFormuleTest() {
-		formuleDao.addFormule(f1);
-		Formule formule=formuleDao.getFormuleById(f1.getId());
-		assertEquals(f1.getType(),formule.getType());
+		Formule formule=formuleDao.getFormuleById(1);
+		assertEquals(formule.getId(), 1);
+	}
+	
+	// ########## TEST DELETE FORMULE ##########
+	
+	@Ignore
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void deleteFormuleTest() {
+		int tailleAvant=formuleDao.getAllFormule().size();
+		formuleDao.deleteFormule(1);
+		
+		assertEquals(tailleAvant-1, formuleDao.getAllFormule().size());
+	}
+	
+	// ########## TEST MODIFIER FORMULE ##########
+
+	@Ignore
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void updateFormuleTest(){
+		
+		f1=new Formule(1, "Avion+Voiture", 300);
+		Formule f2=formuleDao.updateFormule(f1);
+		
+		assertTrue(f1.getPrix()==f2.getPrix()&f1.getType()==f2.getType());
 	}
 	
 }
