@@ -14,19 +14,18 @@
 <title>Rechercher client</title>
 
 
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 </head>
 <body>
-	<%@ include file="/template/headerA.html"%>
-	<br/>
-	<br/>
-	<br/>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 
 	<h1 style="color: dodgerblue; text-align: center">Formulaire de
 		Recherche</h1>
@@ -71,10 +70,10 @@
 			<tr>
 				<td class="success">${client.id}</td>
 				<td class="danger">${client.civilite}</td>
-				<td class="info">${client.nom} ${client.prenom}</td>
+				<td class="info">${client.nom}${client.prenom}</td>
 
 				<td class="warning">${client.mail}</td>
-				<td class="success">${client.numero} ${client.rue}
+				<td class="success">${client.numero}${client.rue}
 					${client.codePostal} ${client.ville}</td>
 				<td class="danger">${client.tel}</td>
 				<td class="danger">${client.dateNaissance}</td>

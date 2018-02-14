@@ -8,23 +8,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste des voyages</title>
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
 </head>
 <body>
-<%@ include file="/template/headerA.html"%>
-<br/>
-<br/>
-<br/>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 
-	<h1 style="color: darkred; text-align: center">Liste des
-		voyages</h1>
+	<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
 
 	<table class="table table-bordered">
 		<tr>
@@ -63,8 +61,7 @@
 				<td>${v.priorite}</td>
 				<td><a
 					href="${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}">Modifier</a>
-					|
-					<a
+					| <a
 					href="${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}">Supprimer</a>
 				</td>
 			</tr>

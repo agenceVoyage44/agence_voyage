@@ -13,26 +13,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>page de modification d'hebergement</title>
 
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
+
 </head>
 
 <body>
+	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
-	<br/>
-	<br/>
-	<br/>
+	</div>
 
-	<h1 style="color: red; text-align: center">Formulaire de modification</h1>
+	<h1 style="color: red; text-align: center">Formulaire de
+		modification</h1>
 
 	<form:form method="POST" action="soumettreUpdate"
-		modelAttribute="hebergUpdate" cssClass="form-horizontal" >
+		modelAttribute="hebergUpdate" cssClass="form-horizontal">
 
 		<div class="form-group">
 			<form:label path="id" cssClass="col-sm-2 control-label">Id</form:label>

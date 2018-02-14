@@ -28,10 +28,9 @@
 
 </head>
 <body>
-	<%@ include file="/template/headerA.html"%>
-	<br/>
-	<br/>
-	<br/>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 	<h1 style="text-align: center">Formulaire de supression
 		d'hebergement</h1>
 

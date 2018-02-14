@@ -8,40 +8,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Formulaire de recherche</title>
-
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 </head>
 <body>
-<%@ include file="/template/headerA.html"%>
-<br/>
-<br/>
-<br/>
-<h1 style="color: darkred ; text-align : center">Formulaire de recherche de voyage</h1>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
+	<h1 style="color: darkred; text-align: center">Formulaire de
+		recherche de voyage</h1>
 
-<form:form method="POST" action="soumettreGet"
+	<form:form method="POST" action="soumettreGet"
 		modelAttribute="voyageRecherche" cssClass="form-horizontal">
-		
+
 		<div class="form-group">
 			<form:label path="id" cssClass="col-sm-2 control-label">Id</form:label>
 			<div class="col-sm-5">
 				<form:input path="id" cssClass="form-control" />
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input type="submit" class="btn btn-success" value="Rechercher" />
 			</div>
 		</div>
-		
+
 	</form:form>
-	
+
 	<table class="table table-bordered">
 		<tr>
 			<th>ID</th>
@@ -59,25 +58,25 @@
 			<th>Description</th>
 			<th>Priorité</th>
 		</tr>
-			<tr>
-				<td>${voyage.id}</td>
-				<td>${voyage.continent}</td>
-				<td>${voyage.pays}</td>
-				<td>${voyage.prixDepart}</td>
-				<td>${voyage.remise}</td>
-				<td>${voyage.prixSolde}</td>
-				<td>${voyage.dateDepart}</td>
-				<td>${voyage.dateRetour}</td>
-				<td>${voyage.photo}</td>
-				<td>${voyage.nbPlaces}</td>
-				<td>${voyage.dispo}</td>
-				<td>${voyage.titre}</td>
-				<td>${voyage.description}</td>
-				<td>${voyage.priorite}</td>
-			</tr>
+		<tr>
+			<td>${voyage.id}</td>
+			<td>${voyage.continent}</td>
+			<td>${voyage.pays}</td>
+			<td>${voyage.prixDepart}</td>
+			<td>${voyage.remise}</td>
+			<td>${voyage.prixSolde}</td>
+			<td>${voyage.dateDepart}</td>
+			<td>${voyage.dateRetour}</td>
+			<td>${voyage.photo}</td>
+			<td>${voyage.nbPlaces}</td>
+			<td>${voyage.dispo}</td>
+			<td>${voyage.titre}</td>
+			<td>${voyage.description}</td>
+			<td>${voyage.priorite}</td>
+		</tr>
 
 	</table>
-	
-	
+
+
 </body>
 </html>

@@ -13,21 +13,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste clients</title>
 
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
 </head>
 <body>
-	<%@ include file="/template/headerA.html"%>
-	<br/>
-	<br/>
-	<br/>
-	<h1 >Liste des Clients</h1>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
+	<h1>Liste des Clients</h1>
 
 	<div>
 
@@ -51,7 +50,7 @@
 					<td class="info">${c.nom}${c.prenom}</td>
 
 					<td class="warning">${c.mail}</td>
-					<td class="success">${c.numero} ${c.rue} ${c.codePostal}
+					<td class="success">${c.numero}${c.rue} ${c.codePostal}
 						${c.ville}</td>
 					<td class="danger">${c.tel}</td>
 					<td class="danger">${c.dateNaissance}</td>

@@ -21,10 +21,9 @@
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 </head>
 <body>
-	<%@ include file="/template/headerA.html"%>
-	<br/>
-	<br/>
-	<br/>
+<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 <h1>Suppression d'une cargaison routière</h1>
 	<br />
 

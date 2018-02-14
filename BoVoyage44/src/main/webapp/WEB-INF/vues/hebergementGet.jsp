@@ -26,11 +26,9 @@
 </head>
 
 <body>
-	<%@ include file="/template/headerA.html"%>
-	<br/>
-	<br/>
-	<br/>
-
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 	<h1 style="color: red; text-align: center">Formulaire de recherche</h1>
 
 	<form:form method="POST" action="soumettreGet"
@@ -65,8 +63,9 @@
 			<tr>
 				<td style="text-align: center">${hebergement.id}</td>
 				<td style="text-align: center">${hebergement.type}</td>
-				<td style="text-align: center">${hebergement.prix} euros</td>
-				<td style="text-align: center">id:${hebergement.formule.id} , type:${hebergement.formule.type}</td>
+				<td style="text-align: center">${hebergement.prix}euros</td>
+				<td style="text-align: center">id:${hebergement.formule.id} ,
+					type:${hebergement.formule.type}</td>
 			</tr>
 
 
