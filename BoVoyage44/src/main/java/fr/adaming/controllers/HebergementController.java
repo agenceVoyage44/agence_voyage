@@ -1,5 +1,6 @@
 package fr.adaming.controllers;
 
+import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,6 +103,8 @@ public class HebergementController {
 		// appelle de la methode service
 		Hebergement hOut = hebergementService.updateHebergement(h);
 
+		
+		
 		if (hOut.getId() != 0) {
 
 			return "redirect:liste";
@@ -201,9 +204,6 @@ public class HebergementController {
 		Hebergement hOut = hebergementService.getHebergementByID(id);
 
 		model.addAttribute("hebergUpdate", hOut);
-		
-		
-		
 
 
 		return "hebergementUpdate";

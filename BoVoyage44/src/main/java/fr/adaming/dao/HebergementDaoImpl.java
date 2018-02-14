@@ -34,6 +34,8 @@ public class HebergementDaoImpl implements IHebergementDao {
 		
 		hOut.setPrix(hebergement.getPrix());
 		hOut.setType(hebergement.getType());
+		hOut.setFormule(hebergement.getFormule());
+		
 		em.merge(hOut);
 		return hOut;
 	}
