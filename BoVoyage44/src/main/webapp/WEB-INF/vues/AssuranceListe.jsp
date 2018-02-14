@@ -43,6 +43,10 @@
 					<td>${a.id}</td>
 					<td>${a.type}</td>
 					<td>${a.prix}</td>
+					<td style="text-align: center"><a
+					href="${pageContext.request.contextPath}/agent/assurance/supprimeLien/${a.id}">Supprimer</a>
+					| <a
+					href="${pageContext.request.contextPath}/agent/assurance/modifieLien?pId=${a.id}">Modifier</a></td>
 				</tr>
 		</c:forEach>
 

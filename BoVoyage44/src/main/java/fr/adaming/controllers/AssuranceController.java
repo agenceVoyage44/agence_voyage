@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Assurance;
+import fr.adaming.model.Hebergement;
 import fr.adaming.model.Reservation;
 import fr.adaming.model.Temp;
 import fr.adaming.service.IAssuranceService;
@@ -116,31 +120,43 @@ public class AssuranceController {
 			
 			
 		}
+		// --------Lien Tableau Pour Supprimer ou Modifier----------
+
+		// ----------------supprime(lien)-------------------
+		@RequestMapping(value = "/supprimeLien/{pId}", method = RequestMethod.GET)
+		public String supprimerlien(Model model, @PathVariable("pId") int id) {
+			Assurance a = new Assurance();
+
+			a.setId(id);
+
+			// appel de la methode service
+			assuranceService.deleteAssurance(id);
+
+			// recuperer la liste de la bd
+			List<Assurance> liste = assuranceService.getAllAssurance();
+
+			model.addAttribute("aList", liste);
+
+			return "AssuranceListe";
+
+		}
 		
-		//******************* AJOUT Resa**********************************************************************************
-//		@RequestMapping(value="afficheAddResa", method = RequestMethod.GET)
-//		public ModelAndView afficheAjoutResa(){
-//			
-//			return new ModelAndView("AssuranceAjoutResa", "AssurAjoutResa", new Temp());
-//			
-//		}
-//		@RequestMapping(value="soumettreAddResa", method = RequestMethod.POST)
-//		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Temp temp){
-//			
-//			Assurance assurance=assuranceService.getAssuranceById(temp.getId());
-//			assurance.setType(temp.getType());
-//			assurance.setPrix(temp.getPrix());
-//			
-//			List<Reservation>liste=assurance.getListeReservations();
-//			liste.add(reservationService.getReservationByID(temp.getIdResa()));
-//			assurance.setListeReservations(liste);
-//			
-//			//rediriger vers la methode afficheliste
-//			return "redirect:liste";
-//			
-//			
-//		}
-		
-		
+		// ------------ modifier(lien)-------------
+		@RequestMapping(value = "/modifieLien", method = RequestMethod.GET)
+		public String modifielien(ModelMap model, @RequestParam("pId") int id) {
+
+			// @PathVariable: prend pId est la stock dans le int id
+
+			Assurance aIn = new Assurance();
+
+			aIn.setId(id);
+
+			// recup hebergment de la bd
+			Assurance aOut=assuranceService.getAssuranceById(id);
+
+			model.addAttribute("AssurModif", aOut);
+
+			return "AssuranceUpdate";
+		}
 		
 }
