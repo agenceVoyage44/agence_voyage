@@ -33,6 +33,8 @@
    float: left;
 }
 
+.textImg{
+position: absolute;}
 </style>
 <script type="text/javascript">
    $(function(){
@@ -48,10 +50,10 @@
 
 <div class="slideshow">
 	<ul>
-		<li><a href="${pageContext.request.contextPath}/boVoyage/accueil"><img src="images/hotel.jpg" alt="" width="350" height="200" /></a></li>
-		<li><img src="images/manoir.jpg" alt="" width="350" height="200" /></li>
-		<li><img src="images/palais.jpg" alt="" width="350" height="200" /></li>
-		<li><img src="images/vignoble.jpg" alt="" width="350" height="200" /></li>
+		<li><a href="${pageContext.request.contextPath}/boVoyage/accueil"><img src="images/voyage1.jpg" alt="" width="350" height="200" /></a></li>
+		<li><div id="logo"><img src="images/voyage2.jpg" alt="" width="350" height="200" /><h2 class="texteImg"> TOTO </h2></div></li>
+		<li><img src="images/voyage3.jpg" alt="" width="350" height="200" /></li>
+		<li><img src="images/voyage4.jpg" alt="" width="350" height="200" /></li>
 	</ul>
 </div>
 

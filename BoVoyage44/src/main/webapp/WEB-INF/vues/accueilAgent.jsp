@@ -22,6 +22,6 @@
 	<br />
 	<br />
 	<br />
-	<h1>Accueil Agent</h1>
+
 </body>
 </html>

@@ -21,5 +21,16 @@ public class MapController {
 		
 		
 	}
-	
+	@RequestMapping(value="/accueilClient",method=RequestMethod.GET)
+	public String client(Model modele){
+		return "accueilClient";
+		
+		
+	}
+	@RequestMapping(value="/accueilAgent",method=RequestMethod.GET)
+	public String agent(Model modele){
+		return "accueilAgent";
+		
+		
+	}
 }
