@@ -15,6 +15,11 @@ public class MapController {
 		
 	}
 	
-	
+	@RequestMapping(value="/galerie",method=RequestMethod.GET)
+	public String galerieView(Model modele){
+		return "galerie";
+		
+		
+	}
 	
 }

@@ -18,11 +18,13 @@
        #map {
         height: 200px;
         width: 20%;
+        left:20%;
        }
        #contentString{
        	height: 10px;
         width: 5px;
        }
+      
     </style>
 
 </head>
@@ -30,6 +32,8 @@
 <body onload="initialize()">
 <h3>My Google Maps Demo</h3>
     <div id="map"></div>
+ 
+		
     <script>
       function initMap() {
         var uluru = {lat: 47.2134338, lng: -1.5616846};
@@ -67,28 +71,9 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNbERhjSliTotEcKSzVFsXjtfWD-WmSFw&callback=initMap">
     </script>
-    <form:form method="POST" action="soumettreAdd" modelAttribute="AssurAjout" cssClass="form-horizontal">
-		<div class="form-group">
-			<form:label path="nom" class="col-sm-2 control-label">Nom:</form:label>
-			<div class="col-sm-5">
-				<form:input path="nom" cssClass="form-control" />
-			</div>
-		</div>
-		<div class="form-group">
-			<form:label path="demande" class="col-sm-2 control-label">Demande</form:label>
-			<div class="col-sm-5">
-				<form:input path="demande" cssClass="form-control" />
-			</div>
-		</div>
-				
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-success" value="Ajouter"/>
-			</div>
-		</div>
-	
 
-	</form:form>
+
+
 </body>
 
 </html>
