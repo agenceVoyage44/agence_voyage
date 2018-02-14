@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Formule;
 import fr.adaming.model.Hebergement;
+import fr.adaming.service.IFormuleService;
 import fr.adaming.service.IHebergementService;
 
 @Controller
@@ -24,32 +26,49 @@ public class HebergementController {
 	@Autowired
 	private IHebergementService hebergementService;
 
+	@Autowired
+	private IFormuleService formuleService;
+
 	public void setHebergementService(IHebergementService hebergementService) {
 		this.hebergementService = hebergementService;
 	}
-	
-	// -----------------------Affiche Liste Hebergement----------------------------
-		@RequestMapping(value = "/liste", method = RequestMethod.GET)
-		public ModelAndView afficheListe() {
-			// recuperer la liste de la bd
-			List<Hebergement> liste = hebergementService.getAllHebergement();
 
-			return new ModelAndView("hebergementListe", "hList", liste);
-		}
-	
+	public void setFormuleService(IFormuleService formuleService) {
+		this.formuleService = formuleService;
+	}
+
+	// -----------------------Affiche Liste
+	// Hebergement----------------------------
+	@RequestMapping(value = "/liste", method = RequestMethod.GET)
+	public ModelAndView afficheListe() {
+		// recuperer la liste de la bd
+		List<Hebergement> liste = hebergementService.getAllHebergement();
+
+		return new ModelAndView("hebergementListe", "hList", liste);
+	}
+
 	// ---------------------------Ajouter un Hebergement --------------------
 	// *****Pour afficher le formulaire******
 	@RequestMapping(value = "/afficheAdd", method = RequestMethod.GET)
-	public ModelAndView addHebergement() {
+	public String addHebergement(Model modele) {
 
-		return new ModelAndView("hebergementAjout", "addHebergement", new Hebergement());
+		modele.addAttribute("addHebergement", new Hebergement());
+
+		// Récupérer la liste de la BDD (formule)
+		List<Formule> listeFormules = formuleService.getAllFormule();
+
+		modele.addAttribute("listeFormules",listeFormules);
+		
+		return "hebergementAjout";
+
 	}
 
 	// *****Pour soumettre le formulaire*****
 	@RequestMapping(value = "/soumettreAdd", method = RequestMethod.POST)
-	public String soumettreaddHebergement(RedirectAttributes rs,@ModelAttribute("addHebergement") Hebergement hebergement) {
+	public String soumettreaddHebergement(RedirectAttributes rs,
+			@ModelAttribute("addHebergement") Hebergement hebergement) {
 
-		//appel de la methode service
+		// appel de la methode service
 		Hebergement hOut = hebergementService.addHebergement(hebergement);
 
 		if (hOut.getId() != 0) {
@@ -61,123 +80,123 @@ public class HebergementController {
 		}
 
 	}
-	
+
 	// ---------------------------------Modif------------------------------
-		// *****afficher le formulaire de modif*******
-		@RequestMapping(value = "/afficheUpdate", method = RequestMethod.GET)
-		public String updateHeberg(Model modele) {
-			modele.addAttribute("hebergUpdate", new Hebergement());
-			return "hebergementUpdate";
+	// *****afficher le formulaire de modif*******
+	@RequestMapping(value = "/afficheUpdate", method = RequestMethod.GET)
+	public String updateHeberg(Model modele) {
+		modele.addAttribute("hebergUpdate", new Hebergement());
+		return "hebergementUpdate";
+	}
+
+	// ******soumettre le formulaire update******
+	@RequestMapping(value = "/soumettreUpdate", method = RequestMethod.POST)
+	public String soumettreUpdateHebergement(@ModelAttribute("hebergUpdate") Hebergement h) {
+
+		// appelle de la methode service
+		Hebergement hOut = hebergementService.updateHebergement(h);
+
+		if (hOut.getId() != 0) {
+
+			return "redirect:liste";
+		} else {
+			return "redirect:afficheUpdate";
+		}
+	}
+
+	// ---------------------------------DELETE-----------------------------
+	// ******afficher le formulaire de supression*******
+	@RequestMapping(value = "/afficheDelete", method = RequestMethod.GET)
+	public String deleteHeberg(Model modele) {
+		modele.addAttribute("hebergDelete", new Hebergement());
+		return "hebergementDelete";
+	}
+
+	// *****soumettre le formulaire ******
+	@RequestMapping(value = "/soumettreDelete", method = RequestMethod.POST)
+	public String soumettreDeleteHebergement(@ModelAttribute("hebergDelete") Hebergement h) {
+
+		// appelle de la methode service
+		Hebergement hOut = hebergementService.updateHebergement(h);
+
+		if (hOut.getId() != 0) {
+
+			return "redirect:liste";
+		} else {
+			return "redirect:afficheDelete";
 		}
 
-		// ******soumettre le formulaire update******
-		@RequestMapping(value = "/soumettreUpdate", method = RequestMethod.POST)
-		public String soumettreUpdateHebergement(@ModelAttribute("hebergUpdate") Hebergement h) {
+	}
 
-			// appelle de la methode service
-			Hebergement hOut = hebergementService.updateHebergement(h);
+	// ----------------------------Recherche--------------------------
+	// ******afficher le formulaire de recherche*******
+	@RequestMapping(value = "/afficheGet", method = RequestMethod.GET)
+	public String searchHeberg(Model modele) {
+		modele.addAttribute("hebergSearch", new Hebergement());
+		modele.addAttribute("indice", false);
+		return "hebergementGet";
+	}
 
-			if (hOut.getId() != 0) {
+	// ******soumettre le formulaire *********
+	@RequestMapping(value = "/soumettreGet", method = RequestMethod.POST)
+	public String soumettreGetHebergement(RedirectAttributes rs, Model model,
+			@ModelAttribute("hebergSearch") Hebergement h) {
 
-				return "redirect:liste";
-			} else {
-				return "redirect:afficheUpdate";
-			}
-		}
-	
-		// ---------------------------------DELETE-----------------------------
-		// ******afficher le formulaire de supression*******
-		@RequestMapping(value = "/afficheDelete", method = RequestMethod.GET)
-		public String deleteHeberg(Model modele) {
-			modele.addAttribute("hebergDelete", new Hebergement());
-			return "hebergementDelete";
-		}
+		// appelle de la methode service
+		Hebergement hOut = hebergementService.getHebergementByID(h.getId());
 
-		// *****soumettre le formulaire ******
-		@RequestMapping(value = "/soumettreDelete", method = RequestMethod.POST)
-		public String soumettreDeleteHebergement(@ModelAttribute("hebergDelete") Hebergement h) {
+		if (hOut != null) {
 
-			// appelle de la methode service
-			Hebergement hOut = hebergementService.updateHebergement(h);
-
-			if (hOut.getId() != 0) {
-
-				return "redirect:liste";
-			} else {
-				return "redirect:afficheDelete";
-			}
-
-		}
-		
-		// ----------------------------Recherche--------------------------
-		// ******afficher le formulaire de recherche*******
-		@RequestMapping(value = "/afficheGet", method = RequestMethod.GET)
-		public String searchHeberg(Model modele) {
-			modele.addAttribute("hebergSearch", new Hebergement());
-			modele.addAttribute("indice", false);
+			model.addAttribute("hebergement", hOut);
+			model.addAttribute("indice", true);
 			return "hebergementGet";
+		} else {
+
+			rs.addFlashAttribute("message", "L'hebergement souhaité n'existe pas");
+
+			// rediriger vers la methode ajout
+			return "redirect:afficheGet";
 		}
 
-		// ******soumettre le formulaire *********
-		@RequestMapping(value = "/soumettreGet", method = RequestMethod.POST)
-		public String soumettreGetHebergement(RedirectAttributes rs, Model model, @ModelAttribute("hebergSearch") int idHeberg) {
+	}
 
-			
-			// appelle de la methode service
-			  Hebergement hOut=hebergementService.getHebergementByID(idHeberg);
+	// --------Lien Tableau Pour Supprimer ou Modifier l'Hebergement----------
 
-			if (hOut != null) {
+	// ----------------supprime(lien)-------------------
+	@RequestMapping(value = "/supprimeLien/{pId}", method = RequestMethod.GET)
+	public String supprimerlien(Model model, @PathVariable("pId") int id) {
+		Hebergement h = new Hebergement();
 
-				model.addAttribute("hebergement", hOut);
-				model.addAttribute("indice", true);
-				return "hebergementGet";
-			} else {
+		h.setId(id);
 
-				rs.addFlashAttribute("message", "L'hebergement souhaité n'existe pas");
+		// appel de la methode service
+		hebergementService.deleteHebergement(id);
 
-				// rediriger vers la methode ajout
-				return "redirect:afficheGet";
-			}
+		// recuperer la liste de la bd
+		List<Hebergement> liste = hebergementService.getAllHebergement();
 
-		}
-		
-		//--------Lien Tableau Pour Supprimer ou Modifier l'Hebergement----------
-		
-		// ----------------supprime(lien)-------------------
-		@RequestMapping(value = "/supprimeLien/{pId}", method = RequestMethod.GET)
-		public String supprimerlien(Model model, @PathVariable("pId") int id) {
-			Hebergement h = new Hebergement();
+		model.addAttribute("hList", liste);
 
-			h.setId(id);
+		return "hebergementListe";
 
-			// appel de la methode service
-			hebergementService.deleteHebergement(id);
+	}
 
-			// recuperer la liste de la bd
-			List<Hebergement> liste = hebergementService.getAllHebergement();
+	// ------------ modifier(lien)-------------
+	@RequestMapping(value = "/modifieLien", method = RequestMethod.GET)
+	public String modifielien(ModelMap model, @RequestParam("pId") int id) {
 
-			model.addAttribute("hList", liste);
+		// @PathVariable: prend pId est la stock dans le int id
 
-			return "hebergementListe";
+		Hebergement hIn = new Hebergement();
 
-		}
+		hIn.setId(id);
 
-		// ------------ modifier(lien)-------------
-		@RequestMapping(value = "/modifieLien", method = RequestMethod.GET)
-		public String modifielien(ModelMap model, @RequestParam("pId") int id) {
+		// recup hebergment de la bd
+		Hebergement hOut = hebergementService.getHebergementByID(id);
 
-			// @PathVariable: prend pId est la stock dans le int id
+		model.addAttribute("hebergUpdate", hOut);
 
-			Hebergement hIn = new Hebergement();
+		return "hebergementUpdate";
+	}
 
-			hIn.setId(id);
-
-			// recup hebergment de la bd
-			Hebergement hOut = hebergementService.getHebergementByID(id);
-
-			model.addAttribute("hebergUpdate", hOut);
-
-			return "hebergementUpdate";
-		}
-	
 }

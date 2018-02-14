@@ -25,32 +25,32 @@
 	<h1 style="color: red; text-align: center">Formulaire de modification</h1>
 
 	<form:form method="POST" action="soumettreUpdate"
-		modelAttribute="hebergUpdate" cssClass="form-horizontal">
+		modelAttribute="hebergUpdate" cssClass="form-horizontal" >
 
 		<div class="form-group">
 			<form:label path="id" cssClass="col-sm-2 control-label">Id</form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<form:input cssClass="form-control" path="id" />
 			</div>
 		</div>
 
 		<div class="form-group">
 			<form:label path="type" cssClass="col-sm-2 control-label">Type</form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<form:input cssClass="form-control" path="type" />
 			</div>
 		</div>
 
 		<div class="form-group">
 			<form:label path="prix" cssClass="col-sm-2 control-label">Prix</form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<form:input cssClass="form-control" path="prix" />
 			</div>
 		</div>
 
 		<div class="form-group">
-			<form:label path="formule.id" cssClass="col-sm-2 control-label">ID du Formulaire</form:label>
-			<div class="col-sm-10">
+			<form:label path="formule.id" cssClass="col-sm-2 control-label">ID de la Formule</form:label>
+			<div class="col-sm-6">
 				<form:input cssClass="form-control" path="formule.id" />
 			</div>
 		</div>
