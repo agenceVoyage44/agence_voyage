@@ -26,7 +26,7 @@
 			<th style="text-align: center">ID</th>
 			<th style="text-align: center">Type</th>
 			<th style="text-align: center">Prix</th>
-			<th style="text-align: center">ID Formule</th>
+			<th style="text-align: center">ID Formule et son type</th>
 			<th style="text-align: center">Operations</th>
 		</tr>
 
@@ -34,8 +34,8 @@
 			<tr>
 				<td style="text-align: center">${h.id}</td>
 				<td style="text-align: center">${h.type}</td>
-				<td style="text-align: center">${h.prix}</td>
-				<td style="text-align: center">${h.formule.id} (${h.formule.type})</td>
+				<td style="text-align: center">${h.prix} euros</td>
+				<td style="text-align: center">id:${h.formule.id} , type:${h.formule.type}</td>
 				<td style="text-align: center"><a
 					href="${pageContext.request.contextPath}/agent/hebergement/supprimeLien/${h.id}">Supprimer</a>
 					| <a

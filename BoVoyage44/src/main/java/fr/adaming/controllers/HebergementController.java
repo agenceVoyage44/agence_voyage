@@ -86,6 +86,12 @@ public class HebergementController {
 	@RequestMapping(value = "/afficheUpdate", method = RequestMethod.GET)
 	public String updateHeberg(Model modele) {
 		modele.addAttribute("hebergUpdate", new Hebergement());
+		
+		// Récupérer la liste de la BDD (formule)
+		List<Formule> listeFormules = formuleService.getAllFormule();
+
+		modele.addAttribute("listeFormules",listeFormules);
+		
 		return "hebergementUpdate";
 	}
 
@@ -195,6 +201,10 @@ public class HebergementController {
 		Hebergement hOut = hebergementService.getHebergementByID(id);
 
 		model.addAttribute("hebergUpdate", hOut);
+		
+		
+		
+
 
 		return "hebergementUpdate";
 	}

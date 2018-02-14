@@ -50,15 +50,15 @@
 				<th style="text-align: center">ID</th>
 				<th style="text-align: center">Type</th>
 				<th style="text-align: center">Prix</th>
-				<th style="text-align: center">ID Formule</th>
+				<th style="text-align: center">ID Formule et son type</th>
 			</tr>
 
 
 			<tr>
 				<td style="text-align: center">${hebergement.id}</td>
 				<td style="text-align: center">${hebergement.type}</td>
-				<td style="text-align: center">${hebergement.prix}</td>
-				<td style="text-align: center">${hebergement.formule.id}</td>
+				<td style="text-align: center">${hebergement.prix} euros</td>
+				<td style="text-align: center">id:${hebergement.formule.id} , type:${hebergement.formule.type}</td>
 			</tr>
 
 
