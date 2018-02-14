@@ -23,40 +23,28 @@
 	<!-- Header User -->
 	<%@ include file="/template/headerC.html"%>
 
-<br><br><br><br><br><br><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<c:forEach var="v" items="${voyageList}">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="#"> <img src="${v.photo}" alt="voyage1"
+						style="width: 400px; height: 300px;">
+						<div class="caption">
+							<p>${v.continent}</p>
+						</div>
+					</a>
+				</div>
+			</div>
+	</c:forEach>
 
- <div class="row">
-  <div class="col-md-4">
-    <div class="thumbnail">
-      <a href="/w3images/lights.jpg">
-        <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
-        <div class="caption">
-          <p>Lorem ipsum...</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="thumbnail">
-      <a href="/w3images/nature.jpg">
-        <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
-        <div class="caption">
-          <p>Lorem ipsum...</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="thumbnail">
-      <a href="/w3images/fjords.jpg">
-        <img src="/w3images/fjords.jpg" alt="Fjords" style="width:100%">
-        <div class="caption">
-          <p>Lorem ipsum...</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
 </body>
 
 

@@ -56,7 +56,21 @@
 		</c:forEach>
 
 	</table>
-
+	<c:forEach var="v" items="${voyageList}">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="#"> <img src="${v.photo}" alt="imageVoyage"
+						style="width: 400px; height: 300px;">
+						<div class="caption">
+							<p>Continent : ${v.continent}<br>
+							Description : </p>
+							
+						</div>
+					</a>
+				</div>
+			</div>
+	</c:forEach>
 
 </body>
 </html>
