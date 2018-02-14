@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Ajout de la taglib spring mvc form -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html >
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -25,14 +25,19 @@
 	</div>
 	<div class="panel panel-default">
 		<div class="bs-callout bs-callout-color">
-			<h3 style="color: #48494c; text-align: center">Ajouter une
+			<h3 style="color: #48494c; text-align: center">Modifier une
 				Voiture</h3>
 
-			<form:form method="POST" action="soumettreAdd"
-				modelAttribute="vAjout" cssClass="form-horizontal"
+			<form:form method="POST" action="soumettreUpdate"
+				modelAttribute="vUpdate" cssClass="form-horizontal"
 				enctype="multipart/form-data">
 
-
+				<div class="form-group">
+					<form:label path="id" class="col-sm-2 control-label">Id:</form:label>
+					<div class="col-sm-6">
+						<form:input path="id" cssClass="form-control" disabled="disabled"/>
+					</div>
+				</div>
 				<div class="form-group">
 					<form:label path="loueur" class="col-sm-2 control-label">Loueur:</form:label>
 					<div class="col-sm-6">
@@ -53,7 +58,8 @@
 				</div>
 				<div class="form-group">
 					<div class="input-field col-sm-6">
-						<input type="file" name="file" id="selectedFile" class="form-control"/>
+						<input type="file" name="file" id="selectedFile"
+							class="form-control" />
 					</div>
 				</div>
 

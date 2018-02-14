@@ -8,14 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
- * <b>Classe voiture</b> comprenant le modèle du véhicule, le nom du loueur, le nombre
- * de place et la photo du modèle. Plusieurs voitures peuvent être associées à une
- * formule.
+ * <b>Classe voiture</b> comprenant le modèle du véhicule, le nom du loueur, le
+ * nombre de place et la photo du modèle. Plusieurs voitures peuvent être
+ * associées à une formule.
  * 
  * @author inti-0257
  *
@@ -34,7 +37,11 @@ public class Voiture {
 
 	private int nbPlaces;
 
+	@Lob
 	private byte[] photo;
+
+	@Transient
+	private MultipartFile file;
 
 	// association UML en java
 
@@ -95,14 +102,6 @@ public class Voiture {
 		this.nbPlaces = nbPlaces;
 	}
 
-	public byte[] getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
-	}
-
 	public Formule getFormule() {
 		return formule;
 	}
@@ -111,10 +110,26 @@ public class Voiture {
 		this.formule = formule;
 	}
 
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	@Override
 	public String toString() {
 		return "Voiture [id=" + id + ", modele=" + modele + ", loueur=" + loueur + ", nbPlaces=" + nbPlaces + ", photo="
-				+ Arrays.toString(photo) + ", formule=" + formule + "]";
+				+ Arrays.toString(photo) + ", file=" + file + ", formule=" + formule + "]";
 	}
 
 }

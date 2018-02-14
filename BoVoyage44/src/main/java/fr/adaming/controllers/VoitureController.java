@@ -1,8 +1,18 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,6 +21,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Voiture;
@@ -41,6 +54,16 @@ public class VoitureController {
 		return new ModelAndView("voitureListe", "vListe", listeV);
 	}
 
+	@RequestMapping(value = "/photoVoiture", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int idV) throws IOException {
+		Voiture v = voitureService.getVoitureById(idV);
+		if (v.getPhoto() == null)
+			return new byte[0];
+		else
+			return IOUtils.toByteArray(new ByteArrayInputStream(v.getPhoto()));
+	}
+
 	// ********* Ajout Voiture **********
 	/**
 	 * Affiche le formulaire d'ajout de Voiture
@@ -62,6 +85,16 @@ public class VoitureController {
 	 */
 	@RequestMapping(value = "/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjouter(@ModelAttribute("vAjout") Voiture v) {
+
+		// Récupère le fichier image, et set la photo de l'objet
+		MultipartFile file = v.getFile();
+		if (null != file) {
+			try {
+				v.setPhoto(file.getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 		Voiture vOut = voitureService.addVoiture(v);
 
@@ -112,6 +145,15 @@ public class VoitureController {
 	 */
 	@RequestMapping(value = "/soumettreUpdate", method = RequestMethod.POST)
 	public String soumettreUpdate(@ModelAttribute("vUpdate") Voiture v) {
+		// Récupère le fichier image, et set la photo de l'objet
+		MultipartFile file = v.getFile();
+		if (null != file) {
+			try {
+				v.setPhoto(file.getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 		Voiture vOut = voitureService.updateVoiture(v);
 
@@ -125,8 +167,10 @@ public class VoitureController {
 	// ******* Suppression Voiture **********
 	/**
 	 * Supprime la voiture selectionnée et actualise la liste des voitures.
+	 * 
 	 * @param modele
-	 * @param id Il s'agit de l'id de la voiture sélectionnée.
+	 * @param id
+	 *            Il s'agit de l'id de la voiture sélectionnée.
 	 * @return Retourne la nouvelle liste de voitures.
 	 */
 	@RequestMapping(value = "deleteLien/{pId}", method = RequestMethod.GET)
@@ -139,7 +183,5 @@ public class VoitureController {
 		modele.addAttribute("vListe", listeV);
 		return "voitureListe";
 	}
-	
-	
 
 }

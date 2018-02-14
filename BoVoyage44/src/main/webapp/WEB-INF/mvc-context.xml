@@ -25,4 +25,13 @@
 	</bean>
 
 
+	<!-- Limitation de taille des fichiers uploadé -->
+	<bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver">
+		<property name="maxUploadSize" value="268435456"></property>
+	</bean>
+<!-- 	 <mvc:resources mapping="/image/**" location="/image/" /> -->
+
+
 </beans>

@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import fr.adaming.model.Formule;
 import fr.adaming.model.Voiture;
 
 /**
@@ -83,7 +84,17 @@ public class VoitureDaoImpl implements IVoitureDao {
 
 	@Override
 	public Voiture updateVoiture(Voiture v) {
-		em.merge(v);
+		// Récupérer la voiture
+		Voiture vOut = em.find(Voiture.class, v.getId());
+
+		// Passer les nouveaux paramètres
+		vOut.setLoueur(v.getLoueur());
+		vOut.setModele(v.getModele());
+		vOut.setNbPlaces(v.getNbPlaces());
+		vOut.setPhoto(v.getPhoto());
+
+		// Mettre à jour la voiture
+		em.merge(vOut);
 		return v;
 	}
 
