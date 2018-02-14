@@ -68,7 +68,7 @@ public class VoyageController {
 		List<Voyage> liste = voyageService.getAllVoyage();
 		
 		for (Voyage voyage : liste) {
-			if(voyage.getContinent()==continent){
+			if(voyage.getContinent().equals(continent)){
 				listeContinents.add(voyage);
 			}
 		}

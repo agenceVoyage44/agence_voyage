@@ -128,7 +128,7 @@
 				<li><a href="/agent/listeContinent/AmeriqueNord" id="list-north_america">Amérique
 						du Nord</a></li>
 				<li><a href="/agent/listeContinent/Asie" id="list-asia">Asie</a></li>
-				<li><a href="/agent/listeContinent/Europe" id="list-europe">Europe</a></li>
+				<li><a href="/voyage/agent/listeContinent/Europe" id="list-europe">Europe</a></li>
 				<li><a href="/agent/listeContinent/Australie" id="list-australia">Australie</a></li>
 				<li><a href="/voyage/agent/listeContinent/Afrique" id="list-africa">Afrique</a></li>
 			</ul>
