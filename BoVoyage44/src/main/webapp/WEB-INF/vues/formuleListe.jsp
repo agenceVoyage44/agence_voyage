@@ -39,9 +39,9 @@
 				<td>${f.type}</td>
 				<td>${f.prix}</td>
 				<td><a
-					href="${pageContext.request.contextPath}/agent/formulaire/supprimeLien/${f.id}">Supprimer</a>
+					href="${pageContext.request.contextPath}/agent/formule/supprimeLien/${f.id}">Supprimer</a>
 					| <a
-					href="${pageContext.request.contextPath}/agent/formulaire/modifieLien?pId=${f.id}">Modifier</a></td>
+					href="${pageContext.request.contextPath}/agent/formule/modifieLien?pId=${f.id}">Modifier</a></td>
 			</tr>
 		</c:forEach>
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Formule;
@@ -143,15 +144,14 @@ public class FormuleController {
 
 		model.addAttribute("formulesList", liste);
 
-		return "formuleSupprimer";
+		return "formuleListe";
 
 	}
 
 	// ----------------modifie(lien)-------------------
 	@RequestMapping(value = "/modifieLien", method = RequestMethod.GET)
-	public String modifierlien(Model model, @PathVariable("pId") int id) {
+	public String modifierlien(Model model, @RequestParam("pId") int id) {
 
-		// recuperer la liste de la bd
 		Formule formuleOut = formuleService.getFormuleById(id);
 
 		model.addAttribute("formuleModif", formuleOut);
