@@ -65,22 +65,23 @@
 </svg>
 
 		</div>
-		<div class="map__liste">
+		<div class="map__list">
 			<ul>
-				<li><a href="accueilAmeriqueSud" id="liste-south_america">Amérique
+				<li><a href="accueilAmeriqueSud" id="list-south_america">Amérique
 						du Sud</a></li>
-				<li><a href="accueilAmeriqueNord" id="liste-north_america">Amérique
+				<li><a href="accueilAmeriqueNord" id="list-north_america">Amérique
 						du Nord</a></li>
-				<li><a href="accueilAsie" id="liste-asia">Asie</a></li>
-				<li><a href="accueilEurope" id="liste-europe">Europe</a></li>
-				<li><a href="accueilAustralie" id="liste-australia">Australie</a></li>
-				<li><a href="accueilAfrique" id="liste-africa">Afrique</a></li>
+				<li><a href="accueilAsie" id="list-asia">Asie</a></li>
+				<li><a href="accueilEurope" id="list-europe">Europe</a></li>
+				<li><a href="accueilAustralie" id="list-australia">Australie</a></li>
+				<li><a href="accueilAfrique" id="list-africa">Afrique</a></li>
 			</ul>
 
 		</div>
 	</div>
 
-
+<script type="text/javascript"
+	src="<c:url value="/resources/js/map.js"/>"></script>
 
 </body>
 </html>

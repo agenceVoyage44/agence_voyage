@@ -1,27 +1,37 @@
-.map__image{
-	width:50%;
-	float: left;
+.map {
+	overflow: hidden;
 }
 
-.map__image path{
+.map__image {
+	margin-top: 80px;
+	margin-bottom:50px;
+	width: 60%;
+	height: auto;
+}
+
+.map__image path {
 	fill: yellow;
-	stroke : green;
-	stroke-width:1px;
-	transition:fill 0.3s; 
+	stroke: green;
+	stroke-width: 1px;
+	transition: fill 0.3s;
 }
 
-.map__image path:hover{
+.map__image .is-active path {
 	fill: blue;
- 
 }
 
-.map__list{
-	float: right;
-	width:50%;
-}
-
-.map_list a{
+.map_list a {
 	color: inherit;
 	text-decoration: none;
-	transition:color 0.3s;
+	transition: color 0.3s;
+}
+
+.map__list a.is-active {
+	color: blue;
+	font-weight: bold;
+}
+
+.map__list ul li {
+	font-size: xx-large;
+	display: inline;
 }
