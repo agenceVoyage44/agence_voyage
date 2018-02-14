@@ -22,12 +22,17 @@
 			<th>ID</th>
 			<th>Type</th>
 			<th>Prix</th>
+			<th>Operations</th>
 		</tr>
 		<c:forEach var="f" items="${formulesList}">
 			<tr>
 				<td>${f.id}</td>
 				<td>${f.type}</td>
 				<td>${f.prix}</td>
+				<td><a
+					href="${pageContext.request.contextPath}/agent/formulaire/supprimeLien/${f.id}">Supprimer</a>
+					| <a
+					href="${pageContext.request.contextPath}/agent/formulaire/modifieLien?pId=${f.id}">Modifier</a></td>
 			</tr>
 		</c:forEach>
 

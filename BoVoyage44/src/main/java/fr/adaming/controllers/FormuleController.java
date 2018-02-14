@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.adaming.model.Formule;
+import fr.adaming.model.Hebergement;
 import fr.adaming.service.IFormuleService;
 
 @Controller
@@ -87,13 +89,13 @@ public class FormuleController {
 	// Méthode pour afficher le formulaire en GET
 	@RequestMapping(value = "/afficheUpdate", method = RequestMethod.GET)
 	public ModelAndView afficheUpdateFormule() {
-		return new ModelAndView("formuleModif", "formule", new Formule());
+		return new ModelAndView("formuleModifier", "formuleModif", new Formule());
 
 	}
 
 	// Méthode pour soumettre le formulaire en POST
 	@RequestMapping(value = "/soumettreUpdate", method = RequestMethod.POST)
-	public String soumettreUpdateFormule(Model modele, @ModelAttribute("formule") Formule formule) {
+	public String soumettreUpdateFormule(Model modele, @ModelAttribute("formuleModif") Formule formule) {
 
 		// Appel de la méthode service
 
@@ -110,19 +112,51 @@ public class FormuleController {
 	// Méthode pour afficher le formulaire en GET
 	@RequestMapping(value = "/afficheDelete", method = RequestMethod.GET)
 	public ModelAndView afficheDeleteFormule() {
-		return new ModelAndView("formuleSupprim", "formule", new Formule());
+		return new ModelAndView("formuleSupprimer", "formuleSupprim", new Formule());
 
 	}
 
 	// Méthode pour soumettre le formulaire en POST
 	@RequestMapping(value = "/soumettreDelete", method = RequestMethod.POST)
-	public String soumettreDeleteFormule(Model modele, @ModelAttribute("formule") Formule formule) {
+	public String soumettreDeleteFormule(Model modele, @ModelAttribute("formuleSupprim") Formule formule) {
 
 		// Appel de la méthode service
 
 		formuleService.deleteFormule(formule.getId());
 
 		return "redirect:/agent/formule/liste";
+
+	}
+
+	// SUPPRIMER FORMULE LIEN
+
+	// ----------------supprime(lien)-------------------
+	@RequestMapping(value = "/supprimeLien/{pId}", method = RequestMethod.GET)
+	public String supprimerlien(Model model, @PathVariable("pId") int id) {
+
+		
+		// appel de la methode service
+		formuleService.deleteFormule(id);
+
+		// recuperer la liste de la bd
+		List<Formule> liste = formuleService.getAllFormule();
+
+		model.addAttribute("formulesList", liste);
+
+		return "formuleSupprimer";
+
+	}
+
+	// ----------------modifie(lien)-------------------
+	@RequestMapping(value = "/modifieLien", method = RequestMethod.GET)
+	public String modifierlien(Model model, @PathVariable("pId") int id) {
+
+		// recuperer la liste de la bd
+		Formule formuleOut = formuleService.getFormuleById(id);
+
+		model.addAttribute("formuleModif", formuleOut);
+
+		return "formuleModifier";
 
 	}
 

@@ -16,7 +16,25 @@
 </head>
 <body>
 
+<h1>Suppression d'une cargaison routière</h1>
+	<br />
 
+	<form:form method="POST" action="soumettreDelete"
+		modelAttribute="formuleSupprim" cssClass="form-horizontal">
+
+		<div class="form-group">
+			<form:label path="id" cssClass="col-sm-2 control-label">ID</form:label>
+			<div class="col-sm-4">
+				<form:input path="id" cssClass="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" class="btn btn-success" value="Supprimer" />
+			</div>
+		</div>
+	</form:form>
 
 </body>
 </html>
