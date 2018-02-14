@@ -123,6 +123,16 @@ public class VoyageController {
 	
 	@RequestMapping(value = "/agent/soumettreUpdate", method = RequestMethod.POST)
 	public String soumettreModif(@ModelAttribute("voyageModif") Voyage v) {
+		
+		if(v.getFile()!=null){
+			
+			try {
+				v.setPhoto(v.getFile().getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		Voyage vOut = voyageService.updateVoyage(v);
 
 		if (vOut.getContinent() == v.getContinent()) {

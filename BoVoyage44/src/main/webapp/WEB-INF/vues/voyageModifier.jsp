@@ -83,8 +83,6 @@
 			</div>
 		</div>
 
-		<!-- PHOTO IMAGE A VOIR -->
-
 		<div class="form-group">
 			<form:label path="nbPlaces" cssClass="col-sm-2 control-label">Nombre de places disponibles</form:label>
 			<div class="col-sm-5">
@@ -112,6 +110,12 @@
 
 			<form:label path="priorite">Non-Prioritaire</form:label>
 			<form:radiobutton path="priorite" value="false" />
+		</div>
+
+		<div class="form-group">
+			<div class="input-field col-sm-6">
+				<input type="file" name="file" id="selectedFile" class="form-control" />
+			</div>
 		</div>
 
 		<div class="form-group">

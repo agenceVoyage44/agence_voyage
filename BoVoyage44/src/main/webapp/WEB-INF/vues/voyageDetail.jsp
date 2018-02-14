@@ -16,7 +16,8 @@
 
 	<h1>${voyage.titre}</h1>
 
-	${voyage.photo}
+	<img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${voyage.id}" height="80px"/>
+
 	</br>
 
 	<table>

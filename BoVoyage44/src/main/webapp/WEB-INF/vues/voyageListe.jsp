@@ -44,7 +44,7 @@
 		</tr>
 		<c:forEach var="v" items="${voyageList }">
 			<tr>
-				<td>${v.photo}<img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}" height="80px"/></td>
+				<td><img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}" height="80px"/></td>
 				<td>${v.id}</td>
 				<td>${v.continent}</td>
 				<td>${v.pays}</td>
