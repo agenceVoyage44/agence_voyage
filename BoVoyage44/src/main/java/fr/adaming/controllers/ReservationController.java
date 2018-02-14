@@ -15,8 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fr.adaming.model.Assurance;
 import fr.adaming.model.Formule;
 import fr.adaming.model.Hebergement;
+import fr.adaming.model.Participant;
 import fr.adaming.model.Reservation;
 import fr.adaming.service.IAssuranceService;
+import fr.adaming.service.IParticipantService;
 import fr.adaming.service.IReservationService;
 
 /**
@@ -32,12 +34,18 @@ public class ReservationController {
 
 	private IAssuranceService assuranceService;
 
+	private IParticipantService particpantService;
+
 	public void setReservationService(IReservationService reservationService) {
 		this.reservationService = reservationService;
 	}
 
 	public void setAssuranceService(IAssuranceService assuranceService) {
 		this.assuranceService = assuranceService;
+	}
+
+	public void setParticpantService(IParticipantService particpantService) {
+		this.particpantService = particpantService;
 	}
 
 	// ---------------------------Ajouter une Reservation -------------
@@ -72,41 +80,80 @@ public class ReservationController {
 		reservation.setStatut("en cours de traitement");
 		reservation.setDateReservation(new Date());
 
+		long dateResaMilliSec = reservation.getDateReservation().getTime();
+		long age12Ans = 378691200000l;
+
+		List<Participant> listeParticipant = particpantService.getAllParticpantIDResaNULL();
+
+		double prixEnfant;
+		double prixTotal = 0;
+
 		// ----- Calcul Prix Voyage (avec/sans Formule, avec/sans assurances)
 		// -----
 		// Si le voyage de la réservatio présente une formule
 		if (reservation.getVoyage().getFormule() != null) {
 			double prixVoyageFormule = reservation.getVoyage().getFormule().getPrix();
+
+			// si des particpant ont moins de 12 ans
+			for (Participant element : listeParticipant) {
+				Date dateNaissance = element.getDateNaissance();
+				long dateNaissanceMilliSec = dateNaissance.getTime();
+				if (dateResaMilliSec - dateNaissanceMilliSec <= age12Ans) {
+					prixEnfant = prixVoyageFormule - (prixVoyageFormule * 0.6);
+					prixTotal += prixEnfant;
+				} else { // Pour les adultes
+					prixTotal += prixVoyageFormule;
+				}
+			}
+
 			// s'il y a une ou plusieurs assurances
 			if (reservation.getAssurance() != null) {
 				double prixAssurance = reservation.getAssurance().getPrix();
 
 				// Le prix de la réservation est le prix de la formule et le
 				// prix de/des assurance/s
-				reservation.setPrix(prixVoyageFormule + prixAssurance);
+				reservation.setPrix(prixTotal + prixAssurance);
 			} else {
 				// Le prix de la réservation est seulement celui de la formule
-				reservation.setPrix(prixVoyageFormule);
+				reservation.setPrix(prixTotal);
+				;
 			}
 
 		} else {
 			// Prix du voyage seul
 			double prixVoyageSeul = reservation.getVoyage().getPrixSolde();
 
+			// si des particpant ont moins de 12 ans
+			for (Participant element : listeParticipant) {
+				Date dateNaissance = element.getDateNaissance();
+				long dateNaissanceMilliSec = dateNaissance.getTime();
+				if (dateResaMilliSec - dateNaissanceMilliSec <= age12Ans) {
+					prixEnfant = prixVoyageSeul - (prixVoyageSeul * 0.6);
+					prixTotal += prixEnfant;
+				} else { // Pour les adultes
+					prixTotal += prixVoyageSeul;
+				}
+			}
+
 			// S'il y a une ou plusieurs assurances
 			if (reservation.getAssurance() != null) {
-				Assurance assurance = reservation.getAssurance();
-				double prixAssurance = 0;
+				double prixAssurance = reservation.getAssurance().getPrix();
 
-				reservation.setPrix(prixVoyageSeul + prixAssurance);
+				// Prix de la réservation
+				reservation.setPrix(prixTotal + prixAssurance);
 
 			} else {
 				// Si ni assurance ni formule
-				reservation.setPrix(prixVoyageSeul);
+				reservation.setPrix(prixTotal);
 			}
 		}
 
 		Reservation rOut = reservationService.addReservation(reservation);
+
+		// Donner l'id de la réservation aux particpants
+		for (Participant element : listeParticipant) {
+			element.setReservation(reservation);
+		}
 
 		if (rOut.getId() != 0) {
 
