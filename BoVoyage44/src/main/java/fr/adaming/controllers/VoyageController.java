@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Voyage;
+import fr.adaming.service.IFormuleService;
 import fr.adaming.service.IVoyageService;
 
 
@@ -32,6 +37,13 @@ public class VoyageController {
 		this.voyageService = voyageService;
 	}
 	
+	@Autowired
+	private IFormuleService formuleService;
+	
+	public void setFormuleService(IFormuleService formuleService) {
+		this.formuleService = formuleService;
+	}
+
 	/**
 	 * La méthode afficheListe gère l'affichage de la liste des voyage.
 	 * @return La liste des voyages et la page dans laquelle ils sont affichés. 
@@ -128,5 +140,31 @@ public class VoyageController {
 		return new ModelAndView("voyageListeClient", "voyageList", liste);
 	}
 
+	
+	@RequestMapping(value = "/agent/supprimerButton/{pId}", method = RequestMethod.GET)
+	public String deletLien(Model model, @PathVariable("pId") int id) {
+		
+		voyageService.deleteVoyage(id);
+		List<Voyage> liste = voyageService.getAllVoyage();
+		model.addAttribute("voyageList", liste);
+		return "voyageListe";
+	}
+	
+	@RequestMapping(value = "/agent/modifierButton", method = RequestMethod.GET)
+	public String updateLien(ModelMap model, @RequestParam("pId") int id) {
+		Voyage v = voyageService.getVoyageById(id);
+		model.addAttribute("voyageModif", v);
+		return "voyageModifier";
+	}
+	
+	@RequestMapping(value = "/lienDetail", method = RequestMethod.GET)
+	public String voyageLienDetail(ModelMap model, @RequestParam("pId") int id) {
+		Voyage v = voyageService.getVoyageById(id);
+		if (v.getFormule()!=null){
+			v.setFormule(formuleService.getFormuleById(v.getFormule().getId()));
+		}
+		model.addAttribute("voyage", v);
+		return "voyageDetail";
+	}
 	
 }

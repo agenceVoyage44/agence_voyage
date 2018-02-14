@@ -34,7 +34,6 @@
 			<th>Titre</th>
 			<th>Description</th>
 			<th>Priorité</th>
-			<th>Opérations</th>
 		</tr>
 		<c:forEach var="v" items="${voyageList }">
 			<tr>
@@ -49,16 +48,9 @@
 				<td>${v.photo}</td>
 				<td>${v.nbPlaces}</td>
 				<td>${v.dispo}</td>
-				<td><a
-					href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">${v.titre}</a></td>
+				<td>${v.titre}</td>
 				<td>${v.description}</td>
 				<td>${v.priorite}</td>
-				<td><a
-					href="${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}">Modifier</a>
-					|
-					<a
-					href="${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}">Supprimer</a>
-				</td>
 			</tr>
 
 		</c:forEach>
