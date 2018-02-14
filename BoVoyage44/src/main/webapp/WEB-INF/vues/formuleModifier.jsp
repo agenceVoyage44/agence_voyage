@@ -7,16 +7,25 @@
 <!-- Ajout de la taglib Spring MVC form -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Modifier une formule</title>
+<script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
+
 <link rel="stylesheet"
-	href="<c:url value="/ressources/css/bootstrap.css" />" />
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
+
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 </head>
 <body>
-
+	<%@ include file="/template/headerA.html"%>
+	<br/>
+	<br/>
+	<br/>
 	<h1>Modification d'une cargaison routière</h1>
 	<br />
 

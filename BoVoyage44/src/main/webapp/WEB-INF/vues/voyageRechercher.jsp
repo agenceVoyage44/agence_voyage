@@ -8,12 +8,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Formulaire de recherche</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"/>
 
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 </head>
 <body>
-
+<%@ include file="/template/headerA.html"%>
+<br/>
+<br/>
+<br/>
 <h1 style="color: darkred ; text-align : center">Formulaire de recherche de voyage</h1>
 
 <form:form method="POST" action="soumettreGet"

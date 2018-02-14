@@ -13,14 +13,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>page de modification d'hebergement</title>
 
-<!-- ajout lib bootstrap -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
 </head>
 
 <body>
-	
+		<%@ include file="/template/headerA.html"%>
+	<br/>
+	<br/>
+	<br/>
 
 	<h1 style="color: red; text-align: center">Formulaire de modification</h1>
 

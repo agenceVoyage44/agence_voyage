@@ -14,10 +14,18 @@
 <title>Supprimer Client</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
 </head>
 <body>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 
 	<h1 style="color: dodgerblue; text-align: center">Formulaire de
 		suppression</h1>

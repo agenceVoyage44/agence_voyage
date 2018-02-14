@@ -9,16 +9,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Rechercher une Reservation</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
 </head>
 <body>
-
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 	<h1 style="color: darkred; text-align: center">Formulaire de
 		recherche d'une réservation</h1>
 
-	<form:form method="POST" action="soumettreGet"
-		modelAttribute="resaGet" cssClass="form-horizontal">
+	<form:form method="POST" action="soumettreGet" modelAttribute="resaGet"
+		cssClass="form-horizontal">
 
 		<div class="form-group">
 			<form:label path="id" cssClass="col-sm-2 control-label">Id</form:label>
@@ -55,7 +62,7 @@
 				<td>${resaGet.prix}</td>
 				<td>${resaGet.nbPlaceReservees}</td>
 				<td>${resaGet.voyage.titre}</td>
-				
+
 			</tr>
 
 		</table>

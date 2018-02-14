@@ -16,8 +16,11 @@
 	href="<c:url value="/ressources/css/bootstrap.css" />" />
 </head>
 <body>
-
-	<h1>Ajout d'une cargaison routière</h1>
+	<%@ include file="/template/headerA.html"%>
+	<br/>
+	<br/>
+	<br/>
+	<h1>Ajout d'une formule</h1>
 	<br />
 
 	<form:form method="POST" action="soumettreAdd"

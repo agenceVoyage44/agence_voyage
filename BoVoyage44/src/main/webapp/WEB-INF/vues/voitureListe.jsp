@@ -17,6 +17,10 @@
 	
 </head>
 <body>
+	<%@ include file="/template/headerA.html"%>
+	<br/>
+	<br/>
+	<br/>
 
 	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>

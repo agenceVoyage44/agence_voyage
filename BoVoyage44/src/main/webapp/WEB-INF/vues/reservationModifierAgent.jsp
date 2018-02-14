@@ -12,12 +12,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Modifier une Réservation (Agent)</title>
-<script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.css"/>">
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
 </head>
 <body>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 	<h1 style="text-align: center">Modifer le statut de la réservtion</h1>
 
 	<form:form method="POST" action="agent/soumettreUpdate"
