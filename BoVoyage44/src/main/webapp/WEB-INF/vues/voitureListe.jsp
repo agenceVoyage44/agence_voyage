@@ -14,49 +14,63 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
-	
+
 </head>
 <body>
 
 	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
 	</div>
-	<div class="panel panel-default">
-		<div class="bs-callout bs-callout-color">
-			<h3 style="color: #48494c; text-align: center">Liste des
-				Voitures</h3>
 
 
-			<a href="afficheAdd">Ajouter</a> <br />
+	<div class="row">
+		<div class="col-md-1"></div>
 
-			<table class="table table-bordered">
-				<tr>
-					<th>Id</th>
-					<th>Loueur</th>
-					<th>Modèle</th>
-					<th>Nombre de places</th>
-					<th>Photo</th>
+		<div class="col-md-10">
+			<div class="panel panel-default" style="background-color: #f0f0f0">
+				<div class="bs-callout bs-callout-color">
+					<h3 style="color: #48494c; text-align: center"><b>Liste des
+						Voitures</b></h3>
 
-					<th>Opértations</th>
-				</tr>
-				<c:forEach var="v" items="${vListe}">
-					<tr>
-						<td>${v.id}</td>
-						<td>${v.loueur}</td>
-						<td>${v.modele}</td>
-						<td>${v.nbPlaces}</td>
-						<td><img src="${pageContext.request.contextPath}/agent/Voiture/photoVoiture?idV=${v.id}" height="80px"/></td>
-						<td><a href="updateLien?pId=${v.id}">Modifier</a> | <a
-							href="deleteLien/${v.id}">Supprimer</a></td>
-					</tr>
-				</c:forEach>
-			</table>
-			
+
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'afficheAdd'">+ Ajouter</button>
+					<br /> <br />
+					
+					<table class="table table-bordered" style="text-align: center;">
+						<tr class="success" >
+							<th style="text-align: center;">Id</th>
+							<th style="text-align: center;">Loueur</th>
+							<th style="text-align: center;">Modèle</th>
+							<th style="text-align: center;">Nombre de places</th>
+							<th style="text-align: center;">Photo</th>
+							<th style="text-align: center;">Opértations</th>
+						</tr>
+						<c:forEach var="v" items="${vListe}">
+							<tr class="active">
+								<td>${v.id}</td>
+								<td>${v.loueur}</td>
+								<td>${v.modele}</td>
+								<td>${v.nbPlaces}</td>
+								<td><img
+									src="${pageContext.request.contextPath}/agent/Voiture/photoVoiture?idV=${v.id}"
+									height="80px" /></td>
+								<td>
+									<button type="button" class="btn btn-primary"
+										onclick="location.href = 'updateLien?pId=${v.id}'">Modifier</button>
+									<button type="button" class="btn btn-danger"
+										onclick="location.href = 'deleteLien/${v.id}'">Supprimer</button>
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
+
+				</div>
+			</div>
 		</div>
+		<div class="col-md-1"></div>
+
 	</div>
-	
-	
-	
-	
+
 </body>
 </html>

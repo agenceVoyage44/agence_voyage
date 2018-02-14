@@ -23,53 +23,69 @@
 	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
 	</div>
-	<div class="panel panel-default">
-		<div class="bs-callout bs-callout-color">
-			<h3 style="color: #48494c; text-align: center">Ajouter une
-				Voiture</h3>
-
-			<form:form method="POST" action="soumettreAdd"
-				modelAttribute="vAjout" cssClass="form-horizontal"
-				enctype="multipart/form-data">
 
 
-				<div class="form-group">
-					<form:label path="loueur" class="col-sm-2 control-label">Loueur:</form:label>
-					<div class="col-sm-6">
-						<form:input path="loueur" cssClass="form-control" />
-					</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default" style="background-color: #f0f0f0">
+				<div class="bs-callout bs-callout-color">
+					<h3 style="color: #48494c; text-align: center">
+						<b>Ajouter une Voiture</b>
+					</h3>
+					<br />
+					<form:form method="POST" action="soumettreAdd"
+						modelAttribute="vAjout" cssClass="form-horizontal"
+						enctype="multipart/form-data">
+
+
+						<div class="form-group">
+							<form:label path="loueur" class="col-sm-3 control-label">Loueur:</form:label>
+							<div class="col-sm-6">
+								<form:input path="loueur" cssClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<form:label path="modele" class="col-sm-3 control-label">Modèle:</form:label>
+							<div class="col-sm-6">
+								<form:input path="modele" cssClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<form:label path="nbPlaces" class="col-sm-3 control-label">Nombre de places:</form:label>
+							<div class="col-sm-6">
+								<form:input path="nbPlaces" cssClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<form:label path="nbPlaces" class="col-sm-3 control-label">Choisissez une photo:</form:label>
+							<div class="input-field col-sm-6">
+								<input type="file" name="file" id="selectedFile"
+									class="form-control" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6">
+								<input type="submit" class="btn btn-success" />
+							</div>
+						</div>
+
+
+					</form:form>
+					<br />
+
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'liste'">Retour</button>
+					<br />
 				</div>
-				<div class="form-group">
-					<form:label path="modele" class="col-sm-2 control-label">Modèle:</form:label>
-					<div class="col-sm-6">
-						<form:input path="modele" cssClass="form-control" />
-					</div>
-				</div>
-				<div class="form-group">
-					<form:label path="nbPlaces" class="col-sm-2 control-label">Nombre de places:</form:label>
-					<div class="col-sm-6">
-						<form:input path="nbPlaces" cssClass="form-control" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="input-field col-sm-6">
-						<input type="file" name="file" id="selectedFile" class="form-control"/>
-					</div>
-				</div>
-
-
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-6">
-						<input type="submit" class="btn btn-success" />
-					</div>
-				</div>
-
-
-			</form:form>
-			<br /> <a href="liste">Retour</a> <br />
+			</div>
 		</div>
-	</div>
+		<div class="col-md-1"></div>
 
+	</div>
 
 </body>
 </html>
