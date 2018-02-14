@@ -15,20 +15,24 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
-	
-	<!-- SmartMenus jQuery Bootstrap Addon CSS -->
-<link href="../resources/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+
+<!-- SmartMenus jQuery Bootstrap Addon CSS -->
+<link href="../resources/css/jquery.smartmenus.bootstrap.css"
+	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <!-- SmartMenus jQuery plugin -->
-<script type="text/javascript" src="../resources/js/jquery.smartmenus.js"></script>
+<script type="text/javascript"
+	src="../resources/js/jquery.smartmenus.js"></script>
 
 <!-- SmartMenus jQuery Bootstrap Addon -->
-<script type="text/javascript" src="../resources/js/jquery.smartmenus.bootstrap.js"></script>
+<script type="text/javascript"
+	src="../resources/js/jquery.smartmenus.bootstrap.js"></script>
 </head>
 <body>
-<div style="height: 90px">
+	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
 	</div>
 
@@ -36,7 +40,7 @@
 		de voyage</h1>
 
 	<form:form method="POST" action="soumettreAdd"
-		modelAttribute="voyageAjout" cssClass="form-horizontal">
+		modelAttribute="voyageAjout" cssClass="form-horizontal" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<form:label path="continent" cssClass="col-sm-2 control-label">Continent</form:label>
@@ -116,6 +120,12 @@
 
 			<form:label path="priorite">Non-Prioritaire</form:label>
 			<form:radiobutton path="priorite" value="false" />
+		</div>
+
+		<div class="form-group">
+			<div class="input-field col-sm-6">
+				<input type="file" name="file" id="selectedFile" class="form-control" />
+			</div>
 		</div>
 
 		<div class="form-group">

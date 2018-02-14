@@ -9,10 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -38,12 +43,18 @@ public class Voyage {
 
 	private double prixSolde;
 
+	//@Temporal(TemporalType.DATE)
 	private Date dateDepart;
 
+	//@Temporal(TemporalType.DATE)
 	private Date dateRetour;
 
+	@Lob
 	private byte[] photo;
 
+	@Transient
+	private MultipartFile file;
+	
 	private int nbPlaces;
 
 	private boolean dispo;
@@ -231,6 +242,14 @@ public class Voyage {
 
 	public void setFormule(Formule formule) {
 		this.formule = formule;
+	}
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 	@Override

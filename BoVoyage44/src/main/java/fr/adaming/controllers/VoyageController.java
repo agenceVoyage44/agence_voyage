@@ -1,9 +1,13 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -55,7 +60,15 @@ public class VoyageController {
 		return new ModelAndView("voyageListe", "voyageList", liste);
 	}
 
-	
+	@RequestMapping(value = "/photoVoyage", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int idV) throws IOException {
+		Voyage v = voyageService.getVoyageById(idV);
+		if (v.getPhoto() == null)
+			return new byte[0];
+		else
+			return IOUtils.toByteArray(new ByteArrayInputStream(v.getPhoto()));
+	}
 	
 	@RequestMapping(value = "/agent/afficheAdd", method = RequestMethod.GET)
 	public ModelAndView afficheAjout() {
@@ -65,6 +78,16 @@ public class VoyageController {
 	
 	@RequestMapping(value = "/agent/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjouter(@ModelAttribute("voyageAjout") Voyage v) {
+		
+		if(v.getFile()!=null){
+			
+			try {
+				v.setPhoto(v.getFile().getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		v.setDispo(true);
 		Voyage vOut = voyageService.addVoyage(v);
 

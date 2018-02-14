@@ -14,47 +14,48 @@
 </head>
 <body>
 
-<h1>${voyage.titre}</h1>
+	<h1>${voyage.titre}</h1>
 
-				${voyage.photo}
-</br>
+	${voyage.photo}
+	</br>
 
-<table>
-<tr>
-<td>Pays
-</td>
+	<table>
+		<tr>
+			<td>Pays</td>
+			<td>${voyage.pays}</td>
+		</tr>
+		<tr>
+			<td>prix depart</td>
+			<td>${voyage.prixDepart}</td>
+		</tr>
+		<tr>
+			<td>remise</td>
+			<td>${voyage.remise}</td>
+		</tr>
+		<tr>
+			<td>prix soldé</td>
+			<td>${voyage.prixSolde}</td>
+		</tr>
+		<tr>
+			<td>date de depart</td>
+			<td>${voyage.dateDepart}</td>
+		</tr>
+		<tr>
+			<td>date de retour</td>
+			<td>${voyage.dateRetour}</td>
+		</tr>
+		<tr>
+			<td>nombre de place</td>
+			<td>${voyage.nbPlaces}</td>
+		</tr>
 
-				${voyage.pays}
-				</tr>
-				<tr>
-				${voyage.prixDepart}
-				</tr>
-				<tr>
-				${voyage.remise}
-				</tr>
-				<tr>
-				${voyage.prixSolde}
-				</tr>
-				<tr>
-				${voyage.dateDepart}
-				</tr>
-				<tr>
-				${voyage.dateRetour}
-				</tr>
-				<tr>
-				${voyage.nbPlaces}
-				</tr>
-				<tr>
-				${voyage.dispo}
-				</tr>
-				<tr>
-				${voyage.description}
-				</tr>
-				<tr>
-				${voyage.priorite}
-				</tr>
-				
-				</table>
+		<tr>
+			<td>description</td>
+			<td>${voyage.description}</td>
+		</tr>
+
+
+	</table>
 
 </body>
 </html>
