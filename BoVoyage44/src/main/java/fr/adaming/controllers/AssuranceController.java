@@ -118,28 +118,28 @@ public class AssuranceController {
 		}
 		
 		//******************* AJOUT Resa**********************************************************************************
-		@RequestMapping(value="afficheAddResa", method = RequestMethod.GET)
-		public ModelAndView afficheAjoutResa(){
-			
-			return new ModelAndView("AssuranceAjoutResa", "AssurAjoutResa", new Temp());
-			
-		}
-		@RequestMapping(value="soumettreAddResa", method = RequestMethod.POST)
-		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Temp temp){
-			
-			Assurance assurance=assuranceService.getAssuranceById(temp.getId());
-			assurance.setType(temp.getType());
-			assurance.setPrix(temp.getPrix());
-			
-			List<Reservation>liste=assurance.getListeReservations();
-			liste.add(reservationService.getReservationByID(temp.getIdResa()));
-			assurance.setListeReservations(liste);
-			
-			//rediriger vers la methode afficheliste
-			return "redirect:liste";
-			
-			
-		}
+//		@RequestMapping(value="afficheAddResa", method = RequestMethod.GET)
+//		public ModelAndView afficheAjoutResa(){
+//			
+//			return new ModelAndView("AssuranceAjoutResa", "AssurAjoutResa", new Temp());
+//			
+//		}
+//		@RequestMapping(value="soumettreAddResa", method = RequestMethod.POST)
+//		public String soumettreAjouterResa(Model modele,@ModelAttribute("AssurAjoutResa") Temp temp){
+//			
+//			Assurance assurance=assuranceService.getAssuranceById(temp.getId());
+//			assurance.setType(temp.getType());
+//			assurance.setPrix(temp.getPrix());
+//			
+//			List<Reservation>liste=assurance.getListeReservations();
+//			liste.add(reservationService.getReservationByID(temp.getIdResa()));
+//			assurance.setListeReservations(liste);
+//			
+//			//rediriger vers la methode afficheliste
+//			return "redirect:liste";
+//			
+//			
+//		}
 		
 		
 		

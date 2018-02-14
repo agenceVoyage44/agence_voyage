@@ -61,12 +61,10 @@ public class ReservationController {
 		if (reservation.getVoyage().getFormule() != null) {
 			double prixVoyageFormule = reservation.getVoyage().getFormule().getPrix();
 			// s'il y a une ou plusieurs assurances
-			if (reservation.getListeAssurances() != null) {
-				List<Assurance> listeAssurance = reservation.getListeAssurances();
+			if (reservation.getAssurance() != null) {
+				Assurance assurance = reservation.getAssurance();
 				double prixAssurance = 0;
-				for (Assurance element : listeAssurance) {
-					prixAssurance += element.getPrix();
-				}
+				
 				// Le prix de la réservation est le prix de la formule et le
 				// prix de/des assurance/s
 				reservation.setPrix(prixVoyageFormule + prixAssurance);
@@ -80,12 +78,10 @@ public class ReservationController {
 			double prixVoyageSeul = reservation.getVoyage().getPrixSolde();
 
 			// S'il y a une ou plusieurs assurances
-			if (reservation.getListeAssurances() != null) {
-				List<Assurance> listeAssurance = reservation.getListeAssurances();
+			if (reservation.getAssurance() != null) {
+				Assurance assurance = reservation.getAssurance();
 				double prixAssurance = 0;
-				for (Assurance element : listeAssurance) {
-					prixAssurance += element.getPrix();
-				}
+				
 				reservation.setPrix(prixVoyageSeul + prixAssurance);
 
 			} else {

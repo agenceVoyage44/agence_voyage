@@ -47,9 +47,9 @@ public class Reservation {
 	@JoinColumn(name = "voy_id", referencedColumnName = "id_voy")
 	private Voyage voyage;
 
-	@ManyToMany
-	@JoinTable(name = "reservation_assurances", joinColumns = @JoinColumn(name = "res_id"), inverseJoinColumns = @JoinColumn(name = "assu_id"))
-	private List<Assurance> listeAssurances;
+	@ManyToOne
+	@JoinColumn(name = "assu_id", referencedColumnName = "id_assu")
+	private Assurance assurance;
 
 	public Reservation() {
 		super();
@@ -129,20 +129,22 @@ public class Reservation {
 		this.voyage = voyage;
 	}
 
-	public List<Assurance> getListeAssurances() {
-		return listeAssurances;
+	
+
+	public Assurance getAssurance() {
+		return assurance;
 	}
 
-	public void setListeAssurances(List<Assurance> listeAssurances) {
-		this.listeAssurances = listeAssurances;
+	public void setAssurance(Assurance assurance) {
+		this.assurance = assurance;
 	}
 
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", statut=" + statut + ", prix=" + prix + ", dateReservation="
 				+ dateReservation + ", nbPlaceReservees=" + nbPlaceReservees + ", listeParticipants="
-				+ listeParticipants + ", voyage=" + voyage + ", listeAssurances="
-				+ listeAssurances + "]";
+				+ listeParticipants + ", voyage=" + voyage + ", assurance="
+				+ assurance + "]";
 	}
 
 }

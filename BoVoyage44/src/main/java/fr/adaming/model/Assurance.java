@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,7 +30,7 @@ public class Assurance {
 	private double prix;
 	
 	//associations UML en java
-	@ManyToMany(mappedBy="listeAssurances")
+	@OneToMany(mappedBy="assurance")
 	private List<Reservation>listeReservations;
 
 	public Assurance() {
