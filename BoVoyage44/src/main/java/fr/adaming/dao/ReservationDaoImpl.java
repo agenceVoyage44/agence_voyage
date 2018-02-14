@@ -80,4 +80,6 @@ public class ReservationDaoImpl implements IReservationDao {
 		return query.getResultList();
 	}
 
+
+
 }

@@ -26,7 +26,11 @@
 			supportées par ces urls -->
 		<security:intercept-url pattern="/boVoyage/agent/**"
 			access="ROLE_AGENT" />
+			<security:intercept-url pattern="/boVoyage/reservation/agent/**"
+			access="ROLE_AGENT" />
 		<security:intercept-url pattern="/boVoyage/client/**"
+			access="ROLE_CLIENT" />
+			<security:intercept-url pattern="/boVoyage/reservation/client/**"
 			access="ROLE_CLIENT" />
 	
 
