@@ -100,4 +100,5 @@ public class VoyageDaoImpl implements IVoyageDao {
 		return (Voyage) query.getSingleResult();
 	}
 
+	
 }

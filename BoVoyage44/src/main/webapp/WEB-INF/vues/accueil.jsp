@@ -123,14 +123,14 @@
 		</div>
 		<div class="map__list">
 			<ul>
-				<li><a href="accueilAmeriqueSud" id="list-south_america">Amérique
+				<li><a href="/agent/listeContinent/AmeriqueSud" id="list-south_america">Amérique
 						du Sud</a></li>
-				<li><a href="accueilAmeriqueNord" id="list-north_america">Amérique
+				<li><a href="/agent/listeContinent/AmeriqueNord" id="list-north_america">Amérique
 						du Nord</a></li>
-				<li><a href="accueilAsie" id="list-asia">Asie</a></li>
-				<li><a href="accueilEurope" id="list-europe">Europe</a></li>
-				<li><a href="accueilAustralie" id="list-australia">Australie</a></li>
-				<li><a href="accueilAfrique" id="list-africa">Afrique</a></li>
+				<li><a href="/agent/listeContinent/Asie" id="list-asia">Asie</a></li>
+				<li><a href="/agent/listeContinent/Europe" id="list-europe">Europe</a></li>
+				<li><a href="/agent/listeContinent/Australie" id="list-australia">Australie</a></li>
+				<li><a href="/voyage/agent/listeContinent/Afrique" id="list-africa">Afrique</a></li>
 			</ul>
 
 		</div>

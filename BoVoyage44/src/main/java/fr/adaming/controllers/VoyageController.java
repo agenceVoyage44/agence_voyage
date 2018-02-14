@@ -2,6 +2,7 @@ package fr.adaming.controllers;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -55,11 +56,26 @@ public class VoyageController {
 	 */
 	@RequestMapping(value = "/agent/liste", method = RequestMethod.GET)
 	public ModelAndView afficheListe() {
-		List<Voyage> liste = voyageService.getAllVoyage();
+		List<Voyage> liste = voyageService.getAllVoyage(); 
 
 		return new ModelAndView("voyageListe", "voyageList", liste);
 	}
 
+	@RequestMapping(value = "/agent/listeContinent/{pContinent}", method = RequestMethod.GET)
+	public ModelAndView afficheListeContinent(@PathVariable("pContinent") String continent) {
+		List<Voyage> listeContinents=new ArrayList<Voyage>();
+		
+		List<Voyage> liste = voyageService.getAllVoyage();
+		
+		for (Voyage voyage : liste) {
+			if(voyage.getContinent()==continent){
+				listeContinents.add(voyage);
+			}
+		}
+
+		return new ModelAndView("voyageListeContinents", "voyageListContinent", listeContinents);
+	}
+	
 	@RequestMapping(value = "/photoVoyage", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getPhoto(int idV) throws IOException {

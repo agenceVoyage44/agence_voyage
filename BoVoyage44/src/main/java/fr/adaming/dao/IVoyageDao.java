@@ -46,4 +46,5 @@ public interface IVoyageDao {
 	 * @returnl'objet voiture recherché.
 	 */
 	public Voyage getVoyageById(int id);
+	
 }
