@@ -78,4 +78,22 @@ public class ParticipantDaoImpl implements IParticipantsDao {
 		return pOut;
 	}
 
+	@Override
+	public List<Participant> getAllParticpantIDResaNULL() {
+		String req = "SELECT p FROM Participant AS p WHERE p.reservation.id IS NULL";
+		Query query = em.createQuery(req);
+
+		List<Participant> listeP = query.getResultList();
+
+		return listeP;
+	}
+
+	@Override
+	public Participant getParticipantIDResaNull() {
+		String req = "SELECT p FROM Participant AS p WHERE p.reservation.id IS NULL";
+		Query query = em.createQuery(req);
+		Participant pOut = (Participant) query.getSingleResult();
+		return pOut;
+	}
+
 }

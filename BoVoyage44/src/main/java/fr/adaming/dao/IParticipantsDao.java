@@ -72,5 +72,9 @@ public interface IParticipantsDao {
 	 * @return le participant recherché
 	 */
 	public Participant getParticipantById(int id);
+	
+	public List<Participant> getAllParticpantIDResaNULL();
+	
+	public Participant getParticipantIDResaNull();
 
 }

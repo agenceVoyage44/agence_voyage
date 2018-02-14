@@ -26,11 +26,14 @@ public class ParticipantDaoTest {
 	IParticipantsDao participantDao;
 
 	Participant p;
+	Participant p2;
 
 	@Ignore
 	@Before
 	public void setUp() {
 		p = new Participant("TOTO", "Titi", 1236547896, "M", 3, "rue des chenes", 44000, "Nantes", "France",
+				new Date(1996 - 04 - 18));
+		p2 = new Participant("FOUFOU", "Titi", 1236547896, "M", 3, "rue des chenes", 44000, "Nantes", "France",
 				new Date(1996 - 04 - 18));
 	}
 
@@ -86,4 +89,19 @@ public class ParticipantDaoTest {
 	// participantDao.getParticipantById(p.getId()).getNom());
 	// }
 
+	// ###########TEST getParticipantsByReservatio NULLn#############
+	@Ignore
+	@Test
+	@Transactional
+	public void getParticipantsByReservationNullTest() {
+
+		int tailleAvant = participantDao.getAllParticpantIDResaNULL().size();
+
+		participantDao.addParticipant(p);
+		participantDao.addParticipant(p2);
+		assertEquals(tailleAvant + 2, participantDao.getAllParticpantIDResaNULL().size());
+		// assertEquals(p2.getNom(),
+		// participantDao.getParticipantById(p2.getId()).getNom());
+
+	}
 }

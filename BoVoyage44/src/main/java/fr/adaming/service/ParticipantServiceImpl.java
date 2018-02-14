@@ -52,4 +52,14 @@ public class ParticipantServiceImpl implements IParticipantService {
 		return participantDao.getParticipantById(id);
 	}
 
+	@Override
+	public List<Participant> getAllParticpantIDResaNULL() {
+		return participantDao.getAllParticpantIDResaNULL();
+	}
+
+	@Override
+	public Participant getParticipantIDResaNull() {
+		return participantDao.getParticipantIDResaNull();
+	}
+
 }

@@ -23,4 +23,8 @@ public interface IParticipantService {
 
 	public Participant getParticipantById(int id);
 
+	public List<Participant> getAllParticpantIDResaNULL();
+
+	public Participant getParticipantIDResaNull();
+
 }

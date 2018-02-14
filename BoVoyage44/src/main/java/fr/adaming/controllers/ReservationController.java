@@ -13,7 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Assurance;
+import fr.adaming.model.Formule;
+import fr.adaming.model.Hebergement;
 import fr.adaming.model.Reservation;
+import fr.adaming.service.IAssuranceService;
 import fr.adaming.service.IReservationService;
 
 /**
@@ -27,8 +30,14 @@ public class ReservationController {
 	@Autowired
 	private IReservationService reservationService;
 
+	private IAssuranceService assuranceService;
+
 	public void setReservationService(IReservationService reservationService) {
 		this.reservationService = reservationService;
+	}
+
+	public void setAssuranceService(IAssuranceService assuranceService) {
+		this.assuranceService = assuranceService;
 	}
 
 	// ---------------------------Ajouter une Reservation -------------
@@ -39,9 +48,17 @@ public class ReservationController {
 	 * 
 	 */
 	@RequestMapping(value = "/client/afficherAdd", method = RequestMethod.GET)
-	public ModelAndView afficherAjouterReservation() {
+	public String afficherAjouterReservation(Model modele) {
 
-		return new ModelAndView("reservationAjouter", "resaAdd", new Reservation());
+		modele.addAttribute("resaAdd", new Reservation());
+
+		// Récupérer la liste de toutes les assurances possibles
+		List<Assurance> listeAssurance = assuranceService.getAllAssurance();
+
+		modele.addAttribute("listeAssurance", listeAssurance);
+
+		return "reservationAjouter";
+
 	}
 
 	/**
@@ -62,9 +79,8 @@ public class ReservationController {
 			double prixVoyageFormule = reservation.getVoyage().getFormule().getPrix();
 			// s'il y a une ou plusieurs assurances
 			if (reservation.getAssurance() != null) {
-				Assurance assurance = reservation.getAssurance();
-				double prixAssurance = 0;
-				
+				double prixAssurance = reservation.getAssurance().getPrix();
+
 				// Le prix de la réservation est le prix de la formule et le
 				// prix de/des assurance/s
 				reservation.setPrix(prixVoyageFormule + prixAssurance);
@@ -81,7 +97,7 @@ public class ReservationController {
 			if (reservation.getAssurance() != null) {
 				Assurance assurance = reservation.getAssurance();
 				double prixAssurance = 0;
-				
+
 				reservation.setPrix(prixVoyageSeul + prixAssurance);
 
 			} else {
@@ -286,7 +302,5 @@ public class ReservationController {
 		List<Reservation> liste = reservationService.getAllReservation();
 		return new ModelAndView("reservationListe", "resaListe", liste);
 	}
-
-	
 
 }
