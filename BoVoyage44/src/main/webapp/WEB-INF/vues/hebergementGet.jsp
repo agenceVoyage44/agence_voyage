@@ -12,7 +12,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>page delete</title>
+<title>page de recherche</title>
 
 <!-- ajout lib bootstrap -->
 <link rel="stylesheet"
@@ -30,7 +30,7 @@
 
 		<div class="form-group">
 			<form:label path="id" cssClass="col-sm-2 control-label">Id</form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<form:input cssClass="form-control" path="id" />
 			</div>
 		</div>
@@ -47,18 +47,18 @@
 
 		<table class="table table-bordered">
 			<tr>
-				<th>ID</th>
-				<th>Type</th>
-				<th>Prix</th>
-				<th>ID Formule</th>
+				<th style="text-align: center">ID</th>
+				<th style="text-align: center">Type</th>
+				<th style="text-align: center">Prix</th>
+				<th style="text-align: center">ID Formule</th>
 			</tr>
 
 
 			<tr>
-				<td>${hebergement.id}</td>
-				<td>${hebergement.type}</td>
-				<td>${hebergement.prix}</td>
-				<td>${hebergement.formule.id}</td>
+				<td style="text-align: center">${hebergement.id}</td>
+				<td style="text-align: center">${hebergement.type}</td>
+				<td style="text-align: center">${hebergement.prix}</td>
+				<td style="text-align: center">${hebergement.formule.id}</td>
 			</tr>
 
 

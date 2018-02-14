@@ -31,7 +31,7 @@
 		modelAttribute="hebergDelete" cssClass="form-horizontal">
 		<div class="form-group">
 			<form:label path="id" class="col-sm-2 control-label">ID</form:label>
-			<div class="col-sm-5">
+			<div class="col-sm-6">
 				<form:input path="id" cssClass="form-control" />
 			</div>
 		</div>
