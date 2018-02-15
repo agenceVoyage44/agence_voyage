@@ -5,20 +5,38 @@
 .map__image {
 	margin-top: 80px;
 	margin-bottom:50px;
-	width: 60%;
+	width: 50%;
 	height: auto;
+	margin-left: 20%;
 }
 
 .map__image path {
-	fill: yellow;
-	stroke: green;
+	fill: #FFF0BC;
+	stroke: #F6DC12;
 	stroke-width: 1px;
 	transition: fill 0.3s;
 }
 
-.map__image .is-active path {
-	fill: blue;
+
+.map__image .is-active #area-south_america_path  {
+	fill: #A9EAFE;
 }
+.map__image .is-active #area-north_america_path  {
+	fill: #C60800;
+}
+.map__image .is-active #area-asia_path  {
+	fill: #F9429E;
+}
+.map__image .is-active #area-europe_path  {
+	fill: #B0F2B6;
+}
+.map__image .is-active #area-australia_path  {
+	fill: #CFA0E9;
+}
+.map__image .is-active #area-africa_path  {
+	fill: #CC5500;
+}
+
 
 .map_list a {
 	color: inherit;
@@ -26,10 +44,33 @@
 	transition: color 0.3s;
 }
 
-.map__list a.is-active {
-	color: blue;
+.map__list #list-south_america.is-active {
+	color: #A9EAFE;
 	font-weight: bold;
 }
+
+.map__list #list-north_america.is-active {
+	color: #C60800;;
+	font-weight: bold;
+}
+
+.map__list #list-asia.is-active {
+	color: #F9429E;
+	font-weight: bold;
+}
+.map__list #list-europe.is-active {
+	color: #B0F2B6;
+	font-weight: bold;
+}
+.map__list #list-australia.is-active {
+	color: #CFA0E9;
+	font-weight: bold;
+}
+.map__list #list-africa.is-active {
+	color: #CC5500;
+	font-weight: bold;
+}
+
 
 .map__list ul li {
 	font-size: xx-large;

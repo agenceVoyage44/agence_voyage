@@ -116,7 +116,26 @@
 		</c:forEach>
 
 	</table>
-
+	<c:forEach var="v" items="${voyageListContinent}">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+				<p>Voyage : ${v.titre}</p>
+					<a href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}"> 
+					<img src="${v.photo}" alt="imageVoyage"
+						style="width: 400px; height: 300px;">
+						<div class="caption">
+							<p>Continent : ${v.continent}<br>
+							Prix Soldé : ${v.prixSolde}<br>
+							Prix : <s>${v.prixDepart}</s><br>
+							Date : du ${v.dateDepart} au ${v.dateRetour}<br>
+							Description : ${v.description}<br></p>
+							
+						</div>
+					</a>
+				</div>
+			</div>
+	</c:forEach>
 
 </body>
 </html>
