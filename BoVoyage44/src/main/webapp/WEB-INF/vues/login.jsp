@@ -8,20 +8,62 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Page login</title>
+
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 </head>
 <body>
 
-	<form action="j_spring_security_check" method="post">
-		Identifiant: <input type="text" name="j_username" /> <br /> Mot de
-		passe: <input type="text" name="j_password" /> <br /> <input
-			type="submit" value="Se Connecter" />
+	
+	
+	
+	<form class="form-horizontal" method="post"
+		action="j_spring_security_check"
+		style="margin-left: 400px; margin-top: 300px">
+		<div class="form-group has-primary has-feedback">
+			<label class="control-label col-sm-3" for="inputGroupSuccess2">E-mail</label>
+			<div class="col-sm-3">
+				<div class="input-group">
+					<span class="input-group-addon">@</span> <input type="text"
+						class="form-control" id="idMail" aria-describedby="E-mail"
+						name="j_username">
+				</div>
+				<span aria-hidden="true"></span> <span id="j_username" class="sr-only">(success)</span>
+			</div>
+		</div>
+
+		<div class="form-group has-primary has-feedback">
+			<label class="control-label col-sm-3" for="inputGroupSuccess2">Mot
+				de passe</label>
+			<div class="col-sm-3">
+				<div class="input-group">
+					<span class="input-group-addon">?</span> <input type="password"
+						class="form-control" id="idMDP" aria-describedby="Mot de passe"
+						name="j_password">
+				</div>
+				<span aria-hidden="true"></span> <span id="idMDP" class="sr-only">(success)</span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-8">
+				<br />
+				<button type="submit" class="btn btn-primary">Connexion</button>
+
+			</div>
+		</div>
 
 	</form>
-	<c:if test="${not empty msg}">
-		<h4 style="text-align: center; color: red">L'identifiant ou mot
-			de passe éronné</h4>
 
+	<c:if test="${not empty msg}">
+		<h4 style="text-align: center; color: red">Identifiant ou mot de
+			passe incorrect</h4>
 	</c:if>
+	
+	
 
 </body>
 </html>
