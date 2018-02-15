@@ -18,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+
 /**
  * 
  * @author inti-0257
@@ -43,7 +44,6 @@ public class Reservation {
 
 	@OneToMany(mappedBy = "reservation")
 	private List<Client> listeParticipants;
-
 
 	@ManyToOne
 	@JoinColumn(name = "voy_id", referencedColumnName = "id_voy")
@@ -114,7 +114,6 @@ public class Reservation {
 		this.nbPlaceReservees = nbPlaceReservees;
 	}
 
-
 	public List<Client> getListeParticipants() {
 		return listeParticipants;
 	}
@@ -131,8 +130,6 @@ public class Reservation {
 		this.voyage = voyage;
 	}
 
-	
-
 	public Assurance getAssurance() {
 		return assurance;
 	}
@@ -140,6 +137,5 @@ public class Reservation {
 	public void setAssurance(Assurance assurance) {
 		this.assurance = assurance;
 	}
-
 
 }

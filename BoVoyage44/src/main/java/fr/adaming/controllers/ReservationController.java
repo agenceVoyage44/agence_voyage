@@ -410,7 +410,7 @@ public class ReservationController {
 		model.addAttribute("listeAssurance", liste);
 
 		// Prix Maximal du voyage selon nombre participant/formule/assurance
-		double prixMax = rOut.getAssurance().getPrix() + rOut.getNbPlaceReservees() * rOut.getPrix();
+		double prixMax = rOut.getAssurance().getPrix() + (rOut.getNbPlaceReservees() * rOut.getPrix());
 		System.out.println("----------prix%ax:" + prixMax);
 		model.addAttribute("prixMax", prixMax);
 
