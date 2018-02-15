@@ -132,12 +132,7 @@ public class AssuranceController {
 			// appel de la methode service
 			assuranceService.deleteAssurance(id);
 
-			// recuperer la liste de la bd
-			List<Assurance> liste = assuranceService.getAllAssurance();
-
-			model.addAttribute("aList", liste);
-
-			return "AssuranceListe";
+			return "redirect:../liste";
 
 		}
 		
