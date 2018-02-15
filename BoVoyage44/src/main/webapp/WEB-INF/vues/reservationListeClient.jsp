@@ -52,10 +52,14 @@
 							<td>${resa.nbPlaceReservees}</td>
 							<td>${resa.voyage.titre}</td>
 							<td>${resa.assurance.type}</td>
-							<td><a
-								href="${pageContext.request.contextPath}/boVoyage/reservation/client/modifierLien?pId=${resa.id}">Modifier
-									pour Valider</a>|<a
-								href="${pageContext.request.contextPath}/boVoyage/reservation/client/supprimeLien/${resa.id}">Supprimer</a></td>
+							<td>
+								<button type="button" class="btn btn-primary"
+									onclick="location.href = 'modifierLien?pId=${resa.id}'">Valider
+									la réservation</button>
+								<button type="button" class="btn btn-danger"
+									onclick="location.href = 'supprimeLien/${resa.id}'">Supprimer</button>
+							
+							</td>
 
 						</tr>
 					</table>
