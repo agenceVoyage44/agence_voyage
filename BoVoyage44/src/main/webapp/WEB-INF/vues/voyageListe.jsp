@@ -3,6 +3,9 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- ajouter les balises form de spring mvc -->
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +19,60 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
+<style type="text/css">
+.slideshow {
+	width: 1400px;
+	height: 300px;
+	overflow: hidden;
+	border: 3px solid #F2F2F2;
+}
+
+.slideshow ul {
+	/* 4 images donc 4 x 100% */
+	width: 400%;
+	height: 200px;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.slideshow li {
+	float: left;
+}
+</style>
+
+<script type="text/javascript">
+	$(function() {
+		setInterval(function() {
+			$(".slideshow ul").animate({
+				marginLeft : -450
+			}, 800, function() {
+				$(this).css({
+					marginLeft : 0
+				}).find("li:last").after($(this).find("li:first"));
+			})
+		}, 3500);
+	});
+</script>
+
 </head>
 <body>
 	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
+	</div>
+
+
+	<!-- Galerie Dynamique -->
+	<div class="slideshow">
+		<ul>
+			<c:forEach var="v" items="${voyageList}">
+				<c:if test="${v.priorite == true }">
+					<li><a href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}"> <img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+							alt="" width="450" height="300" />
+					</a></li>
+				</c:if>
+			</c:forEach>
+		</ul>
 	</div>
 
 	<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
@@ -42,9 +95,11 @@
 			<th>Priorité</th>
 			<th>Opérations</th>
 		</tr>
-		<c:forEach var="v" items="${voyageList }">
+		<c:forEach var="v" items="${voyageList}">
 			<tr>
-				<td><img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}" height="80px"/></td>
+				<td><img
+					src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+					height="80px" /></td>
 				<td>${v.id}</td>
 				<td>${v.continent}</td>
 				<td>${v.pays}</td>
