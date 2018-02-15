@@ -339,6 +339,12 @@ public class ReservationController {
 
 		// appel de la methode service pour Particpant
 		Client pOut = clientService.addClient(p);
+		
+		//incrémenter le nombre de place reservées
+		Reservation rOut = reservationService.getReservationByID(client.getReservation().getId());
+		int placeReservee=rOut.getNbPlaceReservees()+1;
+		rOut.setNbPlaceReservees(placeReservee);
+		reservationService.updateReservation(rOut);
 
 		if (pOut.getId() != 0) {
 			// rediriger vers la méthode afficheListe
