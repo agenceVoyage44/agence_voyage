@@ -18,27 +18,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
-<style type="text/css">
-.slideshow {
-	width: 1400px;
-	height: 300px;
-	overflow: hidden;
-	border: 3px solid #F2F2F2;
-}
 
-.slideshow ul {
-	/* 4 images donc 4 x 100% */
-	width: 400%;
-	height: 200px;
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-
-.slideshow li {
-	float: left;
-}
-</style>
 <script type="text/javascript">
 	$(function() {
 		setInterval(function() {
@@ -58,27 +38,7 @@
 	<!-- Header User -->
 	<%@ include file="/template/headerU.html"%>
 
-	<!-- Galerie Dynamique -->
-	<div class="slideshow">
-		<ul>
-			<li><a
-				href="${pageContext.request.contextPath}/boVoyage/accueil"> <img
-					src="../images/voyage1.jpg" alt="" width="450" height="300" />
-			</a></li>
-			<li><img src="../images/voyage2.jpg" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage3.png" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage4.jpg" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage5.jpg" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage6.jpg" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage7.jpg" alt="" width="450"
-				height="300" /></li>
-		</ul>
-	</div>
+	
 	<!-- Map Survol -->
 	<div class="map" id="map">
 
