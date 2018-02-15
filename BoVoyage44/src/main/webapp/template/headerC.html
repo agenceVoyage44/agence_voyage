@@ -6,7 +6,7 @@
 
 
 <body id="page-top" name="page-top" class="active">
-	
+
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -24,32 +24,34 @@
 
 			<div class="collapse navbar-collapse js-navbar-collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><img height="45" width="45" src="images/logo.png"
+					<li><img height="45" width="45" src="../images/logo.png"
 						alt=""></li>
 					<a class="navbar-brand"
 						href="${pageContext.request.contextPath}/boVoyage/client/accueil"> Espace
 						Client </a>
-						
-							<li><a
-								href="${pageContext.request.contextPath}/boVoyage/reservation/client/liste">Réservations</a></li>
+
+					<li><a
+						href="${pageContext.request.contextPath}/boVoyage/reservation/client/liste">Réservations</a></li>
 
 
-							<li><a
-								href="${pageContext.request.contextPath}/agent/client/ModifLien2">Modifier
-									mes informations</a></li>
-							<li class="divider"></li>
-							<li><a href="${pageContext.request.contextPath}/boVoyage/accueil">Retour au Site</a> </li>
-							
-							<li><a href="<c:url value="/deconnexion"/>">Déconnexion</a></li>
-	
-											
-					
+					<li><a
+						href="${pageContext.request.contextPath}/agent/client/ModifLien2">Modifier
+							mes informations</a></li>
+					<li class="divider"></li>
+					<li><a
+						href="${pageContext.request.contextPath}/boVoyage/accueil">Retour
+							au Site</a></li>
+
+					<li><a href="<c:url value=" /deconnexion"/>">Déconnexion</a></li>
+
+
+
 
 
 				</ul>
 
-	
-				
+
+
 			</div>
 			<!-- /.nav-collapse -->
 		</div>
@@ -60,15 +62,15 @@
 			<a id="menu-close" href="#"
 				class="btn btn-danger pull-right hidden-md hidden-lg toggle"><i
 				class="fa fa-times"></i></a>
-			<li class="sidebar-brand"><a href="#top">Reseaux Sociaux</a></li>
-			<li><a href="/" title="Go to Top">Home</a></li>
+			<li class="sidebar-brand"><a href="${pageContext.request.contextPath}/boVoyage/client/accueil">Reseaux Sociaux</a></li>
+
 			<li><a href="https://www.facebook.com/BoVoyage-536815590034227/"
 				target="blanck">FaceBook</a></li>
 			<li><a href="https://www.instagram.com/bovoyage_/?hl=fr"
 				target="blanck">Instagram</a></li>
-			<li><a href="${pageContext.request.contextPath}/contact/envoiMail">Contactez-nous</a></li>
-			<li><a href="/blog" title="Our Blog">Blog</a></li>
-			<li><a href="/blog" title="Hosting"> Hosting</a></li>
+			<li><a
+				href="${pageContext.request.contextPath}/contact/envoiMail">Contactez-nous</a></li>
+		
 
 		</ul>
 	</nav>
