@@ -79,7 +79,7 @@ public class VoyageController {
 	
 	
 	
-	@RequestMapping(value = "/agent/listeContinent/{pContinent}", method = RequestMethod.GET)
+	@RequestMapping(value = "/listeContinent/{pContinent}", method = RequestMethod.GET)
 	public ModelAndView afficheListeContinent(@PathVariable("pContinent") String continent) {
 		List<Voyage> listeContinents=new ArrayList<Voyage>();
 		

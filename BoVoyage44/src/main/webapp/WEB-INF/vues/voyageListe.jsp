@@ -31,6 +31,8 @@
 	</div>
 
 
+
+
 	<!-- Galerie Dynamique -->
 	<div class="slideshow">
 		<ul>
@@ -96,24 +98,29 @@
 		</c:forEach>
 
 	</table>
-<c:forEach var="v" items="${voyageList}">
+	<c:forEach var="v" items="${voyageList}">
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<div class="thumbnail">
 					<p>Voyage : ${v.titre}</p>
 					<a
 						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
-						<img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}" alt="imageVoyage"
-						style="width: 400px; height: 300px;">
+						<img class="imageAccueil" style="max-width: 400px; height: auto;"
+						src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+						alt="imageVoyage" style="width: 400px; height: 300px;">
 						<div class="caption">
 							<p>
 								Continent : ${v.continent}<br> Prix Soldé : ${v.prixSolde}<br>
 								Prix : <s>${v.prixDepart}</s><br> Date : du ${v.dateDepart}
 								au ${v.dateRetour}<br> Description : ${v.description}<br>
 							</p>
-
 						</div>
 					</a>
+					<button type="button" class="btn btn-danger"
+						onclick="${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}">Supprimer</button>
+					<button type="button" class="btn btn-warning"
+						onclick="${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}">Modifier</button>
+
 				</div>
 			</div>
 	</c:forEach>
