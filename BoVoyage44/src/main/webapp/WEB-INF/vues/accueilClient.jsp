@@ -36,22 +36,70 @@
 				<div class="bs-callout bs-callout-color">
 					<h3>Bienvenue dans votre Espace Client</h3>
 					<h4>Votre e-mail: ${mail}</h4>
-					<h5>Vous pouvez :</h5>
-					<ul>
-						<li>Voir et confirmer vos réservations.</li>
-						<li>Modifier vos informations personnelles.</li>
 
-					</ul>
+
+					<div class="row">
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+
+								<div class="caption">
+									<h3>Vos réservations</h3>
+									<p style="text-align: center;">Voir et confirmer vos
+										réservations en attente.</p>
+									<h3>
+
+										<button type="button" class="btn btn-primary"
+											onclick="location.href = '../reservation/client/liste'">Voir</button>
+
+									</h3>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+								<div class="caption">
+									<h3>Votre compte</h3>
+									<p style="text-align: center;">Modifier vos informations
+										personnelles.</p>
+									<h3>
+										<button type="button" class="btn btn-primary"
+											onclick="location.href = '../../agent/client/ModifLien2'">Voir</button>
+									</h3>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+								<div class="caption">
+									<h3>Déconnexion</h3>
+									<p style="text-align: center;">Quitter votre espace client.</p>
+									<h3>
+										<button type="button" class="btn btn-primary"
+											onclick="location.href = 'deconnexion'">Se déconnecter</button>
+									</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+
 
 					<br /> <br /> <br />
 
 					<p style="text-align: center;">
 						<em>BoVoyage - Tous droits réservés - 2018</em>
 					</p>
+
+
+
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1"></div>
+	</div>
+	<div class="col-md-1"></div>
 
 	</div>
 </body>

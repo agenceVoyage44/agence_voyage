@@ -21,49 +21,60 @@
 
 </head>
 <body>
-	<%@ include file="/template/headerA.html"%>
-	<br />
-	<br />
-	<br />
 
-<h1>Tableau de bord</h1>
-<br/>
-<br/>
-	<h2>Moyenne des formulaires de satisfaction</h2>
-
-	<div>
-
-		<table class="table table-bordered">
-			<tr>
-				<th class="active">Voyage</th>
-				<th class="active">Logement</th>
-				<th class="active">Nourriture</th>
-				<th class="active">Transport</th>
-				<th class="active">Aspect du site internet</th>
-				<th class="active">Facilité d'utilisation</th>
-				<th class="active">Interlocuteurs</th>
-
-			</tr>
-
-			<c:forEach var="n" items="${moyenneList}">
-
-				<tr>
-					<td>${n.voyage}/5</td>
-					<td>${n.logement}/5</td>
-					<td>${n.nourriture}/5</td>
-
-					<td>${n.transport}/5</td>
-					<td>${n.siteAspect}/5</td>
-					<td>${n.siteUtil}/5</td>
-					<td>${n.agent}/5</td>
-
-				</tr>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%></div>
 
 
-			</c:forEach>
 
-		</table>
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Tableau de bord</h3>
+					<br /> <br />
+					<h4>Moyenne des formulaires de satisfaction</h4>
+
+					<div>
+
+						<table class="table table-bordered">
+							<tr>
+								<th>Voyage</th>
+								<th>Logement</th>
+								<th>Nourriture</th>
+								<th>Transport</th>
+								<th>Aspect du site internet</th>
+								<th>Facilité d'utilisation</th>
+								<th>Interlocuteurs</th>
+
+							</tr>
+
+							<c:forEach var="n" items="${moyenneList}">
+
+								<tr>
+									<td>${n.voyage}/5</td>
+									<td>${n.logement}/5</td>
+									<td>${n.nourriture}/5</td>
+
+									<td>${n.transport}/5</td>
+									<td>${n.siteAspect}/5</td>
+									<td>${n.siteUtil}/5</td>
+									<td>${n.agent}/5</td>
+
+								</tr>
+
+
+							</c:forEach>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+
 	</div>
-
 </body>
 </html>
