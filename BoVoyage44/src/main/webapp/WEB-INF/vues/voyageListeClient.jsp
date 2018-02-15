@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -22,6 +22,23 @@
 		<%@ include file="/template/headerU.html"%>
 	</div>
 	
+	<form:form method="POST" action="listePays"
+		modelAttribute="voyagePays" cssClass="form-horizontal">
+
+		<div class="form-group">
+			<form:label path="pays" class="col-sm-2 control-label">Pays</form:label>
+			<div class="col-sm-5">
+				<form:input path="pays" class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" class="btn btn-success" value="Rechercher" />
+			</div>
+		</div>
+
+	</form:form>
 
 
 	<h1 style="color: darkred; text-align: center">Liste des
