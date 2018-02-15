@@ -52,7 +52,7 @@
 	<c:forEach var="v" items="${voyageListContinent}">
 		<div class="row">
 			<div class="col-md-4">
-				<div class="thumbnail">
+				<div class="thumbnail" style="margin-left: 2%">
 					<p>Voyage : ${v.titre}</p>
 					<a
 						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
