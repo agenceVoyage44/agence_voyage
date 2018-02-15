@@ -22,42 +22,63 @@
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 </head>
 <body>
-<div style="height: 90px">
+	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
 	</div>
-	<h1>Modification d'une cargaison routière</h1>
-	<br />
 
-	<form:form method="POST" action="soumettreUpdate"
-		modelAttribute="formuleModif" cssClass="form-horizontal">
 
-		<div class="form-group">
-			<form:label path="id" cssClass="col-sm-2 control-label">ID</form:label>
-			<div class="col-sm-4">
-				<form:input path="id" cssClass="form-control" />
+
+
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Modification d'une formule</h3>
+					<br />
+
+					<form:form method="POST" action="soumettreUpdate"
+						modelAttribute="formuleModif" cssClass="form-horizontal">
+
+						<div class="form-group">
+							<form:label path="id" cssClass="col-sm-3 control-label">ID</form:label>
+							<div class="col-sm-6">
+								<form:input path="id" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="type" cssClass="col-sm-3 control-label">Type</form:label>
+							<div class="col-sm-6">
+								<form:input path="type" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="prix" cssClass="col-sm-3 control-label">Prix</form:label>
+							<div class="col-sm-6">
+								<form:input path="prix" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6">
+								<input type="submit" class="btn btn-success" value="Modifier" />
+							</div>
+						</div>
+					</form:form>
+
+					<br />
+
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'liste'">Retour</button>
+					<br />
+				</div>
 			</div>
 		</div>
-
-		<div class="form-group">
-			<form:label path="type" cssClass="col-sm-2 control-label">Type</form:label>
-			<div class="col-sm-4">
-				<form:input path="type" cssClass="form-control" />
-			</div>
-		</div>
-
-		<div class="form-group">
-			<form:label path="prix" cssClass="col-sm-2 control-label">Prix</form:label>
-			<div class="col-sm-4">
-				<form:input path="prix" cssClass="form-control" />
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-success" value="Modifier" />
-			</div>
-		</div>
-	</form:form>
+		<div class="col-md-1"></div>
+	</div>
 
 </body>
 </html>

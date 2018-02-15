@@ -19,33 +19,52 @@
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 </head>
 <body>
-	<%@ include file="/template/headerA.html"%>
-	<br/>
-	<br/>
-	<br/>
-	<h1 style="text-align: center">Liste des cargaisons</h1>
+	<div style="height: 90px">
+		<%@ include file="/template/headerA.html"%>
+	</div>
 
-	<table class="table table-bordered">
 
-		<tr>
-			<th>ID</th>
-			<th>Type</th>
-			<th>Prix</th>
-			<th>Operations</th>
-		</tr>
-		<c:forEach var="f" items="${formulesList}">
-			<tr>
-				<td>${f.id}</td>
-				<td>${f.type}</td>
-				<td>${f.prix}</td>
-				<td><a
-					href="${pageContext.request.contextPath}/agent/formule/supprimeLien/${f.id}">Supprimer</a>
-					| <a
-					href="${pageContext.request.contextPath}/agent/formule/modifieLien?pId=${f.id}">Modifier</a></td>
-			</tr>
-		</c:forEach>
+	<div class="row">
+		<div class="col-md-1"></div>
 
-	</table>
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Liste des formules</h3>
+
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'afficheAdd'">+ Ajouter</button>
+					<br /> <br />
+
+					<table class="table table-bordered">
+
+						<tr>
+							<th>ID</th>
+							<th>Type</th>
+							<th>Prix</th>
+							<th>Operations</th>
+						</tr>
+						<c:forEach var="f" items="${formulesList}">
+							<tr>
+								<td>${f.id}</td>
+								<td>${f.type}</td>
+								<td>${f.prix}</td>
+								<td>
+									<button type="button" class="btn btn-primary"
+										onclick="location.href = 'modifieLien?pId=${f.id}'">Modifier</button>
+									<button type="button" class="btn btn-danger"
+										onclick="location.href = 'supprimeLien/${f.id}'">Supprimer</button>
+								</td>
+							</tr>
+						</c:forEach>
+
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
 
 </body>
 </html>

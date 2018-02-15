@@ -49,53 +49,9 @@
 		</ul>
 	</div>
 
+	<div></div>
+
 	<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
-
-	<table class="table table-bordered">
-		<tr>
-			<th>Photo</th>
-			<th>ID</th>
-			<th>Continent</th>
-			<th>Pays</th>
-			<th>Prix de départ</th>
-			<th>Remise</th>
-			<th>Prix soldé</th>
-			<th>Date de départ</th>
-			<th>Date de retour</th>
-			<th>Nombre de places</th>
-			<th>Disponibilité</th>
-			<th>Titre</th>
-			<th>Description</th>
-			<th>Priorité</th>
-			<th>Opérations</th>
-		</tr>
-		<c:forEach var="v" items="${voyageList}">
-			<tr>
-				<td><img
-					src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
-					height="80px" /></td>
-				<td>${v.id}</td>
-				<td>${v.continent}</td>
-				<td>${v.pays}</td>
-				<td>${v.prixDepart}</td>
-				<td>${v.remise}</td>
-				<td>${v.prixSolde}</td>
-				<td>${v.dateDepart}</td>
-				<td>${v.dateRetour}</td>
-				<td>${v.nbPlaces}</td>
-				<td>${v.dispo}</td>
-				<td><a
-					href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">${v.titre}</a></td>
-				<td>${v.description}</td>
-				<td>${v.priorite}</td>
-				<td><a
-					href="${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}">Modifier</a>
-					| <a
-					href="${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}">Supprimer</a>
-				</td>
-			</tr>
-
-		</c:forEach>
 
 	</table>
 	<c:forEach var="v" items="${voyageList}">
@@ -116,11 +72,10 @@
 							</p>
 						</div>
 					</a>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}'">Modifier</button>
 					<button type="button" class="btn btn-danger"
-						onclick="${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}">Supprimer</button>
-					<button type="button" class="btn btn-warning"
-						onclick="${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}">Modifier</button>
-
+						onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}'">Supprimer</button>
 				</div>
 			</div>
 	</c:forEach>

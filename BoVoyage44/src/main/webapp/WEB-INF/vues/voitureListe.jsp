@@ -31,7 +31,7 @@
 			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
 					<h3>
-						>Liste des Voitures
+						Liste des Voitures
 					</h3>
 
 

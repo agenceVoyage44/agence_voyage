@@ -21,7 +21,7 @@
 
 </head>
 <body>
-<div style="height: 90px">
+	<div style="height: 90px">
 		<%@ include file="/template/headerU.html"%>
 	</div>
 

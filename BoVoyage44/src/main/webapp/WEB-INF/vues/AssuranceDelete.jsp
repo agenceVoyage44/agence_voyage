@@ -25,22 +25,39 @@
 	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
 	</div>
-	<h1 style="text-align: center">Formulaire de suppresion Assurance</h1>
 
-	<form:form method="POST" action="soumettreDelete"
-		modelAttribute="AssurSuppr" cssClass="form-horizontal">
-		<div class="form-group">
-			<form:label path="id" class="col-sm-2 control-label">ID</form:label>
-			<div class="col-sm-5">
-				<form:input path="id" cssClass="form-control" />
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Formulaire de suppression d'assurance</h3>
+
+					<form:form method="POST" action="soumettreDelete"
+						modelAttribute="AssurSuppr" cssClass="form-horizontal">
+						<div class="form-group">
+							<form:label path="id" class="col-sm-2 control-label">ID</form:label>
+							<div class="col-sm-5">
+								<form:input path="id" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<input type="submit" class="btn btn-success" value="Supprimer" />
+							</div>
+						</div>
+					</form:form>
+
+
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'liste'">Retour à la liste</button>
+					<br />
+				</div>
 			</div>
 		</div>
-
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-success" value="Supprimer" />
-			</div>
-		</div>
-	</form:form>
+		<div class="col-md-1"></div>
+	</div>
 </body>
 </html>

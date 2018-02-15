@@ -62,19 +62,19 @@ public class VoyageController {
 		return new ModelAndView("voyageListe", "voyageList", liste);
 	}
 
-	@RequestMapping(value = "/agent/listePays/{pPays}", method = RequestMethod.GET)
-	public ModelAndView afficheListePays(@PathVariable("pPays") String pays) {
+	@RequestMapping(value = "/agent/listePays", method = RequestMethod.GET)
+	public ModelAndView afficheListePays(@ModelAttribute("voyagePays") Voyage v) {
 		List<Voyage> listePays=new ArrayList<Voyage>();
 		
 		List<Voyage> liste = voyageService.getAllVoyage();
 		
 		for (Voyage voyage : liste) {
-			if(voyage.getPays().startsWith(pays)){
+			if(voyage.getPays().startsWith(v.getPays())){
 				listePays.add(voyage);
 			}
 		}
 
-		return new ModelAndView("voyageListe", "voyageListePays", listePays);
+		return new ModelAndView("voyageListe", "voyageList", listePays);
 	}
 	
 	
@@ -130,6 +130,8 @@ public class VoyageController {
 			}
 		}
 		
+		v.setPrixSolde(v.getPrixDepart()*(1-v.getRemise()/100));
+		
 		v.setDispo(true);
 		Voyage vOut = voyageService.addVoyage(v);
 
@@ -163,6 +165,7 @@ public class VoyageController {
 			}
 		}
 		
+		v.setPrixSolde(v.getPrixDepart()*(1-v.getRemise()/100));
 
 		Voyage vOut = voyageService.updateVoyage(v);
 
