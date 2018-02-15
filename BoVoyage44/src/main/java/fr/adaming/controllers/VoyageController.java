@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -64,7 +61,7 @@ public class VoyageController {
 		return new ModelAndView("voyageListe", "voyageList", liste);
 	}
 
-	@RequestMapping(value = "/agent/listeContinent/{pPays}", method = RequestMethod.GET)
+	@RequestMapping(value = "/agent/listePays/{pPays}", method = RequestMethod.GET)
 	public ModelAndView afficheListePays(@PathVariable("pPays") String pays) {
 		List<Voyage> listePays=new ArrayList<Voyage>();
 		
