@@ -15,46 +15,77 @@
 <script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
 </head>
 <body>
-	<h1 style="text-align: center">Vérifier votre réservation</h1>
 
-	<form:form method="POST" action="soumettreUpdate"
-		modelAttribute="resaUpdateC" cssClass="form-horizontal">
 
-<h3>Le prix maximum de votre réservation actuelle est ${prixMax} </h3>
+	<div style="height: 90px">
+		<%@ include file="/template/headerC.html"%>
+	</div>
 
-		<div class="form-group">
-			<form:label path="voyage.id" class="col-sm-2 control-label">Voyage choisi</form:label>
-			<div class="col-sm-5">
-				<form:input path="voyage.id" cssClass="form-control" />
+
+
+
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+
+					<h3>Vérifier votre réservation</h3>
+					
+					<form:form method="POST" action="soumettreUpdate"
+						modelAttribute="resaUpdateC" cssClass="form-horizontal">
+
+						<h4>Le prix maximum de votre réservation actuelle est
+							${prixMax} Euros</h4>
+
+						<div class="form-group">
+							<form:label path="voyage.id" class="col-sm-3 control-label">Voyage choisi</form:label>
+							<div class="col-sm-6">
+								<form:input path="voyage.id" cssClass="form-control" />
+							</div>
+						</div>
+						<br />
+						<div class="form-group">
+							<form:label path="assurance.id" cssClass="col-sm-3 control-label">Assurance</form:label>
+
+							<div class="col-sm-6">
+								<form:select path="assurance.id">
+									<c:forEach var="a" items="${listeAssurance}">
+										<form:option value="${a.id}">
+											<c:out value="${a.type} ${a.prix}"></c:out>
+										</form:option>
+									</c:forEach>
+								</form:select>
+							</div>
+						</div>
+
+
+
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6">
+								<input type="submit" class="btn btn-success"
+									value="Valider la réservation" />
+							</div>
+						</div>
+
+
+					</form:form>
+
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'liste'">Retour</button>
+					<br />
+				</div>
 			</div>
 		</div>
+		<div class="col-md-1"></div>
 
-
-
-		<div class="form-group">
-			<form:label path="assurance.id" cssClass="col-sm-2 control-label">Assurance</form:label>
-			<form:select path="assurance.id">
-				<c:forEach var="a" items="${listeAssurance}">
-					<form:option value="${a.id}">
-						<c:out value="${a.type} ${a.prix}"></c:out>
-					</form:option>
-				</c:forEach>
-			</form:select>
-		</div>
-
-
-
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-success"
-					value="Valider la réservation" />
-			</div>
-		</div>
-
-
-	</form:form>
+	</div>
 </body>
 </html>

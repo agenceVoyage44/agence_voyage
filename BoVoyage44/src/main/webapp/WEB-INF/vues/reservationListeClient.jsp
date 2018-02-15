@@ -19,40 +19,53 @@
 </head>
 <body>
 	<div style="height: 90px">
-		<%@ include file="/template/headerA.html"%>
+		<%@ include file="/template/headerC.html"%>
 	</div>
 
-	<h1 style="color: darkred; text-align: center">Liste des
-		réservations</h1>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Liste de vos réservations</h3>
 
 
-	<table class="table table-bordered">
-		<tr>
-			<th>ID</th>
-			<th>Statut</th>
-			<th>Date de Réservation</th>
-			<th>Prix</th>
-			<th>Nombre de places Réservées</th>
-			<th>Voayge choisi</th>
-			<th>Assurance</th>
-			<th>Opération</th>
-		</tr>
-		 
-			<tr>
-				<td>${rresa.id}</td>
-				<td>${resa.statut}</td>
-				<td>${resa.dateReservation}</td>
-				<td>${resa.prix}</td>
-				<td>${resa.nbPlaceReservees}</td>
-				<td>${resa.voyage.titre}</td>
-				<td>${resa.assurance.type}</td>
-				<td><a
-					href="${pageContext.request.contextPath}/boVoyage/reservation/client/modifierLien?pId=${resa.id}">Modifier pour Valider</a>|<a
-					href="${pageContext.request.contextPath}/boVoyage/reservation/client/supprimeLien/${resa.id}">Supprimer</a></td>
+					<table class="table table-bordered">
+						<tr>
+							<th>Référence</th>
+							<th>Statut</th>
+							<th>Date de Réservation</th>
+							<th>Prix</th>
+							<th>Nombre de places Réservées</th>
+							<th>Voyage choisi</th>
+							<th>Assurance</th>
+							<th>Opération</th>
+						</tr>
 
-			</tr>
-	</table>
+						<tr>
+							<td>${resa.id}</td>
+							<td>${resa.statut}</td>
+							<td>${resa.dateReservation}</td>
+							<td>${resa.prix}</td>
+							<td>${resa.nbPlaceReservees}</td>
+							<td>${resa.voyage.titre}</td>
+							<td>${resa.assurance.type}</td>
+							<td><a
+								href="${pageContext.request.contextPath}/boVoyage/reservation/client/modifierLien?pId=${resa.id}">Modifier
+									pour Valider</a>|<a
+								href="${pageContext.request.contextPath}/boVoyage/reservation/client/supprimeLien/${resa.id}">Supprimer</a></td>
 
+						</tr>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
 
 </body>
 </html>

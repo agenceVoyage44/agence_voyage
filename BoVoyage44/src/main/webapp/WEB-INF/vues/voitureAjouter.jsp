@@ -17,12 +17,7 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
-<style type="text/css">
-body {
-	background-image: url("../../images/fond.jpg");
-	background-attachment: fixed;
-}
-</style>
+
 
 </head>
 <body>
