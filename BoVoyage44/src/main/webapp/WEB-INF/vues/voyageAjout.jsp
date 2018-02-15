@@ -52,7 +52,26 @@
 						<div class="form-group">
 							<form:label path="continent" cssClass="col-sm-3 control-label">Continent</form:label>
 							<div class="col-sm-6">
-								<form:input path="continent" cssClass="form-control" />
+								<form:select path="continent" cssClass="form-control">
+									<form:option value="Asie">
+										<c:out value="Asie"></c:out>
+									</form:option>
+									<form:option value="Europe">
+										<c:out value="Europe"></c:out>
+									</form:option>
+									<form:option value="Afrique">
+										<c:out value="Afrique"></c:out>
+									</form:option>
+									<form:option value="AfriqueNord">
+										<c:out value="Afrique du Nord"></c:out>
+									</form:option>
+									<form:option value="AfriqueSud">
+										<c:out value="Afrique du Sud"></c:out>
+									</form:option>
+									<form:option value="Australie">
+										<c:out value="Australie"></c:out>
+									</form:option>
+								</form:select>
 							</div>
 						</div>
 
@@ -136,13 +155,15 @@
 
 						<div class="form-group">
 							<form:label path="formule.id" cssClass="col-sm-3 control-label">ID Formule</form:label>
-							<form:select path="formule.id">
-								<c:forEach var="f" items="${listeFormules}">
-									<form:option value="${f.id}">
-										<c:out value="${f.id} ${f.type}"></c:out>
-									</form:option>
-								</c:forEach>
-							</form:select>
+							<div class="col-sm-6">
+								<form:select path="formule.id" cssClass="form-control">
+									<c:forEach var="f" items="${listeFormules}">
+										<form:option value="${f.id}">
+											<c:out value="${f.id} ${f.type}"></c:out>
+										</form:option>
+									</c:forEach>
+								</form:select>
+							</div>
 						</div>
 
 
