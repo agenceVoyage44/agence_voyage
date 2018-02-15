@@ -135,16 +135,11 @@ public class FormuleController {
 	@RequestMapping(value = "/supprimeLien/{pId}", method = RequestMethod.GET)
 	public String supprimerlien(Model model, @PathVariable("pId") int id) {
 
-		
 		// appel de la methode service
 		formuleService.deleteFormule(id);
+	
 
-		// recuperer la liste de la bd
-		List<Formule> liste = formuleService.getAllFormule();
-
-		model.addAttribute("formulesList", liste);
-
-		return "formuleListe";
+		return "redirect:../liste";
 
 	}
 
