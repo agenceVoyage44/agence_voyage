@@ -17,58 +17,71 @@
 </head>
 <body>
 
-	
-	<div class="row" style=" margin-top: 100px">
+
+	<div class="row" style="margin-top: 150px">
 		<div class="col-md-1"></div>
 
 		<div class="col-md-10">
 			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
-	
-	<form class="form-horizontal" method="post"
-		action="j_spring_security_check"
-		style="margin-left: 200px; margin-top: 100px">
-		<div class="form-group has-primary has-feedback">
-			<label class="control-label col-sm-3" for="inputGroupSuccess2">E-mail</label>
-			<div class="col-sm-3">
-				<div class="input-group">
-					<span class="input-group-addon">@</span> <input type="text"
-						class="form-control" id="idMail" aria-describedby="E-mail"
-						name="j_username">
-				</div>
-				<span aria-hidden="true"></span> <span id="j_username" class="sr-only">(success)</span>
-			</div>
-		</div>
 
-		<div class="form-group has-primary has-feedback">
-			<label class="control-label col-sm-3" for="inputGroupSuccess2">Mot
-				de passe</label>
-			<div class="col-sm-3">
-				<div class="input-group">
-					<span class="input-group-addon">?</span> <input type="password"
-						class="form-control" id="idMDP" aria-describedby="Mot de passe"
-						name="j_password">
-				</div>
-				<span aria-hidden="true"></span> <span id="idMDP" class="sr-only">(success)</span>
-			</div>
-		</div>
+					<h3>Connexion</h3>
 
-		<div class="form-group">
-			<div class="col-sm-offset-4 col-sm-8">
-				<br />
-				<button type="submit" class="btn btn-primary">Connexion</button>
+					<form class="form-horizontal" method="post"
+						action="j_spring_security_check"
+						style="margin-left: 200px; margin-top: 30px">
+						<div class="form-group has-primary has-feedback">
+							<label class="control-label col-sm-3" for="inputGroupSuccess2">E-mail</label>
+							<div class="col-sm-4">
+								<div class="input-group">
+									<span class="input-group-addon">@</span> <input type="text"
+										class="form-control" id="idMail" aria-describedby="E-mail"
+										name="j_username">
+								</div>
+								<span aria-hidden="true"></span> <span id="j_username"
+									class="sr-only">(success)</span>
+							</div>
+						</div>
 
-			</div>
-		</div>
+						<div class="form-group has-primary has-feedback">
+							<label class="control-label col-sm-3" for="inputGroupSuccess2">Mot
+								de passe</label>
+							<div class="col-sm-4">
+								<div class="input-group">
+									<span class="input-group-addon">?</span> <input type="password"
+										class="form-control" id="idMDP"
+										aria-describedby="Mot de passe" name="j_password">
+								</div>
+								<span aria-hidden="true"></span> <span id="idMDP"
+									class="sr-only">(success)</span>
+							</div>
+						</div>
 
-	</form>
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-8">
+								<br />
+								<button type="submit" class="btn btn-primary">Connexion</button>
+								<button type="button" class="btn btn-info"
+									onclick="location.href = 'boVoyage/accueil'">Retour</button>
 
-	<c:if test="${not empty msg}">
-		<h4 style="text-align: center; color: red">Identifiant ou mot de
-			passe incorrect</h4>
-	</c:if>
-	
-	<a href="<c:url value=" /BoVoyage44/agent/client/afficheAdd"/>" >Pas encore incrit ?</a>
+							</div>
+						</div>
+
+					</form>
+
+					<c:if test="${not empty msg}">
+						<h4 style="text-align: center; color: red">Identifiant ou mot
+							de passe incorrect</h4>
+					</c:if>
+					<div class="col-sm-offset-4 col-sm-8">
+						<a href="<c:url value=" /BoVoyage44/agent/client/afficheAdd"/>">Pas
+							encore incrit ?</a>
+					</div>
+					</br/>
+
+
+
+
 
 				</div>
 			</div>
