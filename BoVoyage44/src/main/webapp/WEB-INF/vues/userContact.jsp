@@ -24,14 +24,16 @@
 	<div style="height: 90px">
 		<%@ include file="/template/headerU.html"%>
 	</div>
+<div class="row">
+		<div class="col-md-1"></div>
 
+		<div class="col-md-10">
 	<div class="panel panel-default">
 		<div class="bs-callout bs-callout-color">
-			<h3 style="color: #48494c; text-align: center">Demande
-				d'informations</h3>
-
+			<h2 >Demande d'informations</h2>
+			<br>
 			<form:form method="POST" action="soumettreEnvoi"
-				modelAttribute="user" cssClass="form-horizontal">
+				modelAttribute="user" cssClass="form-horizontal" >
 
 
 				<div class="form-group">
@@ -57,7 +59,9 @@
 
 				<div class="form-group">
 					<form:label path="rue" class="col-sm-2 control-label">Votre message (veuillez renseigner vos coordonnées pour que nous puissions vous répondre) :</form:label>
+					<div class="col-sm-6">
 					<form:textarea class="form-control" rows="5" path="rue"></form:textarea>
+					</div>
 				</div>
 
 				<div class="form-group">
@@ -72,5 +76,11 @@
 
 		</div>
 	</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+
+	
+	
 </body>
 </html>

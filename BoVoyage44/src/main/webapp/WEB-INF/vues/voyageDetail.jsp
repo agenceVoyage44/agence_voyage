@@ -19,6 +19,10 @@
 
 </head>
 <body>
+	<!-- Header User -->
+	<%@ include file="/template/headerU.html"%>
+	
+	<br><br><br><br>
 	<div class="row">
 		<div class="col-md-1"></div>
 

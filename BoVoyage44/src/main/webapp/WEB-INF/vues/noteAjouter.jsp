@@ -29,14 +29,19 @@
 
 </head>
 <body>
+<div class="row" style="margin-top: 70px">
+		<div class="col-md-1"></div>
 
-	<h1>Formulaire de satisfaction</h1>
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+	<h2>Formulaire de satisfaction</h2>
 	<br />
 	<form:form method="POST" action="soumettreAdd"
 		modelAttribute="noteAjout" cssClass="form-horizontal"
-		style="margin-left:600px">
+		style="margin-left:200px;">
 
-		<div class="form-group">
+		<div class="form-group" >
 			<form:label path="voyage" cssClass="col-sm-2 control-label">Note voyage</form:label>
 			<div class="col-sm-3">
 				<form:select path="voyage" class="form-control">
@@ -132,16 +137,20 @@
 
 		<div class="form-group">
 			<form:label path="comm" class="col-sm-2 control-label">Commentaires</form:label>
-			<form:textarea class="form-control" rows="5" path="comm"></form:textarea>
-		</div>
-
-		<br />
-		<div class="col-sm-offset-2 col-sm-4" style="margin-left: 100px">
+			<div class="col-sm-3">
+			<form:textarea class="form-control" rows="5" path="comm" ></form:textarea>
+			</div>
+			<br><br><br><br>
 			<input type="submit" class="btn btn-info" value="Envoyer">
 		</div>
 
 	</form:form>
 
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
 
+	</div>
 </body>
 </html>
