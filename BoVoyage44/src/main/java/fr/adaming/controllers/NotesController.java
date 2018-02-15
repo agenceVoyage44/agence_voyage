@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fr.adaming.model.Client;
+
 import fr.adaming.model.Notes;
-import fr.adaming.service.IClientService;
+
 import fr.adaming.service.INotesService;
 
 @Controller
@@ -23,8 +23,6 @@ public class NotesController {
 	@Autowired
 	private INotesService notesService;
 
-	@Autowired
-	private IClientService clientService;
 
 	// ##############AJOUT Note######################
 

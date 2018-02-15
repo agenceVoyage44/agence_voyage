@@ -24,6 +24,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -87,7 +89,10 @@ public class ReservationServiceImpl implements IReservationService {
 		//envoi mail de confirmation
 		
 		//1. Récupérer le client ayant réservé
-		Client cRes=clientDao.getClientByReservation(reservation.getId());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String mail = auth.getName();
+		Client cRes = clientDao.getClientByMail(mail);
+		//Client cRes=clientDao.getClientByReservation(reservation.getId());
 		//2. Récupérer les participants
 		List<Participant> listePart=participantDao.getParticipantsByReservation(reservation.getId());
 		
@@ -202,7 +207,7 @@ public class ReservationServiceImpl implements IReservationService {
 				Message msg = new MimeMessage(session);
 				msg.setFrom(new InternetAddress("application.j2ee@gmail.com"));
 				;
-				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(cRes.getMail(), false));
+				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("jegonday.solene@gmail.com", false));
 				msg.setSubject("BoVoyage44 ");
 				msg.setText("Votre réservation est confirmée.");
 				msg.setSentDate(new Date());
