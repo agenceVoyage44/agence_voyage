@@ -19,41 +19,10 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
-<style type="text/css">
-.slideshow {
-	width: 1400px;
-	height: 300px;
-	overflow: hidden;
-	border: 3px solid #F2F2F2;
-}
-
-.slideshow ul {
-	/* 4 images donc 4 x 100% */
-	width: 400%;
-	height: 200px;
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-
-.slideshow li {
-	float: left;
-}
-</style>
-
-<script type="text/javascript">
-	$(function() {
-		setInterval(function() {
-			$(".slideshow ul").animate({
-				marginLeft : -450
-			}, 800, function() {
-				$(this).css({
-					marginLeft : 0
-				}).find("li:last").after($(this).find("li:first"));
-			})
-		}, 3500);
-	});
-</script>
+<!-- JS et CSS pour le diapo en haut de page -->
+<link rel="stylesheet" href="<c:url value="/resources/css/diapo.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/diapo.js"/>"></script>
 
 </head>
 <body>
@@ -67,7 +36,10 @@
 		<ul>
 			<c:forEach var="v" items="${voyageList}">
 				<c:if test="${v.priorite == true }">
-					<li><a href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}"> <img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+					<li><a
+						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
+							<img
+							src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
 							alt="" width="450" height="300" />
 					</a></li>
 				</c:if>
@@ -124,7 +96,27 @@
 		</c:forEach>
 
 	</table>
+<c:forEach var="v" items="${voyageList}">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<p>Voyage : ${v.titre}</p>
+					<a
+						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
+						<img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}" alt="imageVoyage"
+						style="width: 400px; height: 300px;">
+						<div class="caption">
+							<p>
+								Continent : ${v.continent}<br> Prix Soldé : ${v.prixSolde}<br>
+								Prix : <s>${v.prixDepart}</s><br> Date : du ${v.dateDepart}
+								au ${v.dateRetour}<br> Description : ${v.description}<br>
+							</p>
 
+						</div>
+					</a>
+				</div>
+			</div>
+	</c:forEach>
 
 </body>
 </html>

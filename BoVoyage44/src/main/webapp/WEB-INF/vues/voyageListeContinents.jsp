@@ -16,56 +16,35 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
-	<style type="text/css">
-.slideshow {
-	width: 1400px;
-	height: 300px;
-	overflow: hidden;
-	border: 3px solid #F2F2F2;
-}
 
-.slideshow ul {
-	/* 4 images donc 4 x 100% */
-	width: 400%;
-	height: 200px;
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
+<!-- JS et CSS pour le diapo en haut de page -->
+<link rel="stylesheet" href="<c:url value="/resources/css/diapo.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/diapo.js"/>"></script>
 
-.slideshow li {
-	float: left;
-}
-</style>
 </head>
 <body>
 <body>
 	<div style="height: 90px">
 		<%@ include file="/template/headerU.html"%>
 	</div>
-	
-<!-- Galerie Dynamique -->
+
+	<!-- Galerie Dynamique -->
 	<div class="slideshow">
 		<ul>
-			<li><a
-				href="${pageContext.request.contextPath}/boVoyage/accueil"> <img
-					src="../images/voyage1.jpg" alt="" width="450" height="300" />
-			</a></li>
-			<li><img src="../images/voyage2.jpg" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage3.png" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage4.jpg" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage5.jpg" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage6.jpg" alt="" width="450"
-				height="300" /></li>
-			<li><img src="../images/voyage7.jpg" alt="" width="450"
-				height="300" /></li>
+			<c:forEach var="v" items="${voyageListContinent}">
+				<c:if test="${v.priorite == true }">
+					<li><a
+						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
+							<img
+							src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+							alt="" width="450" height="300" />
+					</a></li>
+				</c:if>
+			</c:forEach>
 		</ul>
 	</div>
-	
+
 	<h1 style="color: darkred; text-align: center">Liste des voyages
 		par Continent</h1>
 
@@ -89,7 +68,7 @@
 		</tr>
 		<c:forEach var="v" items="${voyageListContinent}">
 			<tr>
-				<td>${v.photo}<img
+				<td><img
 					src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
 					height="80px" /></td>
 				<td>${v.id}</td>
@@ -120,17 +99,18 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="thumbnail">
-				<p>Voyage : ${v.titre}</p>
-					<a href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}"> 
-					<img src="${v.photo}" alt="imageVoyage"
+					<p>Voyage : ${v.titre}</p>
+					<a
+						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
+						<img src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}" alt="imageVoyage"
 						style="width: 400px; height: 300px;">
 						<div class="caption">
-							<p>Continent : ${v.continent}<br>
-							Prix Soldé : ${v.prixSolde}<br>
-							Prix : <s>${v.prixDepart}</s><br>
-							Date : du ${v.dateDepart} au ${v.dateRetour}<br>
-							Description : ${v.description}<br></p>
-							
+							<p>
+								Continent : ${v.continent}<br> Prix Soldé : ${v.prixSolde}<br>
+								Prix : <s>${v.prixDepart}</s><br> Date : du ${v.dateDepart}
+								au ${v.dateRetour}<br> Description : ${v.description}<br>
+							</p>
+
 						</div>
 					</a>
 				</div>
