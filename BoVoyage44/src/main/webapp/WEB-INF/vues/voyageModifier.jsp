@@ -63,13 +63,6 @@
 		</div>
 
 		<div class="form-group">
-			<form:label path="prixSolde" cssClass="col-sm-2 control-label">Prix soldé</form:label>
-			<div class="col-sm-5">
-				<form:input path="prixSolde" cssClass="form-control" />
-			</div>
-		</div>
-
-		<div class="form-group">
 			<form:label path="dateDepart" cssClass="col-sm-2 control-label">Date de départ</form:label>
 			<div class="col-sm-5">
 				<form:input path="dateDepart" cssClass="form-control" />
