@@ -23,6 +23,11 @@ public class NotesServiceImpl implements INotesService {
 		return notesDao.addNotes(n);
 	}
 
+	static public double arrondir(double value, int n) {
+		double r = (Math.round(value * Math.pow(10, n))) / (Math.pow(10, n));
+		return r;
+	}
+
 	@Override
 	public List<Notes> getAllNotes() {
 		return notesDao.getAllNotes();
@@ -48,13 +53,14 @@ public class NotesServiceImpl implements INotesService {
 			siteAspect = siteAspect + n.getSiteAspect();
 			siteUtil = siteUtil + n.getSiteUtil();
 		}
-		voyage = voyage / listeN.size();
-		logement = logement / listeN.size();
-		food = food / listeN.size();
-		transport = transport / listeN.size();
-		agent = agent / listeN.size();
-		siteAspect = siteAspect / listeN.size();
-		siteUtil = siteUtil / listeN.size();
+
+		voyage = arrondir((voyage / listeN.size()), 2);
+		logement = arrondir((logement / listeN.size()), 2);
+		food = arrondir((food / listeN.size()), 2);
+		transport = arrondir((transport / listeN.size()), 2);
+		agent = arrondir((agent / listeN.size()), 2);
+		siteAspect = arrondir((siteAspect / listeN.size()), 2);
+		siteUtil = arrondir((siteUtil / listeN.size()), 2);
 
 		Notes moy = new Notes(voyage, logement, transport, food, agent, siteAspect, siteUtil, null);
 
