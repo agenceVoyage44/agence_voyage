@@ -123,9 +123,9 @@ public class ReservationController {
 		System.out.println("----------rOut : " + rOut);
 
 		// Donner la réservation au client qui paye
-		client.setReservation(reservation);
+		client.setReservation(rOut);
 		Client clOut = clientService.updateClient(client);
-		System.err.println("-----------client updaté" + clOut);
+		System.err.println("-----------client updaté : " + clOut);
 
 		if (rOut.getId() != 0) {
 

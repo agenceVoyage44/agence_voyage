@@ -94,6 +94,21 @@ public class Client extends Participant {
 		this.listeRoles = listeRoles;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Client [numCB=" + numCB + ", mail=" + mail + ", mdp=" + mdp + ", id=" + id + ", nom=" + nom
+				+ ", prenom=" + prenom + ", tel=" + tel + ", civilite=" + civilite + ", numero=" + numero + ", rue="
+				+ rue + ", codePostal=" + codePostal + ", ville=" + ville + ", pays=" + pays + ", dateNaissance="
+				+ dateNaissance + "]";
+	}
+
+
+
+	
+
+	
 	
 
 }
