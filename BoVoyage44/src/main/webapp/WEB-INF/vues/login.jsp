@@ -18,11 +18,16 @@
 <body>
 
 	
-	
+	<div class="row" style=" margin-top: 100px">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
 	
 	<form class="form-horizontal" method="post"
 		action="j_spring_security_check"
-		style="margin-left: 400px; margin-top: 300px">
+		style="margin-left: 200px; margin-top: 100px">
 		<div class="form-group has-primary has-feedback">
 			<label class="control-label col-sm-3" for="inputGroupSuccess2">E-mail</label>
 			<div class="col-sm-3">
@@ -63,7 +68,13 @@
 			passe incorrect</h4>
 	</c:if>
 	
-	
+	<a href="<c:url value=" /BoVoyage44/agent/client/afficheAdd"/>" >Pas encore incrit ?</a>
 
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
 </body>
 </html>
