@@ -44,7 +44,7 @@ public class BoVoyageController {
 
 		// recup l'identifiant de l'utilisateur connecté
 		String mail = authClient.getName();
-		model.addAttribute("msg", "Accueil Client " + mail);
+		model.addAttribute("mail", mail);
 
 		return "accueilClient";
 	}

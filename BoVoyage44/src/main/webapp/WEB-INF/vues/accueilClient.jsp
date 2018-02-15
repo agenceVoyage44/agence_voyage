@@ -24,34 +24,35 @@
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 </head>
 <body>
-	<!-- Header User -->
-	<%@ include file="/template/headerC.html"%>
+	<div style="height: 90px">
+		<!-- Header Client -->
+		<%@ include file="/template/headerC.html"%>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<c:forEach var="v" items="${voyageList}">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="#"> <img src="${v.photo}" alt="voyage1"
-						style="width: 400px; height: 300px;">
-						<div class="caption">
-							<p>${v.continent}</p>
-						</div>
-					</a>
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Bienvenue dans votre Espace Client</h3>
+					<h4>Votre e-mail: ${mail}</h4>
+					<h5>Vous pouvez :</h5>
+					<ul>
+						<li>Voir et confirmer vos réservations.</li>
+						<li>Modifier vos informations personnelles.</li>
+
+					</ul>
+
+					<br /> <br /> <br />
+
+					<p style="text-align: center;">
+						<em>BoVoyage - Tous droits réservés - 2018</em>
+					</p>
 				</div>
 			</div>
-	</c:forEach>
+		</div>
+		<div class="col-md-1"></div>
 
+	</div>
 </body>
-
-
-
-
 </html>
