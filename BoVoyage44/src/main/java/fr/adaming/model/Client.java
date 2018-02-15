@@ -4,11 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.Table;
 
 /**
@@ -32,31 +33,38 @@ public class Client extends Participant {
 	@OneToMany(mappedBy = "client")
 	List<Role> listeRoles;
 
+	@ManyToOne
+	@JoinColumn(name = "res_id", referencedColumnName = "id_res")
+	private Reservation reservation;
+
 	public Client() {
 		super();
 	}
 
+	
+
 	public Client(String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance, Reservation reservation, long numCB, String mail, String mdp,
-			boolean active, List<Role> listeRoles) {
-		super(nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance, reservation);
+			String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp, boolean active) {
+		super(nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
 		this.numCB = numCB;
 		this.mail = mail;
 		this.mdp = mdp;
 		this.active = active;
-		this.listeRoles = listeRoles;
+
 	}
 
+
+
 	public Client(int id, String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance, Reservation reservation, long numCB, String mail, String mdp,
-			boolean active, List<Role> listeRoles) {
-		super(id, nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance, reservation);
+			String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp, boolean active) {
+		super(id, nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
 		this.numCB = numCB;
 		this.mail = mail;
 		this.mdp = mdp;
 		this.active = active;
-		this.listeRoles = listeRoles;
 	}
+
+
 
 	public long getNumCB() {
 		return numCB;
@@ -90,9 +98,14 @@ public class Client extends Participant {
 		this.listeRoles = listeRoles;
 	}
 
-	@Override
-	public String toString() {
-		return "Client [numCB=" + numCB + ", mail=" + mail + ", mdp=" + mdp + ", listeRoles=" + listeRoles + "]";
+	public Reservation getReservation() {
+		return reservation;
 	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+
+	
 
 }

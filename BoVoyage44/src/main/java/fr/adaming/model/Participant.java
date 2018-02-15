@@ -53,17 +53,13 @@ public class Participant {
 
 	protected Date dateNaissance;
 
-	// association UML en java
-	@ManyToOne
-	@JoinColumn(name = "res_id", referencedColumnName = "id_res")
-	private Reservation reservation;
-
 	public Participant() {
 		super();
 	}
 
+
 	public Participant(String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance, Reservation reservation) {
+			String ville, String pays, Date dateNaissance) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -75,11 +71,12 @@ public class Participant {
 		this.ville = ville;
 		this.pays = pays;
 		this.dateNaissance = dateNaissance;
-		this.reservation = reservation;
 	}
 
+
+
 	public Participant(int id, String nom, String prenom, int tel, String civilite, int numero, String rue,
-			int codePostal, String ville, String pays, Date dateNaissance, Reservation reservation) {
+			int codePostal, String ville, String pays, Date dateNaissance) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -92,8 +89,8 @@ public class Participant {
 		this.ville = ville;
 		this.pays = pays;
 		this.dateNaissance = dateNaissance;
-		this.reservation = reservation;
 	}
+
 
 	public int getId() {
 		return id;
@@ -183,19 +180,12 @@ public class Participant {
 		this.dateNaissance = dateNaissance;
 	}
 
-	public Reservation getReservation() {
-		return reservation;
-	}
-
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
-	}
 
 	@Override
 	public String toString() {
 		return "Participant [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", civilite="
 				+ civilite + ", numero=" + numero + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville
-				+ ", pays=" + pays + ", dateNaissance=" + dateNaissance + ", reservation=" + reservation + "]";
+				+ ", pays=" + pays + ", dateNaissance=" + dateNaissance + "]";
 	}
 
 }

@@ -42,7 +42,7 @@ public class Reservation {
 	// association UML en Java
 
 	@OneToMany(mappedBy = "reservation")
-	private List<Participant> listeParticipants;
+	private List<Client> listeParticipants;
 
 
 	@ManyToOne
@@ -114,14 +114,14 @@ public class Reservation {
 		this.nbPlaceReservees = nbPlaceReservees;
 	}
 
-	public List<Participant> getListeParticipants() {
+
+	public List<Client> getListeParticipants() {
 		return listeParticipants;
 	}
 
-	public void setListeParticipants(List<Participant> listeParticipants) {
+	public void setListeParticipants(List<Client> listeParticipants) {
 		this.listeParticipants = listeParticipants;
 	}
-
 
 	public Voyage getVoyage() {
 		return voyage;
@@ -141,12 +141,5 @@ public class Reservation {
 		this.assurance = assurance;
 	}
 
-	@Override
-	public String toString() {
-		return "Reservation [id=" + id + ", statut=" + statut + ", prix=" + prix + ", dateReservation="
-				+ dateReservation + ", nbPlaceReservees=" + nbPlaceReservees + ", listeParticipants="
-				+ listeParticipants + ", voyage=" + voyage + ", assurance="
-				+ assurance + "]";
-	}
 
 }
