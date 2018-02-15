@@ -69,6 +69,8 @@
 		</div>
 
 	</form:form>
+	<button type="button" class="btn btn-primary"
+						onclick="location.href = '${pageContext.request.contextPath}/voyage/liste'">Retour</button>
 
 
 	<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
@@ -92,10 +94,7 @@
 							</p>
 						</div>
 					</a>
-					<button type="button" class="btn btn-primary"
-						onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}'">Modifier</button>
-					<button type="button" class="btn btn-danger"
-						onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}'">Supprimer</button>
+					
 				</div>
 			</div>
 	</c:forEach>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -24,7 +26,6 @@
 
 </head>
 <body>
-<body>
 	<div style="height: 90px">
 		<%@ include file="/template/headerU.html"%>
 	</div>
@@ -45,6 +46,28 @@
 		</ul>
 	</div>
 
+	<form:form method="POST" action="listePaysContinent" modelAttribute="voyagePays"
+		cssClass="form-horizontal">
+
+		<div class="form-group">
+			<form:label path="pays" class="col-sm-2 control-label">Pays</form:label>
+			<div class="col-sm-5">
+				<form:input path="pays" class="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" class="btn btn-success" value="Rechercher" />
+			</div>
+		</div>
+
+	</form:form>
+	<button type="button" class="btn btn-primary"
+						onclick="location.href = '${pageContext.request.contextPath}/voyage/listePaysContinent'">Retour</button>
+
+	
+
 	<h1 style="color: darkred; text-align: center">Liste des voyages
 		par Continent</h1>
 
@@ -52,7 +75,7 @@
 	<c:forEach var="v" items="${voyageListContinent}">
 		<div class="row">
 			<div class="col-md-4">
-				<div class="thumbnail" style="margin-left: 2%">
+				<div class="thumbnail">
 					<p>Voyage : ${v.titre}</p>
 					<a
 						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
