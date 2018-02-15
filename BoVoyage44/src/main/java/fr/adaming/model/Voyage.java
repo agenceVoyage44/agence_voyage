@@ -43,10 +43,10 @@ public class Voyage {
 
 	private double prixSolde;
 
-	//@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date dateDepart;
 
-	//@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date dateRetour;
 
 	@Lob
