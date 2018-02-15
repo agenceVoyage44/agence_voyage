@@ -53,10 +53,13 @@ public class Participant {
 
 	protected Date dateNaissance;
 
+	@ManyToOne
+	@JoinColumn(name = "res_id", referencedColumnName = "id_res")
+	private Reservation reservation;
+
 	public Participant() {
 		super();
 	}
-
 
 	public Participant(String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
 			String ville, String pays, Date dateNaissance) {
@@ -73,8 +76,6 @@ public class Participant {
 		this.dateNaissance = dateNaissance;
 	}
 
-
-
 	public Participant(int id, String nom, String prenom, int tel, String civilite, int numero, String rue,
 			int codePostal, String ville, String pays, Date dateNaissance) {
 		super();
@@ -90,7 +91,6 @@ public class Participant {
 		this.pays = pays;
 		this.dateNaissance = dateNaissance;
 	}
-
 
 	public int getId() {
 		return id;
@@ -180,6 +180,13 @@ public class Participant {
 		this.dateNaissance = dateNaissance;
 	}
 
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
 
 	@Override
 	public String toString() {

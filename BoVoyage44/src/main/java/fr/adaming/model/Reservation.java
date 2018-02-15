@@ -38,7 +38,7 @@ public class Reservation {
 
 	private double prix;
 
-	//@Temporal(TemporalType.DATE)
+	// @Temporal(TemporalType.DATE)
 	private Date dateReservation;
 
 	private int nbPlaceReservees;
@@ -46,7 +46,7 @@ public class Reservation {
 	// association UML en Java
 
 	@OneToMany(mappedBy = "reservation")
-	private List<Client> listeParticipants;
+	private List<Participant> listeParticipants;
 
 	@ManyToOne
 	@JoinColumn(name = "voy_id", referencedColumnName = "id_voy")
@@ -117,14 +117,6 @@ public class Reservation {
 		this.nbPlaceReservees = nbPlaceReservees;
 	}
 
-	public List<Client> getListeParticipants() {
-		return listeParticipants;
-	}
-
-	public void setListeParticipants(List<Client> listeParticipants) {
-		this.listeParticipants = listeParticipants;
-	}
-
 	public Voyage getVoyage() {
 		return voyage;
 	}
@@ -141,12 +133,18 @@ public class Reservation {
 		this.assurance = assurance;
 	}
 
+	public List<Participant> getListeParticipants() {
+		return listeParticipants;
+	}
+
+	public void setListeParticipants(List<Participant> listeParticipants) {
+		this.listeParticipants = listeParticipants;
+	}
+
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", statut=" + statut + ", prix=" + prix + ", dateReservation="
 				+ dateReservation + ", nbPlaceReservees=" + nbPlaceReservees + "]";
 	}
-	
-	
 
 }

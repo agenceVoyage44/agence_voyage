@@ -33,10 +33,6 @@ public class Client extends Participant {
 	@OneToMany(mappedBy = "client")
 	List<Role> listeRoles;
 
-	@ManyToOne
-	@JoinColumn(name = "res_id", referencedColumnName = "id_res")
-	private Reservation reservation;
-
 	public Client() {
 		super();
 	}
@@ -96,14 +92,6 @@ public class Client extends Participant {
 
 	public void setListeRoles(List<Role> listeRoles) {
 		this.listeRoles = listeRoles;
-	}
-
-	public Reservation getReservation() {
-		return reservation;
-	}
-
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
 	}
 
 	

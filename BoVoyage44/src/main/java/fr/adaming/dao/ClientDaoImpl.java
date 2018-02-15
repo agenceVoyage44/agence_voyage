@@ -40,7 +40,7 @@ public class ClientDaoImpl implements IClientDao {
 
 	@Override
 	public Client getClientByReservation(int idRes) {
-		String req = "select c from Client as c where c.reservation.id=:pId ";
+		String req = "from Client as c where c.reservation.id=:pId ";
 		Query query = em.createQuery(req);
 
 		query.setParameter("pId", idRes);

@@ -110,19 +110,24 @@ public class ReservationController {
 	 */
 	@RequestMapping(value = "/client/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjoutEtudiant(RedirectAttributes ra, @ModelAttribute("resaAdd") Reservation reservation)
-			throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException {
+	// throws AddressException, FileNotFoundException, MalformedURLException,
+	// MessagingException, IOException
+	{
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String mail = auth.getName();
 		Client client = clientService.getClientByMail(mail);
+		System.out.println("---------client : " + client);
 
 		reservation.setStatut("non validé par " + client.getCivilite() + " " + client.getNom());
 		reservation.setDateReservation(new Date());
 		Reservation rOut = reservationService.addReservation(reservation);
+		System.out.println("----------rOut : " + rOut);
 
 		// Donner la réservation au client qui paye
 		client.setReservation(reservation);
-		clientService.updateClient(client);
+		Client clOut = clientService.updateClient(client);
+		System.err.println("-----------client updaté" + clOut);
 
 		if (rOut.getId() != 0) {
 
@@ -215,13 +220,13 @@ public class ReservationController {
 
 		System.out.println("-----------dateResa Millisec ; " + dateResaMilliSec);
 
-		List<Client> listeParticipant = clientService.getAllClientByReservation(rOut.getId());
+		List<Participant> listeParticipant = participantService.getParticipantsByReservation(rOut.getId());
 		System.out.println("--------------liste participant :" + listeParticipant);
 		double prixEnfant;
 		double prixTotal = 0;
 
 		// si des particpant ont moins de 12 ans
-		for (Client element : listeParticipant) {
+		for (Participant element : listeParticipant) {
 			Date dateNaissance = element.getDateNaissance();
 			long dateNaissanceMilliSec = dateNaissance.getTime();
 			System.out.println("------------------if dateNaissance en ms : " + dateNaissanceMilliSec);
@@ -355,12 +360,12 @@ public class ReservationController {
 	@RequestMapping(value = "/client/afficherAddPart", method = RequestMethod.GET)
 	public ModelAndView afficheAjoutParticipant() {
 
-		return new ModelAndView("participantAjouter", "partAjout", new Client());
+		return new ModelAndView("participantAjouter", "partAjout", new Participant());
 	}
 
 	// La méthode pour soumettre le formulaire en Post
 	@RequestMapping(value = "/client/soumettreAddPart", method = RequestMethod.POST)
-	public String soumettreFormPartA(Model modele, @ModelAttribute("partAjout") Client p) {
+	public String soumettreFormPartA(Model modele, @ModelAttribute("partAjout") Participant p) {
 
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -371,7 +376,7 @@ public class ReservationController {
 		p.setReservation(client.getReservation());
 
 		// appel de la methode service pour Particpant
-		Client pOut = clientService.addClient(p);
+		Participant pOut = participantService.addParticipant(p);
 
 		// incrémenter le nombre de place reservées
 		Reservation rOut = reservationService.getReservationByID(client.getReservation().getId());
@@ -406,9 +411,9 @@ public class ReservationController {
 		clientService.updateClient(client);
 
 		// suppression de tous les participants
-		List<Client> listeParticipant = clientService.getAllClientByReservation(id);
+		List<Participant> listeParticipant = participantService.getParticipantsByReservation(id);
 		System.out.println("---------------" + listeParticipant);
-		for (Client element : listeParticipant) {
+		for (Participant element : listeParticipant) {
 			participantService.deleteParticipant(element.getId());
 		}
 
