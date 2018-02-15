@@ -1,5 +1,7 @@
 package fr.adaming.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +16,14 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String SeDeconnecter() {
+	public String SeDeconnecter(HttpSession session) {
+		session.invalidate();
 		return "accueil";
 	}
 
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
-	public String accesRefuse() {
+	public String accesRefuse(HttpSession session) {
+		session.invalidate();
 		return "pageDenied";
 	}
 

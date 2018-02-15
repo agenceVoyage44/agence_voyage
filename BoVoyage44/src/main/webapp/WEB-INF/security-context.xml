@@ -41,9 +41,10 @@
 
 		<!-- Pour se déconnecte - /deconnexion est déeloppé dans springSecurityChain -->
 		<security:logout logout-success-url="/logout"
-			logout-url="/deconnexion" />
+			logout-url="/deconnexion" invalidate-session="true"/>
 
 	</security:http>
+
 
 
 
