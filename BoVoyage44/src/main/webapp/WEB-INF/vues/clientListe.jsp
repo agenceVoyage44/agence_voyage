@@ -56,10 +56,10 @@
 								<tr>
 									<td>${c.id}</td>
 									<td>${c.civilite}</td>
-									<td>${c.nom}${c.prenom}</td>
+									<td>${c.nom} ${c.prenom}</td>
 
 									<td>${c.mail}</td>
-									<td>${c.numero}${c.rue}${c.codePostal}${c.ville}</td>
+									<td>${c.numero} ${c.rue} ${c.codePostal} ${c.ville}</td>
 									<td>${c.tel}</td>
 									<td>${c.dateNaissance}</td>
 
