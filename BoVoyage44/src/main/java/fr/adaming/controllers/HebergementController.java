@@ -175,18 +175,12 @@ public class HebergementController {
 	@RequestMapping(value = "/supprimeLien/{pId}", method = RequestMethod.GET)
 	public String supprimerlien(Model model, @PathVariable("pId") int id) {
 		Hebergement h = new Hebergement();
-
 		h.setId(id);
-
 		// appel de la methode service
 		hebergementService.deleteHebergement(id);
 
-		// recuperer la liste de la bd
-		List<Hebergement> liste = hebergementService.getAllHebergement();
 
-		model.addAttribute("hList", liste);
-
-		return "hebergementListe";
+		return "redirect:../liste";
 
 	}
 
