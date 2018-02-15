@@ -18,21 +18,43 @@
 
 </head>
 <body>
-	<h1 style="text-align: center">Pour effectuer la réseravtion, sélectionnez le nombre de personnes qui effectueront ce voyage</h1>
+	<h1 style="text-align: center">Effectuez votre réservation</h1>
 
-	<form:form method="POST" action="client/soumettreAdd"
+	<form:form method="POST" action="soumettreAdd"
 		modelAttribute="resaAdd" cssClass="form-horizontal">
-	
+
+		<div class="form-group">
+			<form:label path="voyage.id" class="col-sm-2 control-label">Voyage choisi</form:label>
+			<div class="col-sm-5">
+				<form:input path="voyage.id" cssClass="form-control" />
+			</div>
+		</div>
+
+
 		<div class="form-group">
 			<form:label path="nbPlaceReservees" class="col-sm-2 control-label">Nombre de places réservées</form:label>
 			<div class="col-sm-5">
 				<form:input path="nbPlaceReservees" cssClass="form-control" />
 			</div>
 		</div>
+		
+		<div class="form-group">
+			<form:label path="assurance.id" cssClass="col-sm-2 control-label">Assurance</form:label>
+			<form:select path="assurance.id">
+				<c:forEach var="a" items="${listeAssurance}">
+					<form:option value="${a.id}">
+						<c:out value="${a.type} ${a.prix}"></c:out>
+					</form:option>
+				</c:forEach>
+			</form:select>
+		</div>
+
+
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-success" value="Valider la réservation" />
+				<input type="submit" class="btn btn-success"
+					value="Valider la réservation" />
 			</div>
 		</div>
 

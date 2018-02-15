@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.Participant;
 
 /**
  * méthodes concernant les clients, implémente l'Interface Client DAO
@@ -90,6 +91,33 @@ public class ClientDaoImpl implements IClientDao {
 		Client cOut = (Client) query.getSingleResult();
 
 		return cOut;
+	}
+
+	@Override
+	public Client getClientByMail(String mail) {
+		String req = "select c from Client as c where c.mail=:pMail";
+		Query query = em.createQuery(req);
+
+		query.setParameter("pMail", mail);
+
+		Client cOut = (Client) query.getSingleResult();
+
+		return cOut;
+
+	}
+
+	//Pour ne selectionner que les particpants, qui n'ont pas de mail
+	@Override
+	public List<Client> getAllClientByReservation(int idResa) {
+		String req = "SELECT c FROM Client AS c WHERE c.reservation.id=:pID AND c.mail IS NULL";
+		Query query = em.createQuery(req);
+		
+		query.setParameter("pID", idResa);
+
+		@SuppressWarnings("unchecked")
+		List<Client> listeP = query.getResultList();
+
+		return listeP;
 	}
 
 }

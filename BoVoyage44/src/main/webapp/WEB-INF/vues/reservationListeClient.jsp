@@ -34,20 +34,23 @@
 			<th>Prix</th>
 			<th>Nombre de places Réservées</th>
 			<th>Voayge choisi</th>
-			<th>Les participants</th>
 			<th>Assurance</th>
+			<th>Opération</th>
 		</tr>
-		<c:forEach var="reservation" items="${resaListe}">
+		 
 			<tr>
-				<td>${reservation.id}</td>
-				<td>${reservation.statut}</td>
-				<td>${reservation.dateReservation}</td>
-				<td>${reservation.prix}</td>
-				<td>${reservation.nbPlaceReservees}</td>
-				<td>${reservation.voyage.titre}</td>
+				<td>${rresa.id}</td>
+				<td>${resa.statut}</td>
+				<td>${resa.dateReservation}</td>
+				<td>${resa.prix}</td>
+				<td>${resa.nbPlaceReservees}</td>
+				<td>${resa.voyage.titre}</td>
+				<td>${resa.assurance.type}</td>
+				<td><a
+					href="${pageContext.request.contextPath}/boVoyage/reservation/client/modifierLien?pId=${resa.id}">Modifier pour Valider</a>|<a
+					href="${pageContext.request.contextPath}/boVoyage/reservation/client/supprimeLien/${resa.id}">Supprimer</a></td>
 
 			</tr>
-		</c:forEach>
 	</table>
 
 

@@ -25,8 +25,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "participants")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type")
-@DiscriminatorValue(value="part")
+@DiscriminatorColumn(name = "type")
+@DiscriminatorValue(value = "part")
 public class Participant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,8 +52,6 @@ public class Participant {
 	protected String pays;
 
 	protected Date dateNaissance;
-	
-	
 
 	// association UML en java
 	@ManyToOne
@@ -65,7 +63,7 @@ public class Participant {
 	}
 
 	public Participant(String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance) {
+			String ville, String pays, Date dateNaissance, Reservation reservation) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -77,10 +75,11 @@ public class Participant {
 		this.ville = ville;
 		this.pays = pays;
 		this.dateNaissance = dateNaissance;
+		this.reservation = reservation;
 	}
 
 	public Participant(int id, String nom, String prenom, int tel, String civilite, int numero, String rue,
-			int codePostal, String ville, String pays, Date dateNaissance) {
+			int codePostal, String ville, String pays, Date dateNaissance, Reservation reservation) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -93,6 +92,7 @@ public class Participant {
 		this.ville = ville;
 		this.pays = pays;
 		this.dateNaissance = dateNaissance;
+		this.reservation = reservation;
 	}
 
 	public int getId() {

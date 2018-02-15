@@ -69,18 +69,22 @@ public interface IClientDao {
 	 * @return le client recherché
 	 */
 	public Client getClientById(int id);
-	
+
 	/**
-	 * Authentification du client : Obtenir un client avec son mail et son mot de passe
+	 * Authentification du client : Obtenir un client avec son mail et son mot
+	 * de passe
 	 * 
-	 * @param mail, mdp
-	 *            
+	 * @param mail,
+	 *            mdp
+	 * 
 	 * 
 	 * 
 	 * @return le client recherché
 	 */
-	public Client isExistClient(String mail,String mdp);
-		
-	
+	public Client isExistClient(String mail, String mdp);
+
+	public Client getClientByMail(String mail);
+
+	public List<Client> getAllClientByReservation(int idResa);
 
 }

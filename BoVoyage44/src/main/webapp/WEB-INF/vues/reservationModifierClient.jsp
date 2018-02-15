@@ -18,36 +18,39 @@
 
 </head>
 <body>
-	<h1 style="text-align: center">Modifer votre réservation</h1>
+	<h1 style="text-align: center">Vérifier votre réservation</h1>
 
 	<form:form method="POST" action="client/soumettreUpdate"
 		modelAttribute="resaUpdateC" cssClass="form-horizontal">
 
-		<!-- 		<div class="form-group"> -->
-		<%-- 			<form:label path="voyage" class="col-sm-2 control-label">Formule du Voyage</form:label> --%>
-		<!-- 			<div class="col-sm-5"> -->
-		<%-- 				<form:input path="voyage" cssClass="form-control" /> --%>
-		<!-- 			</div> -->
-		<!-- 		</div> -->
-
-		<!-- 		<div class="form-group"> -->
-		<%-- 			<form:label path="assurance" class="col-sm-2 control-label">Assurance</form:label> --%>
-		<!-- 			<div class="col-sm-5"> -->
-		<%-- 				<form:input path="assurance" cssClass="form-control" /> --%>
-		<!-- 			</div> -->
-		<!-- 		</div> -->
+<h3>Le prix maximum de votre réservation actuelle est ${prixMax} </h3>
 
 		<div class="form-group">
-			<form:label path="nbPlaceReservees" class="col-sm-2 control-label">Nombre de place réservées</form:label>
+			<form:label path="voyage.id" class="col-sm-2 control-label">Voyage choisi</form:label>
 			<div class="col-sm-5">
-				<form:input path="nbPlaceReservees" cssClass="form-control" />
+				<form:input path="voyage.id" cssClass="form-control" />
 			</div>
 		</div>
+
+
+
+		<div class="form-group">
+			<form:label path="assurance.id" cssClass="col-sm-2 control-label">Assurance</form:label>
+			<form:select path="assurance.id">
+				<c:forEach var="a" items="${listeAssurance}">
+					<form:option value="${a.id}">
+						<c:out value="${a.type} ${a.prix}"></c:out>
+					</form:option>
+				</c:forEach>
+			</form:select>
+		</div>
+
+
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input type="submit" class="btn btn-success"
-					value="Modifer la réservation" />
+					value="Valider la réservation" />
 			</div>
 		</div>
 

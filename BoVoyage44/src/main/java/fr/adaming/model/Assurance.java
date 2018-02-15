@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,9 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 /**
- * @author inti-0257
- *Classe Assurance
+ * @author inti-0257 Classe Assurance
  *
  */
 
@@ -28,10 +29,11 @@ public class Assurance {
 	private String type;
 
 	private double prix;
-	
-	//associations UML en java
-	@OneToMany(mappedBy="assurance")
-	private List<Reservation>listeReservations;
+
+	// associations UML en java
+
+	@OneToMany(mappedBy = "assurance", fetch=FetchType.EAGER)
+	private List<Reservation> listeReservations;
 
 	public Assurance() {
 		super();
@@ -88,5 +90,4 @@ public class Assurance {
 				+ "]";
 	}
 
-	
 }

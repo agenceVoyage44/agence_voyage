@@ -37,19 +37,25 @@ public class Client extends Participant {
 	}
 
 	public Client(String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp) {
-		super(nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
+			String ville, String pays, Date dateNaissance, Reservation reservation, long numCB, String mail, String mdp,
+			boolean active, List<Role> listeRoles) {
+		super(nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance, reservation);
 		this.numCB = numCB;
 		this.mail = mail;
 		this.mdp = mdp;
+		this.active = active;
+		this.listeRoles = listeRoles;
 	}
 
 	public Client(int id, String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp) {
-		super(id, nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
+			String ville, String pays, Date dateNaissance, Reservation reservation, long numCB, String mail, String mdp,
+			boolean active, List<Role> listeRoles) {
+		super(id, nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance, reservation);
 		this.numCB = numCB;
 		this.mail = mail;
 		this.mdp = mdp;
+		this.active = active;
+		this.listeRoles = listeRoles;
 	}
 
 	public long getNumCB() {
