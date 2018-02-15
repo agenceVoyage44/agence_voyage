@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -48,53 +48,7 @@
 	<h1 style="color: darkred; text-align: center">Liste des voyages
 		par Continent</h1>
 
-	<table class="table table-bordered">
-		<tr>
-			<th>Photo</th>
-			<th>ID</th>
-			<th>Continent</th>
-			<th>Pays</th>
-			<th>Prix de départ</th>
-			<th>Remise</th>
-			<th>Prix soldé</th>
-			<th>Date de départ</th>
-			<th>Date de retour</th>
-			<th>Nombre de places</th>
-			<th>Disponibilité</th>
-			<th>Titre</th>
-			<th>Description</th>
-			<th>Priorité</th>
-			<th>Opérations</th>
-		</tr>
-		<c:forEach var="v" items="${voyageListContinent}">
-			<tr>
-				<td><img
-					src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
-					height="80px" /></td>
-				<td>${v.id}</td>
-				<td>${v.continent}</td>
-				<td>${v.pays}</td>
-				<td>${v.prixDepart}</td>
-				<td>${v.remise}</td>
-				<td>${v.prixSolde}</td>
-				<td>${v.dateDepart}</td>
-				<td>${v.dateRetour}</td>
-				<td>${v.nbPlaces}</td>
-				<td>${v.dispo}</td>
-				<td><a
-					href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">${v.titre}</a></td>
-				<td>${v.description}</td>
-				<td>${v.priorite}</td>
-				<td><a
-					href="${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}">Modifier</a>
-					| <a
-					href="${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}">Supprimer</a>
-				</td>
-			</tr>
 
-		</c:forEach>
-
-	</table>
 	<c:forEach var="v" items="${voyageListContinent}">
 		<div class="row">
 			<div class="col-md-4">
@@ -107,8 +61,10 @@
 						<div class="caption">
 							<p>
 								Continent : ${v.continent}<br> Prix Soldé : ${v.prixSolde}<br>
-								Prix : <s>${v.prixDepart}</s><br> Date : du ${v.dateDepart}
-								au ${v.dateRetour}<br> Description : ${v.description}<br>
+								Prix : <s>${v.prixDepart}</s>
+								<br> Date : du <fmt:formatDate value="${v.dateDepart}" pattern="dd-MM-yyyy " />
+								  
+								au <fmt:formatDate value="${v.dateRetour}" pattern="dd-MM-yyyy " /><br> Description : ${v.description}<br>
 							</p>
 
 						</div>
