@@ -1,7 +1,13 @@
 package fr.adaming.controllers;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.List;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -92,9 +98,14 @@ public class ReservationController {
 	 * 
 	 * @param Reservation
 	 * @return String redirection page
+	 * @throws IOException 
+	 * @throws MessagingException 
+	 * @throws MalformedURLException 
+	 * @throws FileNotFoundException 
+	 * @throws AddressException 
 	 */
 	@RequestMapping(value = "/client/soumettreAdd", method = RequestMethod.POST)
-	public String soumettreAjoutEtudiant(RedirectAttributes ra, @ModelAttribute("resaAdd") Reservation reservation) {
+	public String soumettreAjoutEtudiant(RedirectAttributes ra, @ModelAttribute("resaAdd") Reservation reservation) throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException {
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String mail = auth.getName();

@@ -54,11 +54,11 @@
 							<li class="col-sm-3">
 								<ul>
 									<li class="dropdown-header">Voyage</li>
-									<li><a href="<c:url value=" /BoVoyage44/agent/formule/liste"/>">Liste</a></li>
-									<li><a href="<c:url value=" /BoVoyage44/agent/formule/afficheAdd"/>">Ajouter</a></li>
-									<li><a href="<c:url value=" /BoVoyage44/agent/formule/afficheUpdate"/>">Modifier</a></li>
-									<li><a href="<c:url value=" /BoVoyage44/agent/formule/afficheDelete"/>">Supprimer</a></li>
-									<li><a href="<c:url value=" /BoVoyage44/agent/formule/afficheGet"/>">Rechercher</a></li>
+									<li><a href="<c:url value=" /BoVoyage44/voyage/agent/liste"/>">Liste</a></li>
+									<li><a href="<c:url value=" /BoVoyage44/voyage/agent/afficheAdd"/>">Ajouter</a></li>
+									<li><a href="<c:url value=" /BoVoyage44/voyage/agent/afficheUpdate"/>">Modifier</a></li>
+									<li><a href="<c:url value=" /BoVoyage44/voyage/agent/afficheDelete"/>">Supprimer</a></li>
+									<li><a href="<c:url value=" /BoVoyage44/voyage/agent/afficheGet"/>">Rechercher</a></li>
 
 								</ul>
 							</li>
@@ -87,7 +87,7 @@
 								<ul>
 									<li class="dropdown-header">Voitures</li>
 									<li><a href="<c:url value=" /BoVoyage44/agent/Voiture/liste"/>">Liste</a></li>
-									<li><a href="<c:url value=" /BoVoyage44/agent/formule/afficheAdd"/>">Ajouter</a></li>
+									<li><a href="<c:url value=" /BoVoyage44/agent/Voiture/afficheAdd"/>">Ajouter</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header">Assurances</li>
 									<li><a href="<c:url value=" /BoVoyage44/agent/assurance/liste"/>">Liste</a></li>
@@ -138,10 +138,9 @@
 							compte <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Connexion</a></li>
-							<li><a href="#">Inscription</a></li>
+							
 							<li class="divider"></li>
-							<li><a href="/deconnexion">Déconnexion</a></li>
+							<li><a href="<c:url value="/logout"/>">Déconnexion</a></li>
 						</ul></li>
 					
 				</ul>

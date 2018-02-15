@@ -1,11 +1,14 @@
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
+	crossorigin="anonymous" />
+
+
 <body id="page-top" name="page-top" class="active">
-	<link
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
-		rel="stylesheet"
-		integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
-		crossorigin="anonymous">
+
 	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" >
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -20,27 +23,43 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse js-navbar-collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li> <img height="45" width="45" src="../images/logo.png" alt=""></li>
-					<a class="navbar-brand" href="#"> BoVoyage
-					</a>
-					<li class="dropdown mega-dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown" >Voyages <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu mega-dropdown-menu" >
-							
+					<li><img height="45" width="45" src="../images/logo.png"
+						alt=""></li>
+					<a class="navbar-brand" href="#"> BoVoyage </a>
+					<li class="dropdown mega-dropdown" class="dropdown-toggle"
+						data-toggle="dropdown"><a href="<c:url value=" /BoVoyage44/voyage/agent/liste"/>">Voyages
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu mega-dropdown-menu">
+
 							<li class="col-sm-3">
 								<ul>
-									<li class="dropdown-header">Features</li>
-									<li><a href="#">Auto Carousel</a></li>
-									<li><a href="#">Carousel Control</a></li>
-									<li><a href="#">Left & Right Navigation</a></li>
-									<li><a href="#">Four Columns Grid</a></li>
-									<li class="divider"></li>
-									<li class="dropdown-header">Fonts</li>
-									<li><a href="#">Glyphicon</a></li>
-									<li><a href="#">Google Fonts</a></li>
+
+									<li><a href="#">Afrique</a></li>
+
 								</ul>
 							</li>
+
+							<li class="col-sm-3">
+								<ul>
+									<li><a href="#">Amérique</a></li>
+								</ul>
+							</li>
+							<li class="col-sm-3">
+								<ul>
+									<li><a href="#">Asie</a></li>
+								</ul>
+							</li>
+							<li class="col-sm-3">
+								<ul>
+									<li><a href="#">Europe</a></li>
+								</ul>
+							</li>
+							<li class="col-sm-3">
+								<ul>
+									<li><a href="#">Océanie</a></li>
+								</ul>
+							</li>
+
 							<li class="col-sm-3">
 								<ul>
 									<li class="dropdown-header">Plus</li>
@@ -52,16 +71,20 @@
 							</li>
 							<li class="col-sm-3">
 								<ul>
-									<li class="dropdown-header">Agent</li>
-									<li><a href="${pageContext.request.contextPath}/boVoyage/reservation/agent/afficherUpdate">Agent Modif</a></li>
-									<li><a href="${pageContext.request.contextPath}/boVoyage/reservation/agent/afficherGet">Agent recherche</a></li>
-									<li><a href="${pageContext.request.contextPath}/boVoyage/reservation/agent/afficherDelete">Agent supp</a></li>
-									<li><a href="${pageContext.request.contextPath}/boVoyage/reservation/client/afficherUpdate">Client ajouter</a></li>
+									<li class="dropdown-header">Connexion</li>
+									<li><a
+										href="${pageContext.request.contextPath}/boVoyage/agent/accueil">Espace Administrateur
+											</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/boVoyage/client/accueil">Connexion Client</a></li>
+									
+									<li><a
+										href="${pageContext.request.contextPath}/agent/client/afficheAdd">Inscription</a></li>
 								</ul>
 							</li>
 						</ul></li>
 
-			
+
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -70,13 +93,15 @@
 					</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">Connexion</a></li>
-							<li><a href="#">Inscription</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}agent/client/afficheAdd">Inscription</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Connexion Agent</a></li>
 						</ul></li>
-					<li><a href="#">Contactez-nous ..</a></li>
-					<li> </li>
-					<li> </li>
+					<li><a
+						href="${pageContext.request.contextPath}/contact/envoiMail">Contactez-nous</a></li>
+					<li></li>
+					<li></li>
 				</ul>
 			</div>
 			<!-- /.nav-collapse -->
@@ -88,11 +113,12 @@
 			<a id="menu-close" href="#"
 				class="btn btn-danger pull-right hidden-md hidden-lg toggle"><i
 				class="fa fa-times"></i></a>
-			<li class="sidebar-brand"><a href="#top">Reseaux Sociaux</a>
-			</li>
+			<li class="sidebar-brand"><a href="#top">Reseaux Sociaux</a></li>
 			<li><a href="/" title="Go to Top">Home</a></li>
-			<li><a href="https://www.facebook.com/BoVoyage-536815590034227/"  target="blanck">FaceBook</a></li>
-			<li><a href="https://www.instagram.com/bovoyage_/?hl=fr" target="blanck">Instagram</a></li>
+			<li><a href="https://www.facebook.com/BoVoyage-536815590034227/"
+				target="blanck">FaceBook</a></li>
+			<li><a href="https://www.instagram.com/bovoyage_/?hl=fr"
+				target="blanck">Instagram</a></li>
 			<li><a href="/portfolio">Portfolio</a></li>
 			<li><a href="/blog" title="Our Blog">Blog</a></li>
 			<li><a href="/blog" title="Hosting"> Hosting</a></li>
@@ -100,9 +126,8 @@
 		</ul>
 	</nav>
 
-	
-	</div>
-	</div>
+
+
 
 
 	<script

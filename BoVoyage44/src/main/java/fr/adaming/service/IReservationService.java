@@ -1,6 +1,12 @@
 package fr.adaming.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import fr.adaming.model.Reservation;
 /**
@@ -15,8 +21,13 @@ public interface IReservationService {
 	 * 
 	 * @param Reservation
 	 * @return Reservation
+	 * @throws MessagingException 
+	 * @throws AddressException 
+	 * @throws FileNotFoundException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
-	public Reservation addReservation(Reservation reservation);
+	public Reservation addReservation(Reservation reservation) throws AddressException, MessagingException, FileNotFoundException, MalformedURLException, IOException;
 
 	
 	/**
