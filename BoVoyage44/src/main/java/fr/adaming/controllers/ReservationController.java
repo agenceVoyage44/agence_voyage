@@ -110,8 +110,7 @@ public class ReservationController {
 	 */
 	@RequestMapping(value = "/client/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjoutEtudiant(RedirectAttributes ra, @ModelAttribute("resaAdd") Reservation reservation)
-	 throws AddressException, FileNotFoundException, MalformedURLException,
-	 MessagingException, IOException {
+			throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException {
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String mail = auth.getName();
@@ -124,9 +123,9 @@ public class ReservationController {
 		System.out.println("----------rOut : " + rOut);
 
 		// Donner la réservation au client qui paye
-		client.setReservation(reservation);
+		client.setReservation(rOut);
 		Client clOut = clientService.updateClient(client);
-		System.err.println("-----------client updaté" + clOut);
+		System.err.println("-----------client updaté : " + clOut);
 
 		if (rOut.getId() != 0) {
 
@@ -358,24 +357,26 @@ public class ReservationController {
 
 	@RequestMapping(value = "/client/afficherAddPart", method = RequestMethod.GET)
 	public ModelAndView afficheAjoutParticipant() {
-
+		System.out.println("******************Je suis dans afficherAddPart");
 		return new ModelAndView("participantAjouter", "partAjout", new Participant());
 	}
 
 	// La méthode pour soumettre le formulaire en Post
 	@RequestMapping(value = "/client/soumettreAddPart", method = RequestMethod.POST)
 	public String soumettreFormPartA(Model modele, @ModelAttribute("partAjout") Participant p) {
-
+		System.out.println("******************Je suis dans soumettreAddPart");
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String mail = auth.getName();
 		Client client = clientService.getClientByMail(mail);
+		System.out.println("***********Get client by authentification addPart : " + client);
 
 		// Donner la réservation au nouveau participant
 		p.setReservation(client.getReservation());
 
 		// appel de la methode service pour Particpant
 		Participant pOut = participantService.addParticipant(p);
+		System.out.println("****************Participant pOut ajouté : " + pOut);
 
 		// incrémenter le nombre de place reservées
 		Reservation rOut = reservationService.getReservationByID(client.getReservation().getId());

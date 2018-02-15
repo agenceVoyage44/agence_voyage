@@ -3,13 +3,15 @@ package fr.adaming.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /**
  * @author inti-0257
- *
  */
 @Entity
 @DiscriminatorValue(value = "client")
@@ -83,6 +85,7 @@ public class Client extends Participant {
 		this.active = active;
 	}
 
+
 	public Role getRole() {
 		return role;
 	}
@@ -90,5 +93,20 @@ public class Client extends Participant {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Client [numCB=" + numCB + ", mail=" + mail + ", mdp=" + mdp + ", id=" + id + ", nom=" + nom
+				+ ", prenom=" + prenom + ", tel=" + tel + ", civilite=" + civilite + ", numero=" + numero + ", rue="
+				+ rue + ", codePostal=" + codePostal + ", ville=" + ville + ", pays=" + pays + ", dateNaissance="
+				+ dateNaissance + "]";
+	}
+
+
+
+	
+
 
 }

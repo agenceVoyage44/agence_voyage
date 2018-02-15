@@ -61,23 +61,6 @@ public class VoyageController {
 
 		return new ModelAndView("voyageListe", "voyageList", liste);
 	}
-
-	@RequestMapping(value = "/agent/listePays", method = RequestMethod.GET)
-	public ModelAndView afficheListePays(@ModelAttribute("voyagePays") Voyage v) {
-		List<Voyage> listePays=new ArrayList<Voyage>();
-		
-		List<Voyage> liste = voyageService.getAllVoyage();
-		
-		for (Voyage voyage : liste) {
-			if(voyage.getPays().startsWith(v.getPays())){
-				listePays.add(voyage);
-			}
-		}
-
-		return new ModelAndView("voyageListe", "voyageList", listePays);
-	}
-	
-	
 	
 	@RequestMapping(value = "/listeContinent/{pContinent}", method = RequestMethod.GET)
 	public ModelAndView afficheListeContinent(@PathVariable("pContinent") String continent) {
@@ -217,12 +200,29 @@ public class VoyageController {
 	
 	
 	@RequestMapping(value = "/liste", method = RequestMethod.GET)
-	public ModelAndView afficheListeClient() {
+	public ModelAndView afficheListeClient(Model modele) {
 		List<Voyage> liste = voyageService.getAllVoyage();
 
-		return new ModelAndView("voyageListeClient", "voyageList", liste);
+		modele.addAttribute("voyageList", liste);
+		
+		return new ModelAndView("voyageListeClient", "voyagePays",new Voyage());
 	}
 
+	@RequestMapping(value = "/listePays", method = RequestMethod.POST)
+	public ModelAndView afficheListePays(@ModelAttribute("voyagePays") Voyage v) {
+		List<Voyage> listePays=new ArrayList<Voyage>();
+		
+		List<Voyage> liste = voyageService.getAllVoyage();
+		
+		for (Voyage voyage : liste) {
+			if(voyage.getPays().startsWith(v.getPays())){
+				listePays.add(voyage);
+			}
+		}
+
+		return new ModelAndView("voyageListeClient", "voyageList", listePays);
+	}
+	
 	
 	@RequestMapping(value = "/agent/supprimerButton/{pId}", method = RequestMethod.GET)
 	public String deletLien(Model model, @PathVariable("pId") int id) {
@@ -237,6 +237,11 @@ public class VoyageController {
 	public String updateLien(ModelMap model, @RequestParam("pId") int id) {
 		Voyage v = voyageService.getVoyageById(id);
 		model.addAttribute("voyageModif", v);
+		
+		List<Formule> listeFormules = formuleService.getAllFormule();
+
+		model.addAttribute("listeFormules",listeFormules);
+		
 		return "voyageModifier";
 	}
 	

@@ -21,7 +21,7 @@ public class LoginController {
 		return "accueil";
 	}
 
-	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
+	@RequestMapping(value = "/log", method = RequestMethod.GET)
 	public String accesRefuse(HttpSession session) {
 		session.invalidate();
 		return "pageDenied";

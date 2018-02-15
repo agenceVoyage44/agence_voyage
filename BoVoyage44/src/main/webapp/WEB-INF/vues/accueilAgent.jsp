@@ -26,5 +26,44 @@
 	<br />
 	<br />
 
+<h1>Tableau de bord</h1>
+<br/>
+<br/>
+	<h2>Moyenne des formulaires de satisfaction</h2>
+
+	<div>
+
+		<table class="table table-bordered">
+			<tr>
+				<th class="active">Voyage</th>
+				<th class="active">Logement</th>
+				<th class="active">Nourriture</th>
+				<th class="active">Transport</th>
+				<th class="active">Aspect du site internet</th>
+				<th class="active">Facilité d'utilisation</th>
+				<th class="active">Interlocuteurs</th>
+
+			</tr>
+
+			<c:forEach var="n" items="${moyenneList}">
+
+				<tr>
+					<td>${n.voyage}/5</td>
+					<td>${n.logement}/5</td>
+					<td>${n.nourriture}/5</td>
+
+					<td>${n.transport}/5</td>
+					<td>${n.siteAspect}/5</td>
+					<td>${n.siteUtil}/5</td>
+					<td>${n.agent}/5</td>
+
+				</tr>
+
+
+			</c:forEach>
+
+		</table>
+	</div>
+
 </body>
 </html>
