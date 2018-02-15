@@ -18,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 
@@ -36,6 +38,7 @@ public class Reservation {
 
 	private double prix;
 
+	//@Temporal(TemporalType.DATE)
 	private Date dateReservation;
 
 	private int nbPlaceReservees;
@@ -137,5 +140,13 @@ public class Reservation {
 	public void setAssurance(Assurance assurance) {
 		this.assurance = assurance;
 	}
+
+	@Override
+	public String toString() {
+		return "Reservation [id=" + id + ", statut=" + statut + ", prix=" + prix + ", dateReservation="
+				+ dateReservation + ", nbPlaceReservees=" + nbPlaceReservees + "]";
+	}
+	
+	
 
 }

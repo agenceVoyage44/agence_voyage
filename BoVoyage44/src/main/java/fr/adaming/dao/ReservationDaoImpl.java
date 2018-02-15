@@ -8,18 +8,19 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import fr.adaming.model.Hebergement;
 import fr.adaming.model.Reservation;
 
 /**
- * Classe de défintion des méthodes, des objets de type Reservation en utilisant des reqûetes communiquant
- * directment avec la base de données
+ * Classe de défintion des méthodes, des objets de type Reservation en utilisant
+ * des reqûetes communiquant directment avec la base de données
  *
  */
 
 @Repository
 public class ReservationDaoImpl implements IReservationDao {
 
-	@PersistenceContext(unitName="BoVoyage44")
+	@PersistenceContext(unitName = "BoVoyage44")
 	private EntityManager em;
 
 	// injectons Dépendances
@@ -39,14 +40,23 @@ public class ReservationDaoImpl implements IReservationDao {
 		return reservation;
 	}
 
-
-
 	@Override
 	public Reservation updateReservation(Reservation reservation) {
 
-		em.merge(reservation);
+		Reservation rOut = em.find(Reservation.class, reservation.getId());
+		System.out.println("--------id resa :" + reservation.getId());
+		
+		rOut.setStatut(reservation.getStatut());
+		rOut.setPrix(reservation.getPrix());
+		rOut.setNbPlaceReservees(reservation.getNbPlaceReservees());
+		rOut.setDateReservation(reservation.getDateReservation());
+		rOut.setVoyage(reservation.getVoyage());
+		rOut.setAssurance(reservation.getAssurance());
+		rOut.setListeParticipants(reservation.getListeParticipants());
 
-		return reservation;
+		em.merge(rOut);
+
+		return rOut;
 	}
 
 	@Override
@@ -57,7 +67,6 @@ public class ReservationDaoImpl implements IReservationDao {
 		return rOut;
 
 	}
-
 
 	@Override
 	public int deleteReservation(int idReservation) {
@@ -79,7 +88,5 @@ public class ReservationDaoImpl implements IReservationDao {
 
 		return query.getResultList();
 	}
-
-
 
 }

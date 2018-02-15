@@ -1,5 +1,7 @@
 package fr.adaming.controllers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,6 +10,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.sound.midi.Synthesizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -28,6 +31,7 @@ import com.itextpdf.text.pdf.qrcode.Mode;
 
 import fr.adaming.model.Assurance;
 import fr.adaming.model.Client;
+import fr.adaming.model.Formule;
 import fr.adaming.model.Hebergement;
 import fr.adaming.model.Participant;
 import fr.adaming.model.Reservation;
@@ -149,49 +153,70 @@ public class ReservationController {
 	}
 
 	// ---------------------- Modification par le CLient --------------------
-	@RequestMapping(value = "/client/afficherUpdate", method = RequestMethod.GET)
-	public String afficherModifierReservationClient(Model modele) {
+	// ------------ modifier(lien)-------------
+	@RequestMapping(value = "/client/modifierLien", method = RequestMethod.GET)
+	public String modifielienC(Model modele, @RequestParam("pId") int id) {
 
-		modele.addAttribute("resaUpdateC", new Reservation());
+		Reservation reservation = new Reservation();
+
+		reservation.setId(id);
+
+		// recup resa de la bd
+		Reservation rOut = reservationService.getReservationByID(id);
+		System.err.println("-----------rOUt :" + rOut);
+		modele.addAttribute("resaUpdateC", rOut);
 
 		// Récupérer la liste de toutes les assurances possibles
 		List<Assurance> liste = assuranceService.getAllAssurance();
 		System.out.println("--------------------------" + liste);
 		modele.addAttribute("listeAssurance", liste);
 
-		// recupération du client pour setter l'id reservation
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String mail = auth.getName();
-		Client client = clientService.getClientByMail(mail);
-		Reservation reservation = reservationService.getReservationByID(client.getReservation().getId());
-
 		// Prix Maximal du voyage selon nombre participant/formule/assurance
-		double prixMax = reservation.getAssurance().getPrix()
-				+ reservation.getNbPlaceReservees() * reservation.getPrix();
-		System.out.println("----------prixMax:" + prixMax);
+		double prixMax = rOut.getAssurance().getPrix() + (rOut.getNbPlaceReservees() * rOut.getVoyage().getPrixSolde());
+		System.out.println("----------prix%ax:" + prixMax);
 		modele.addAttribute("prixMax", prixMax);
+
+		System.out.println("-------------modele :" + modele);
+
+		return "reservationModifierClient";
+	}
+
+	// *****afficher le formulaire de modif*******
+	@RequestMapping(value = "/client/afficheUpdate", method = RequestMethod.GET)
+	public String updateHeberg(Model modele) {
+		modele.addAttribute("resaUpdateC", new Reservation());
 
 		return "reservationModifierClient";
 	}
 
 	@RequestMapping(value = "/client/soumettreUpdate", method = RequestMethod.POST)
 	public String soumettreModifReservation(@ModelAttribute("resaUpdateC") Reservation reservation) {
+
+		Reservation rOut = reservationService.getReservationByID(reservation.getId());
+		System.out.println("----------------rOut : " + rOut);
+		System.err.println("-----------------dans la methode soumettre update controller");
+
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String mail = auth.getName();
 		Client client = clientService.getClientByMail(mail);
 
-		reservation.setStatut("Validé par " + client.getCivilite() + " " + client.getNom());
+		rOut.setStatut("Validé par " + client.getCivilite() + " " + client.getNom());
 
 		// ------Recalul du PRIX selon Participant Voyage Assurance----------
 
-		System.out.println(("-------------------fate resa :" + reservation.getDateReservation() + " "
-				+ reservation.getDateReservation().getTime()));
-		long dateResaMilliSec = reservation.getDateReservation().getTime();
+		// System.out.println(("-------------------date resa :" +
+		// rOut.getDateReservation()));
+		// System.err.println("-----------------date voyage : " +
+		// rOut.getVoyage().getDateDepart());
+
+		long dateResaMilliSec = rOut.getDateReservation().getTime();
 		long age12Ans = 378691200000l;
 
-		List<Client> listeParticipant = clientService.getAllClientByReservation(reservation.getId());
+		System.out.println("-----------dateResa Millisec ; " + dateResaMilliSec);
 
+		List<Client> listeParticipant = clientService.getAllClientByReservation(rOut.getId());
+		System.out.println("--------------liste participant :" + listeParticipant);
 		double prixEnfant;
 		double prixTotal = 0;
 
@@ -199,28 +224,33 @@ public class ReservationController {
 		for (Client element : listeParticipant) {
 			Date dateNaissance = element.getDateNaissance();
 			long dateNaissanceMilliSec = dateNaissance.getTime();
+			System.out.println("------------------if dateNaissance en ms : " + dateNaissanceMilliSec);
 			if (dateResaMilliSec - dateNaissanceMilliSec <= age12Ans) {
-				prixEnfant = reservation.getVoyage().getPrixSolde() - (reservation.getVoyage().getPrixSolde() * 0.6);
+				prixEnfant = rOut.getVoyage().getPrixSolde() - (rOut.getVoyage().getPrixSolde() * 0.6);
+				System.out.println("------if Prix Enfant :" + prixEnfant);
+
 				prixTotal += prixEnfant;
+				System.out.println("------if Prix Total :" + prixTotal);
 			} else { // Pour les adultes
-				prixTotal += reservation.getVoyage().getPrixSolde();
+				prixTotal += rOut.getVoyage().getPrixSolde();
+				System.err.println("----------- else Prix Total" + prixTotal);
 			}
 		}
 
 		// s'il y a une assurance
-		if (reservation.getAssurance() != null) {
-			double prixAssurance = reservation.getAssurance().getPrix();
+		if (rOut.getAssurance() != null) {
+			double prixAssurance = rOut.getAssurance().getPrix();
 
-			reservation.setPrix(prixTotal + prixAssurance);
+			rOut.setPrix(prixTotal + prixAssurance);
 		} else {
-			reservation.setPrix(prixTotal);
+			rOut.setPrix(prixTotal);
 			;
 		}
 
 		// validation de la réservation
-		Reservation rOut = reservationService.updateReservation(reservation);
+		Reservation rOut2 = reservationService.updateReservation(rOut);
 
-		if (rOut.getId() != 0) {
+		if (rOut2.getId() != 0) {
 
 			return "redirect:liste";
 		} else {
@@ -364,6 +394,7 @@ public class ReservationController {
 	// ----------------supprime(client)------------------
 	@RequestMapping(value = "/client/supprimeLien/{pId}", method = RequestMethod.GET)
 	public String supprimerlienClient(Model model, @PathVariable("pId") int id) {
+
 		Reservation reservation = new Reservation();
 
 		// recupération du client pour
@@ -392,32 +423,6 @@ public class ReservationController {
 
 		return "reservationListeClient";
 
-	}
-
-	// ------------ modifier(lien)-------------
-	@RequestMapping(value = "/client/modifierLien", method = RequestMethod.GET)
-	public String modifielienC(ModelMap model, @RequestParam("pId") int id) {
-
-		Reservation reservation = new Reservation();
-
-		reservation.setId(id);
-
-		// recup resa de la bd
-		Reservation rOut = reservationService.getReservationByID(id);
-
-		model.addAttribute("resaUpdateC", rOut);
-
-		// Récupérer la liste de toutes les assurances possibles
-		List<Assurance> liste = assuranceService.getAllAssurance();
-		System.out.println("--------------------------" + liste);
-		model.addAttribute("listeAssurance", liste);
-
-		// Prix Maximal du voyage selon nombre participant/formule/assurance
-		double prixMax = rOut.getAssurance().getPrix() + (rOut.getNbPlaceReservees() * rOut.getVoyage().getPrixSolde());
-		System.out.println("----------prix%ax:" + prixMax);
-		model.addAttribute("prixMax", prixMax);
-
-		return "reservationModifierClient";
 	}
 
 }

@@ -38,12 +38,20 @@
 				<div class="bs-callout bs-callout-color">
 
 					<h3>Vérifier votre réservation</h3>
-					
+
 					<form:form method="POST" action="soumettreUpdate"
 						modelAttribute="resaUpdateC" cssClass="form-horizontal">
 
 						<h4>Le prix maximum de votre réservation actuelle est
 							${prixMax} Euros</h4>
+
+						<div class="form-group">
+							<form:label path="id" class="col-sm-3 control-label">Référence de la réservation</form:label>
+							<div class="col-sm-6">
+								<form:input path="id" cssClass="form-control" />
+							</div>
+						</div>
+						<br />
 
 						<div class="form-group">
 							<form:label path="voyage.id" class="col-sm-3 control-label">Voyage choisi</form:label>
