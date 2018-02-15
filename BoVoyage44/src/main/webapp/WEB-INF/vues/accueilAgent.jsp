@@ -8,6 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Accueil agent</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="../../images/logo.ico" />
+
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
 <link rel="stylesheet"
