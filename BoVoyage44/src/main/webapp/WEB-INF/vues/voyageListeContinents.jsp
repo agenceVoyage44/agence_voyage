@@ -30,16 +30,23 @@
 		<%@ include file="/template/headerU.html"%>
 	</div>
 
-	<!-- Galerie Dynamique -->
+<!-- Galerie Dynamique -->
 	<div class="slideshow">
 		<ul>
 			<c:forEach var="v" items="${voyageListContinent}">
 				<c:if test="${v.priorite == true }">
 					<li><a
 						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
-							<img
-							src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
-							alt="" width="450" height="300" />
+							<figure>
+								<img
+									src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+									alt="" width="450" height="300" />
+								<figcaption>
+									<h1 id="titreDiapo">${v.titre}</h1>
+									<h1 id="reducDiapo">${v.remise}% de réduction pour ce voyage !</h1>
+									<h1 id="prixDiapo">${v.prixSolde}euros</h1>
+								</figcaption>
+							</figure>
 					</a></li>
 				</c:if>
 			</c:forEach>
@@ -74,7 +81,7 @@
 
 			<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
 			<div class="row">
-				<c:forEach var="v" items="${voyageList}">
+				<c:forEach var="v" items="${voyageListContinent}">
 
 					<div class="col-md-6">
 						<div class="thumbnail">
@@ -94,7 +101,6 @@
 
 										au
 										<fmt:formatDate value="${v.dateRetour}" pattern="dd-MM-yyyy " />
-										<br> Description : ${v.description}<br>
 									</p>
 
 								</div>
