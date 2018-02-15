@@ -25,7 +25,7 @@
 		modification de voyage</h1>
 
 	<form:form method="POST" action="soumettreUpdate"
-		modelAttribute="voyageModif" cssClass="form-horizontal">
+		modelAttribute="voyageModif" cssClass="form-horizontal" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<form:label path="id" cssClass="col-sm-2 control-label">Id</form:label>
