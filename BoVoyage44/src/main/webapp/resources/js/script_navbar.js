@@ -326,3 +326,9 @@ example:
 		source: http://stackoverflow.com/questions/20947529/what-does-ahref-nothref-code-mean
 
 */
+
+$('#ex1').slider({
+	formatter: function(value) {
+		return 'Current value: ' + value;
+	}
+});
