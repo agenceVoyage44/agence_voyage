@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,9 +54,19 @@ public class ClientController {
 	@RequestMapping(value = "/ModifLien", method = RequestMethod.GET)
 	public String modifClientLien(Model model, @RequestParam("pId") int id) {
 
-		
-
 		Client clientOut = clientService.getClientById(id);
+		model.addAttribute("clientModif", clientOut);
+
+		return "clientModifier";
+	}
+
+	@RequestMapping(value = "/ModifLien2", method = RequestMethod.GET)
+	public String modifClientLien2(Model model) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String mail = auth.getName();
+		Client clientOut = clientService.getClientByMail(mail);
+
 		model.addAttribute("clientModif", clientOut);
 
 		return "clientModifier";
