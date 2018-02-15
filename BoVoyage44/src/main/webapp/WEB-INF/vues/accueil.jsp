@@ -45,7 +45,7 @@
 		<div class="col-md-10">
 			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
-	<h2 style="text-align: center;">Choissisez votre continent pour un voyage de rêve !</h2>
+	<h2 > <img alt="" src="../images/logo.png" style="height: 70px;width: 70px;">Choissisez votre continent pour un voyage de rêve !</h2>
 	<br>
 	<!-- Map Survol -->
 	<div class="map" id="map">
