@@ -3,14 +3,9 @@ package fr.adaming.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Table;
 
 /**
  * @author inti-0257
@@ -30,14 +25,12 @@ public class Client extends Participant {
 
 	// associations UML en java
 
-	@OneToMany(mappedBy = "client")
-	List<Role> listeRoles;
+	@OneToOne(mappedBy = "client")
+	Role role;
 
 	public Client() {
 		super();
 	}
-
-	
 
 	public Client(String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
 			String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp, boolean active) {
@@ -49,8 +42,6 @@ public class Client extends Participant {
 
 	}
 
-
-
 	public Client(int id, String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
 			String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp, boolean active) {
 		super(id, nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
@@ -59,8 +50,6 @@ public class Client extends Participant {
 		this.mdp = mdp;
 		this.active = active;
 	}
-
-
 
 	public long getNumCB() {
 		return numCB;
@@ -86,14 +75,20 @@ public class Client extends Participant {
 		this.mdp = mdp;
 	}
 
-	public List<Role> getListeRoles() {
-		return listeRoles;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setListeRoles(List<Role> listeRoles) {
-		this.listeRoles = listeRoles;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
-	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 }

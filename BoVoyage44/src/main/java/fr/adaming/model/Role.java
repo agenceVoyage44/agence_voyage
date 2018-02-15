@@ -2,6 +2,7 @@ package fr.adaming.model;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Role {
 	@JoinColumn(name = "a_id", referencedColumnName = "id_a")
 	private Agent agent;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "p_id", referencedColumnName = "id_p")
 	private Client client;
 

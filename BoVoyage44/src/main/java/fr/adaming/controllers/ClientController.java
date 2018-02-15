@@ -27,7 +27,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.mail.smtp.SMTPTransport;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.Role;
 import fr.adaming.service.IClientService;
+import fr.adaming.service.IRoleService;
 
 @Controller
 @RequestMapping("/agent/client")
@@ -35,6 +37,8 @@ public class ClientController {
 
 	@Autowired
 	private IClientService clientService;
+	@Autowired
+	private IRoleService roleService;
 
 	public IClientService getClientService() {
 		return clientService;
@@ -42,6 +46,10 @@ public class ClientController {
 
 	public void setClientService(IClientService clientService) {
 		this.clientService = clientService;
+	}
+
+	public void setRoleService(IRoleService roleService) {
+		this.roleService = roleService;
 	}
 
 	@RequestMapping(value = "/liste", method = RequestMethod.GET)
@@ -132,12 +140,19 @@ public class ClientController {
 	@RequestMapping(value = "/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreFormClientA(Model modele, @ModelAttribute("clientAjout") Client c) {
 		System.out.println("#######test ajout client############" + c);
-		// appel de la methode service
+
+		// Activation du client
+		c.setActive(true);
 		Client cOut = clientService.addClient(c);
+
+		// Création du Role client et set du role au client cOut
+		Role role = new Role("ROLE_CLIENT");
+		role.setClient(cOut);
+		roleService.addRole(role);
 
 		if (cOut.getId() != 0) {
 
-			return "redirect:liste";
+			return "redirect:../../login";
 		} else {
 
 			return "redirect:afficheAdd";
