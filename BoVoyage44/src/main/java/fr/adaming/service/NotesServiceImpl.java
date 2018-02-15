@@ -30,31 +30,36 @@ public class NotesServiceImpl implements INotesService {
 
 	@Override
 	public List<Notes> getMoyennes() {
-		List<Notes>listeN=notesDao.getAllNotes();
-		List<Notes>listeMoyennes=new ArrayList<>();
-		double voyage=0;
-		double logement=0;
-		double food=0;
-		double transport=0;
-		double agent=0;
-		double siteAspect=0;
-		double siteUtil=0;
+		List<Notes> listeN = notesDao.getAllNotes();
+		List<Notes> listeMoyennes = new ArrayList<>();
+		double voyage = 0;
+		double logement = 0;
+		double food = 0;
+		double transport = 0;
+		double agent = 0;
+		double siteAspect = 0;
+		double siteUtil = 0;
 		for (Notes n : listeN) {
-			voyage=voyage+n.getVoyage();
-			logement=logement+n.getLogement();
-			food=food+n.getNourriture();
-			transport=transport+n.getTransport();
-			agent=agent+n.getAgent();
-			siteAspect=siteAspect+n.getSiteAspect();
-			siteUtil=siteUtil+n.getSiteUtil();
+			voyage = voyage + n.getVoyage();
+			logement = logement + n.getLogement();
+			food = food + n.getNourriture();
+			transport = transport + n.getTransport();
+			agent = agent + n.getAgent();
+			siteAspect = siteAspect + n.getSiteAspect();
+			siteUtil = siteUtil + n.getSiteUtil();
 		}
-		voyage=voyage/listeN.size();
-		
-		
-		
-		
-		listeMoyennes.add(voyage)
-		return s;
+		voyage = voyage / listeN.size();
+		logement = logement / listeN.size();
+		food = food / listeN.size();
+		transport = transport / listeN.size();
+		agent = agent / listeN.size();
+		siteAspect = siteAspect / listeN.size();
+		siteUtil = siteUtil / listeN.size();
+
+		Notes moy = new Notes(voyage, logement, transport, food, agent, siteAspect, siteUtil, null);
+
+		listeMoyennes.add(moy);
+		return listeMoyennes;
 	}
 
 }

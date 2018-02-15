@@ -1,14 +1,6 @@
 package fr.adaming.controllers;
 
-import java.util.Date;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.sun.mail.smtp.SMTPTransport;
 
 import fr.adaming.model.Client;
 import fr.adaming.model.Notes;
@@ -63,7 +53,14 @@ public class NotesController {
 		}
 
 	}
-	
-	
+
+	// #############MOYENNES NOTES AGENT####################
+	@RequestMapping(value = "/moyenne", method = RequestMethod.GET)
+	public ModelAndView afficheMoyenneNotes() {
+		// récupérer la liste de la bd
+		List<Notes> liste = notesService.getMoyennes();
+		return new ModelAndView("notesMoyennes", "moyenneList", liste);
+
+	}
 
 }
