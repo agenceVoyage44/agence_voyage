@@ -98,14 +98,15 @@ public class ReservationController {
 	 * 
 	 * @param Reservation
 	 * @return String redirection page
-	 * @throws IOException 
-	 * @throws MessagingException 
-	 * @throws MalformedURLException 
-	 * @throws FileNotFoundException 
-	 * @throws AddressException 
+	 * @throws IOException
+	 * @throws MessagingException
+	 * @throws MalformedURLException
+	 * @throws FileNotFoundException
+	 * @throws AddressException
 	 */
 	@RequestMapping(value = "/client/soumettreAdd", method = RequestMethod.POST)
-	public String soumettreAjoutEtudiant(RedirectAttributes ra, @ModelAttribute("resaAdd") Reservation reservation) throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException {
+	public String soumettreAjoutEtudiant(RedirectAttributes ra, @ModelAttribute("resaAdd") Reservation reservation)
+			throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException {
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String mail = auth.getName();
@@ -115,8 +116,7 @@ public class ReservationController {
 		reservation.setDateReservation(new Date());
 		Reservation rOut = reservationService.addReservation(reservation);
 
-		
-		//Donner la réservation au client qui paye
+		// Donner la réservation au client qui paye
 		client.setReservation(reservation);
 		clientService.updateClient(client);
 
@@ -168,7 +168,7 @@ public class ReservationController {
 		// Prix Maximal du voyage selon nombre participant/formule/assurance
 		double prixMax = reservation.getAssurance().getPrix()
 				+ reservation.getNbPlaceReservees() * reservation.getPrix();
-		System.out.println("----------prix%ax:" + prixMax);
+		System.out.println("----------prixMax:" + prixMax);
 		modele.addAttribute("prixMax", prixMax);
 
 		return "reservationModifierClient";
@@ -184,6 +184,9 @@ public class ReservationController {
 		reservation.setStatut("Validé par " + client.getCivilite() + " " + client.getNom());
 
 		// ------Recalul du PRIX selon Participant Voyage Assurance----------
+
+		System.out.println(("-------------------fate resa :" + reservation.getDateReservation() + " "
+				+ reservation.getDateReservation().getTime()));
 		long dateResaMilliSec = reservation.getDateReservation().getTime();
 		long age12Ans = 378691200000l;
 
@@ -334,15 +337,15 @@ public class ReservationController {
 		String mail = auth.getName();
 		Client client = clientService.getClientByMail(mail);
 
-		//Donner la réservation au nouveau participant
+		// Donner la réservation au nouveau participant
 		p.setReservation(client.getReservation());
 
 		// appel de la methode service pour Particpant
 		Client pOut = clientService.addClient(p);
-		
-		//incrémenter le nombre de place reservées
+
+		// incrémenter le nombre de place reservées
 		Reservation rOut = reservationService.getReservationByID(client.getReservation().getId());
-		int placeReservee=rOut.getNbPlaceReservees()+1;
+		int placeReservee = rOut.getNbPlaceReservees() + 1;
 		rOut.setNbPlaceReservees(placeReservee);
 		reservationService.updateReservation(rOut);
 
@@ -410,7 +413,7 @@ public class ReservationController {
 		model.addAttribute("listeAssurance", liste);
 
 		// Prix Maximal du voyage selon nombre participant/formule/assurance
-		double prixMax = rOut.getAssurance().getPrix() + (rOut.getNbPlaceReservees() * rOut.getPrix());
+		double prixMax = rOut.getAssurance().getPrix() + (rOut.getNbPlaceReservees() * rOut.getVoyage().getPrixSolde());
 		System.out.println("----------prix%ax:" + prixMax);
 		model.addAttribute("prixMax", prixMax);
 

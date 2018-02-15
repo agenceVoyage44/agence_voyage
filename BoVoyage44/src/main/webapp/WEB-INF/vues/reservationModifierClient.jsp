@@ -20,7 +20,7 @@
 <body>
 	<h1 style="text-align: center">Vérifier votre réservation</h1>
 
-	<form:form method="POST" action="client/soumettreUpdate"
+	<form:form method="POST" action="soumettreUpdate"
 		modelAttribute="resaUpdateC" cssClass="form-horizontal">
 
 <h3>Le prix maximum de votre réservation actuelle est ${prixMax} </h3>
