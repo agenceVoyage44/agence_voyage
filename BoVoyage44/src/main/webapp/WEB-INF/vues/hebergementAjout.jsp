@@ -27,42 +27,62 @@
 		<%@ include file="/template/headerA.html"%>
 	</div>
 
-	<h1 style="color: red; text-align: center">Formulaire d'ajout
-		d'hebergement</h1>
 
-	<form:form method="POST" action="soumettreAdd"
-		modelAttribute="addHebergement" cssClass="form-horizontal">
 
-		<div class="form-group">
-			<form:label path="type" cssClass="col-sm-2 control-label">Type</form:label>
-			<div class="col-sm-6">
-				<form:input cssClass="form-control" path="type" />
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Formulaire d'ajout d'hebergement</h3>
+
+					<form:form method="POST" action="soumettreAdd"
+						modelAttribute="addHebergement" cssClass="form-horizontal">
+
+						<div class="form-group">
+							<form:label path="type" cssClass="col-sm-3 control-label">Type</form:label>
+							<div class="col-sm-6">
+								<form:input cssClass="form-control" path="type" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="prix" cssClass="col-sm-3 control-label">Prix</form:label>
+							<div class="col-sm-6">
+								<form:input cssClass="form-control" path="prix" />
+							</div>
+						</div>
+						<div class="form-group">
+							<form:label path="formule.id" cssClass="col-sm-3 control-label">ID Formule</form:label>
+							<div class="col-sm-6">
+								<form:select path="formule.id">
+									<c:forEach var="f" items="${listeFormules}">
+										<form:option value="${f.id}">
+											<c:out value="${f.id} ${f.type}"></c:out>
+										</form:option>
+									</c:forEach>
+								</form:select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6">
+								<input type="submit" class="btn btn-success" value="Ajouter" />
+							</div>
+						</div>
+					</form:form>
+					<br />
+
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'liste'">Retour</button>
+					<br />
+				</div>
 			</div>
 		</div>
+		<div class="col-md-1"></div>
 
-		<div class="form-group">
-			<form:label path="prix" cssClass="col-sm-2 control-label">Prix</form:label>
-			<div class="col-sm-6">
-				<form:input cssClass="form-control" path="prix" />
-			</div>
-		</div>
-		<div class="form-group">
-			<form:label path="formule.id" cssClass="col-sm-2 control-label">ID Formule</form:label>
-			<form:select path="formule.id">
-				<c:forEach var="f" items="${listeFormules}">
-					<form:option value="${f.id}">
-						<c:out value="${f.id} ${f.type}"></c:out>
-					</form:option>
-				</c:forEach>
-			</form:select>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-primary" value="ajouter" />
-			</div>
-		</div>
-	</form:form>
+	</div>
 
 
 
