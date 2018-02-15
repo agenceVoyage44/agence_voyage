@@ -29,7 +29,7 @@
 
 	<table class="table table-bordered">
 		<tr>
-			<th>ID</th>
+			<th>Photo</th>
 			<th>Continent</th>
 			<th>Pays</th>
 			<th>Prix de départ</th>
@@ -37,16 +37,15 @@
 			<th>Prix soldé</th>
 			<th>Date de départ</th>
 			<th>Date de retour</th>
-			<th>Photo</th>
 			<th>Nombre de places</th>
-			<th>Disponibilité</th>
 			<th>Titre</th>
 			<th>Description</th>
-			<th>Priorité</th>
 		</tr>
 		<c:forEach var="v" items="${voyageList }">
 			<tr>
-				<td>${v.id}</td>
+				<td><img
+					src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+					height="80px" /></td>
 				<td>${v.continent}</td>
 				<td>${v.pays}</td>
 				<td>${v.prixDepart}</td>
@@ -54,12 +53,9 @@
 				<td>${v.prixSolde}</td>
 				<td>${v.dateDepart}</td>
 				<td>${v.dateRetour}</td>
-				<td>${v.photo}</td>
 				<td>${v.nbPlaces}</td>
-				<td>${v.dispo}</td>
 				<td>${v.titre}</td>
 				<td>${v.description}</td>
-				<td>${v.priorite}</td>
 			</tr>
 
 		</c:forEach>
