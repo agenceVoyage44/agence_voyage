@@ -26,50 +26,66 @@
 	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
 	</div>
-	<h1>Liste des Clients</h1>
-
-	<div>
-
-		<table class="table table-bordered">
-			<tr>
-				<th class="active">Id</th>
-				<th class="active">Civilité</th>
-				<th class="active">Nom Prénom</th>
-				<th class="active">Mail</th>
-				<th class="active">Adresse</th>
-				<th class="active">N° de téléphone</th>
-				<th class="active">Date de naissance</th>
-				<th class="active">Opérations</th>
-			</tr>
-
-			<c:forEach var="c" items="${clientList}">
-
-				<tr>
-					<td class="success">${c.id}</td>
-					<td class="danger">${c.civilite}</td>
-					<td class="info">${c.nom}${c.prenom}</td>
-
-					<td class="warning">${c.mail}</td>
-					<td class="success">${c.numero}${c.rue}${c.codePostal}
-						${c.ville}</td>
-					<td class="danger">${c.tel}</td>
-					<td class="danger">${c.dateNaissance}</td>
-
-					<td class="active"><a
-						href="${pageContext.request.contextPath}/agent/client/supprimLien?pId=${c.id}">Supprimer</a>
-						| <a
-						href="${pageContext.request.contextPath}/agent/client/ModifLien?pId=${c.id}">Modifier</a>
-						<a
-						href="${pageContext.request.contextPath}/agent/client/EnvoiFormulaire?pId=${c.id}">Envoi
-							Formulaire de satisfaction</a></td>
 
 
-				</tr>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Liste des Clients</h3>
+
+					<div>
+
+						<table class="table table-bordered">
+							<tr>
+								<th>Id</th>
+								<th>Civilité</th>
+								<th>Nom Prénom</th>
+								<th>Mail</th>
+								<th>Adresse</th>
+								<th>N° de téléphone</th>
+								<th>Date de naissance</th>
+								<th>Opérations</th>
+							</tr>
+
+							<c:forEach var="c" items="${clientList}">
+
+								<tr>
+									<td>${c.id}</td>
+									<td>${c.civilite}</td>
+									<td>${c.nom}${c.prenom}</td>
+
+									<td>${c.mail}</td>
+									<td>${c.numero}${c.rue}${c.codePostal}${c.ville}</td>
+									<td>${c.tel}</td>
+									<td>${c.dateNaissance}</td>
+
+									<td>
+										<button type="button" class="btn btn-primary"
+											onclick="location.href = 'ModifLien?pId=${c.id}'">Modifier</button>
+										<button type="button" class="btn btn-danger"
+											onclick="location.href = 'supprimLien?pId=${c.id}'">Supprimer</button>
+										<button type="button" class="btn btn-primary"
+											onclick="location.href = 'EnvoiFormulaire?pId=${c.id}'">Envoi
+											Formulaire de satisfaction</button>
+									</td>
 
 
-			</c:forEach>
+								</tr>
 
-		</table>
+
+							</c:forEach>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+
 	</div>
 
 </body>
