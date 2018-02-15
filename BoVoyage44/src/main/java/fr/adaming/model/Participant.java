@@ -16,6 +16,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Entity;
 
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author inti-0257
@@ -51,6 +53,7 @@ public class Participant {
 
 	protected String pays;
 
+	@Temporal(TemporalType.DATE)
 	protected Date dateNaissance;
 
 	@ManyToOne

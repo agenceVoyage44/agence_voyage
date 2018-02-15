@@ -69,7 +69,7 @@
 							<form:label path="dateNaissance"
 								cssClass="col-sm-3 control-label">Date de naissance</form:label>
 							<div class="col-sm-6">
-								<form:input path="dateNaissance" cssClass="form-control" />
+								<form:input type="date" path="dateNaissance" cssClass="form-control" />
 							</div>
 						</div>
 

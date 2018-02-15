@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -13,12 +14,15 @@ import javax.mail.internet.AddressException;
 import javax.sound.midi.Synthesizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +80,14 @@ public class ReservationController {
 		this.clientService = clientService;
 	}
 
+	@InitBinder // Pour transformer la date reçue de la page en une date java
+	public void dataBinding(WebDataBinder binder) {
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	}
+
 	// ---------------------------Ajouter une Reservation -------------
 	/**
 	 * Méthode pour afficher le formulaire
@@ -83,6 +95,7 @@ public class ReservationController {
 	 * @return ModelAndView
 	 * 
 	 */
+
 	@RequestMapping(value = "/client/afficherAdd", method = RequestMethod.GET)
 	public String afficherAjouterReservation(Model modele) {
 
@@ -245,6 +258,7 @@ public class ReservationController {
 			double prixAssurance = rOut.getAssurance().getPrix();
 
 			rOut.setPrix(prixTotal + prixAssurance);
+			System.out.println("--------------------Prix total setter : " + (prixTotal + prixAssurance));
 		} else {
 			rOut.setPrix(prixTotal);
 			;
