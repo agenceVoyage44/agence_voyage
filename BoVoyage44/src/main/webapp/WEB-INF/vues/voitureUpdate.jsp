@@ -28,10 +28,10 @@
 		<div class="col-md-1"></div>
 
 		<div class="col-md-10">
-			<div class="panel panel-default" style="background-color: #f0f0f0">
+			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
-					<h3 style="color: #48494c; text-align: center">
-						<b>Modifier une Voiture</b>
+					<h3>
+						Modifier une Voiture
 					</h3>
 					<br />
 					<form:form method="POST" action="soumettreUpdate"

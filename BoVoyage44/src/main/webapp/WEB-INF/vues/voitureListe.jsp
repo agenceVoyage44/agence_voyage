@@ -15,6 +15,13 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
+<style type="text/css">
+body {
+	background-image: url("../../images/fond.jpg");
+	background-attachment: fixed;
+}
+</style>
+
 </head>
 <body>
 
@@ -27,27 +34,28 @@
 		<div class="col-md-1"></div>
 
 		<div class="col-md-10">
-			<div class="panel panel-default" style="background-color: #f0f0f0">
+			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
-					<h3 style="color: #48494c; text-align: center"><b>Liste des
-						Voitures</b></h3>
+					<h3>
+						Liste des Voitures
+					</h3>
 
 
 					<button type="button" class="btn btn-primary"
 						onclick="location.href = 'afficheAdd'">+ Ajouter</button>
 					<br /> <br />
-					
-					<table class="table table-bordered" style="text-align: center;">
-						<tr class="success" >
-							<th style="text-align: center;">Id</th>
-							<th style="text-align: center;">Loueur</th>
-							<th style="text-align: center;">Modèle</th>
-							<th style="text-align: center;">Nombre de places</th>
-							<th style="text-align: center;">Photo</th>
-							<th style="text-align: center;">Opértations</th>
+
+					<table class="table table-bordered">
+						<tr>
+							<th>Id</th>
+							<th>Loueur</th>
+							<th>Modèle</th>
+							<th>Nombre de places</th>
+							<th>Photo</th>
+							<th>Opértations</th>
 						</tr>
 						<c:forEach var="v" items="${vListe}">
-							<tr class="active">
+							<tr>
 								<td>${v.id}</td>
 								<td>${v.loueur}</td>
 								<td>${v.modele}</td>
@@ -71,6 +79,7 @@
 		<div class="col-md-1"></div>
 
 	</div>
+
 
 </body>
 </html>

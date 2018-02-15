@@ -54,6 +54,15 @@ public class VoitureController {
 		return new ModelAndView("voitureListe", "vListe", listeV);
 	}
 
+	/**
+	 * Récupère la photo de la voiture d'id 'idV', puis la convertie en tableau
+	 * de byte.
+	 * 
+	 * @param idV
+	 *            Il s'agit de l'id de la voiture.
+	 * @return Rtourne la photo en tableau de byte.
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/photoVoiture", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getPhoto(int idV) throws IOException {
@@ -177,11 +186,7 @@ public class VoitureController {
 	public String supprLien(Model modele, @PathVariable("pId") int id) {
 		// Appel de la méthode service
 		voitureService.deleteVoiture(id);
-
-		// Recharger la liste ici, sinon ça marche pas avec redirect
-		List<Voiture> listeV = voitureService.getAllVoiture();
-		modele.addAttribute("vListe", listeV);
-		return "voitureListe";
+		return "redirect:../liste";
 	}
 
 }

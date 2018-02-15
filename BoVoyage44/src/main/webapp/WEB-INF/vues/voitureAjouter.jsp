@@ -16,6 +16,14 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
+
+<style type="text/css">
+body {
+	background-image: url("../../images/fond.jpg");
+	background-attachment: fixed;
+}
+</style>
+
 </head>
 <body>
 
@@ -29,10 +37,10 @@
 		<div class="col-md-1"></div>
 
 		<div class="col-md-10">
-			<div class="panel panel-default" style="background-color: #f0f0f0">
+			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
-					<h3 style="color: #48494c; text-align: center">
-						<b>Ajouter une Voiture</b>
+					<h3>
+						Ajouter une Voiture
 					</h3>
 					<br />
 					<form:form method="POST" action="soumettreAdd"
