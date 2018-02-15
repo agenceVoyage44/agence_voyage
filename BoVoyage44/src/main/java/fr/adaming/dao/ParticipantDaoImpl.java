@@ -37,7 +37,7 @@ public class ParticipantDaoImpl implements IParticipantsDao {
 
 	@Override
 	public List<Participant> getParticipantsByReservation(int idRes) {
-		String req = "select p from Participant as p where p.reservation.id=:pId AND p.type=part";
+		String req = "select p from Participant as p where p.reservation.id=:pId";
 		Query query = em.createQuery(req);
 
 		query.setParameter("pId", idRes);
