@@ -41,8 +41,8 @@
 									alt="" width="450" height="300" />
 								<figcaption>
 									<h1 id="titreDiapo">${v.titre}</h1>
-									<h1 id="reducDiapo">${v.remise}%de réduction pour ce
-										voyage !</h1>
+									<h1 id="reducDiapo">${v.remise}%deréduction pour ce voyage
+										!</h1>
 									<h1 id="prixDiapo">${v.prixSolde}euros</h1>
 								</figcaption>
 							</figure>
@@ -70,7 +70,7 @@
 
 	</form:form>
 	<button type="button" class="btn btn-primary"
-						onclick="location.href = '${pageContext.request.contextPath}/voyage/liste'">Retour</button>
+		onclick="location.href = '${pageContext.request.contextPath}/voyage/liste'">Retour</button>
 
 
 
@@ -88,10 +88,10 @@
 							<p>Voyage : ${v.titre}</p>
 							<a
 								href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
-								<img class="imageAccueil"
-								style="width:100%; height: 300px;""
+								<img class="imageAccueil" style="width: 100%; height: 300px;"
+								"
 								src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
-								alt="imageVoyage" ">
+								alt="imageVoyage"">
 								<div class="caption">
 									<p>
 										Continent : ${v.continent}<br> Prix Soldé :
@@ -100,10 +100,6 @@
 									</p>
 								</div>
 							</a>
-							<button type="button" class="btn btn-primary"
-								onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}'">Modifier</button>
-							<button type="button" class="btn btn-danger"
-								onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}'">Supprimer</button>
 						</div>
 					</div>
 
