@@ -55,14 +55,14 @@
 									<form:option value="Afrique">
 										<c:out value="Afrique"></c:out>
 									</form:option>
-									<form:option value="AfriqueNord">
-										<c:out value="Afrique du Nord"></c:out>
+									<form:option value="AmeriqueNord">
+										<c:out value="Amerique du Nord"></c:out>
 									</form:option>
-									<form:option value="AfriqueSud">
-										<c:out value="Afrique du Sud"></c:out>
+									<form:option value="AmeriqueSud">
+										<c:out value="Amerique du Sud"></c:out>
 									</form:option>
-									<form:option value="Australie">
-										<c:out value="Australie"></c:out>
+									<form:option value="Oceanie">
+										<c:out value="Océanie"></c:out>
 									</form:option>
 								</form:select>
 							</div>
