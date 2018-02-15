@@ -110,9 +110,8 @@ public class ReservationController {
 	 */
 	@RequestMapping(value = "/client/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjoutEtudiant(RedirectAttributes ra, @ModelAttribute("resaAdd") Reservation reservation)
-	// throws AddressException, FileNotFoundException, MalformedURLException,
-	// MessagingException, IOException
-	{
+	 throws AddressException, FileNotFoundException, MalformedURLException,
+	 MessagingException, IOException {
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String mail = auth.getName();
