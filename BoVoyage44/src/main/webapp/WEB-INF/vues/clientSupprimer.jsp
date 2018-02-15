@@ -28,28 +28,42 @@
 		<%@ include file="/template/headerA.html"%>
 	</div>
 
-	<h1 style="color: dodgerblue; text-align: center">Formulaire de
-		suppression</h1>
-	<br />
-	<form:form method="POST" action="soumettreSupprClient"
-		modelAttribute="clientSuppr" cssClass="form-horizontal"
-		style="margin-left:600px">
 
-		<div class="form-group">
-			<form:label path="id" cssClass="col-sm-2 control-label">Id Client</form:label>
-			<div class="col-sm-3">
-				<form:input path="id" cssClass="form-control" />
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Formulaire de suppression</h3>
+					<br />
+					<form:form method="POST" action="soumettreSupprClient"
+						modelAttribute="clientSuppr" cssClass="form-horizontal">
+
+						<div class="form-group">
+							<form:label path="id" cssClass="col-sm-3 control-label">Id Client</form:label>
+							<div class="col-sm-6">
+								<form:input path="id" cssClass="form-control" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6" style="margin-left: 300px">
+								<input type="submit" class="btn btn-info" value="Supprimer">
+							</div>
+						</div>
+					</form:form>
+
+					<br />
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'liste'">Retour</button>
+					<br />
+				</div>
 			</div>
 		</div>
+		<div class="col-md-1"></div>
 
-
-		<br />
-		<div class="col-sm-offset-2 col-sm-10" style="margin-left: 300px">
-			<input type="submit" class="btn btn-info" value="Supprimer">
-		</div>
-
-	</form:form>
-
-
+	</div>
 </body>
 </html>
