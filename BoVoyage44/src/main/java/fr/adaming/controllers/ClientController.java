@@ -152,7 +152,7 @@ public class ClientController {
 
 		if (cOut.getId() != 0) {
 
-			return "redirect:../../login";
+			return "redirect:../../boVoyage/accueil";
 		} else {
 
 			return "redirect:afficheAdd";
