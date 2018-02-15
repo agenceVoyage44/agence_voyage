@@ -18,3 +18,41 @@
 .slideshow li {
 	float: left;
 }
+
+/* Mettre le texte sur les images du diapo*/
+
+figcaption{
+    position:absolute;
+    top:0px;}
+     
+figure{
+position:relative;}
+
+#titreDiapo {
+	color : white;
+	background-color:rgba(0,0,0,0.4);
+	text-align:right;
+	font-size: 25px;
+	margin-left: 5px;
+	top:200px;
+}
+
+#reducDiapo {
+	color : white;
+	background-color:rgba(0,0,0,0.4);
+	font-size: 18px;
+	margin-left: 5px;
+	position:absolute;
+	font-style:italic;
+	top:180px;
+}
+#prixDiapo {
+	color : white;
+	background-color:rgba(0,0,0,0.4);
+	font-size: 25px;
+	font-weight:bold;
+	text-align: left;
+	margin-left: 5px;
+	position:absolute;
+	top:230px;
+}
