@@ -10,4 +10,6 @@ public interface INotesService {
 
 	public List<Notes> getAllNotes();
 
+	public List<Notes> getMoyennes();
+
 }

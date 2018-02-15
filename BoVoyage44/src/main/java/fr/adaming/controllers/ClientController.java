@@ -1,6 +1,15 @@
 package fr.adaming.controllers;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.sun.mail.smtp.SMTPTransport;
 
 import fr.adaming.model.Client;
 import fr.adaming.service.IClientService;
@@ -71,6 +82,41 @@ public class ClientController {
 
 		return "clientModifier";
 	}
+
+	@RequestMapping(value = "/EnvoiFormulaire", method = RequestMethod.GET)
+	public String envoiFormClient(Model model, @RequestParam("pId") int id)
+			throws AddressException, MessagingException {
+
+		Client clientOut = clientService.getClientById(id);
+
+		model.addAttribute("clientModif", clientOut);
+
+		System.out.println("#######test envoi Mail############" + clientOut.getNom());
+
+		Properties props = System.getProperties();
+		props.put("mail.smtps.host", "smtp.gmail.com");
+		props.put("mail.smtps.auth", "true");
+		Session session = Session.getInstance(props, null);
+		Message msg = new MimeMessage(session);
+		msg.setFrom(new InternetAddress("application.j2ee@gmail.com"));
+		;
+		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(clientOut.getMail(), false));
+		msg.setSubject("BoVoyage44 - Formulaire de satisfaction ");
+
+		msg.setText(
+				"Bonjour, vous avez récemment effectué un voyage via notre agence. Afin de nous aider à offrir la meilleure prestation à nos clients, votre expérience nous intéresse. \n "
+						+ "Voici un formulaire de satisfaction, qui ne vous prendra que 3 minutes!  "
+						+ "http://localhost:8080/BoVoyage44/notes/afficheAdd " + "\n Merci de votre participation !");
+
+		SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
+		t.connect("smtp.gmail.com", "application.j2ee@gmail.com", "adamingintijee");
+		t.sendMessage(msg, msg.getAllRecipients());
+		System.out.println("Mail envoyé");
+		t.close();
+
+		return "redirect:liste";
+	}
+
 	// ##############AJOUT CLIENT######################
 
 	// La methode pour afficher le formulaire en GET

@@ -50,7 +50,7 @@
 					<td class="info">${c.nom}${c.prenom}</td>
 
 					<td class="warning">${c.mail}</td>
-					<td class="success">${c.numero}${c.rue} ${c.codePostal}
+					<td class="success">${c.numero}${c.rue}${c.codePostal}
 						${c.ville}</td>
 					<td class="danger">${c.tel}</td>
 					<td class="danger">${c.dateNaissance}</td>
@@ -58,7 +58,10 @@
 					<td class="active"><a
 						href="${pageContext.request.contextPath}/agent/client/supprimLien?pId=${c.id}">Supprimer</a>
 						| <a
-						href="${pageContext.request.contextPath}/agent/client/ModifLien?pId=${c.id}">Modifier</a></td>
+						href="${pageContext.request.contextPath}/agent/client/ModifLien?pId=${c.id}">Modifier</a>
+						<a
+						href="${pageContext.request.contextPath}/agent/client/EnvoiFormulaire?pId=${c.id}">Envoi
+							Formulaire de satisfaction</a></td>
 
 
 				</tr>
