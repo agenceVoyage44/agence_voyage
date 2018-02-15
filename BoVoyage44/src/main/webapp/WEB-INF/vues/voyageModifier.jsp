@@ -119,6 +119,17 @@
 		</div>
 
 		<div class="form-group">
+			<form:label path="formule.id" cssClass="col-sm-2 control-label">ID Formule</form:label>
+			<form:select path="formule.id">
+				<c:forEach var="f" items="${listeFormules}">
+					<form:option value="${f.id}">
+						<c:out value="${f.id} ${f.type}"></c:out>
+					</form:option>
+				</c:forEach>
+			</form:select>
+		</div>
+
+		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<input type="submit" class="btn btn-success" value="Modifier" />
 			</div>

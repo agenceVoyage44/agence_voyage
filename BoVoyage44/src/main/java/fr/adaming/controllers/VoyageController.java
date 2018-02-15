@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.adaming.model.Formule;
 import fr.adaming.model.Voyage;
 import fr.adaming.service.IFormuleService;
 import fr.adaming.service.IVoyageService;
@@ -68,7 +69,7 @@ public class VoyageController {
 		List<Voyage> liste = voyageService.getAllVoyage();
 		
 		for (Voyage voyage : liste) {
-			if(voyage.getPays().equals(pays)){
+			if(voyage.getPays().startsWith(pays)){
 				listePays.add(voyage);
 			}
 		}
@@ -104,13 +105,21 @@ public class VoyageController {
 	}
 	
 	@RequestMapping(value = "/agent/afficheAdd", method = RequestMethod.GET)
-	public ModelAndView afficheAjout() {
+	public ModelAndView afficheAjout(Model modele) {
 
+		List<Formule> listeFormules = formuleService.getAllFormule();
+
+		modele.addAttribute("listeFormules",listeFormules);
+		
 		return new ModelAndView("voyageAjout", "voyageAjout", new Voyage());
 	}
 	
 	@RequestMapping(value = "/agent/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjouter(@ModelAttribute("voyageAjout") Voyage v) {
+		
+		if(v.getFormule()!=null){
+			v.setFormule(formuleService.getFormuleById(v.getFormule().getId()));
+		}
 		
 		if(v.getFile()!=null){
 			
@@ -133,8 +142,12 @@ public class VoyageController {
 	
 	
 	@RequestMapping(value = "/agent/afficheUpdate", method = RequestMethod.GET)
-	public ModelAndView afficheModif() {
+	public ModelAndView afficheModif(Model modele) {
 
+		List<Formule> listeFormules = formuleService.getAllFormule();
+
+		modele.addAttribute("listeFormules",listeFormules);
+		
 		return new ModelAndView("voyageModifier", "voyageModif", new Voyage());
 	}
 	
