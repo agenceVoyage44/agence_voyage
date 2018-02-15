@@ -22,29 +22,51 @@
 
 </head>
 <body>
+
+
 	<div style="height: 90px">
 		<%@ include file="/template/headerA.html"%>
 	</div>
-	<h1 style="text-align: center">Modifer le statut de la réservtion</h1>
 
-	<form:form method="POST" action="agent/soumettreUpdate"
-		modelAttribute="resaUpdateA" cssClass="form-horizontal">
+	<div class="row">
+		<div class="col-md-1"></div>
 
-		<div class="form-group">
-			<form:label path="statut" class="col-sm-2 control-label">Statut de la réservation</form:label>
-			<div class="col-sm-5">
-				<form:input path="statut" cssClass="form-control" />
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+
+					<h3>Modifer le statut de la réservtion</h3>
+
+					<form:form method="POST" action="agent/soumettreUpdate"
+						modelAttribute="resaUpdateA" cssClass="form-horizontal">
+
+						<div class="form-group">
+							<form:label path="statut" class="col-sm-3 control-label">Statut de la réservation</form:label>
+							<div class="col-sm-6">
+								<form:input path="statut" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6">
+								<input type="submit" class="btn btn-success"
+									value="Modifer le statut" />
+							</div>
+						</div>
+
+
+					</form:form>
+
+					<br />
+
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'liste'">Retour</button>
+					<br />
+				</div>
 			</div>
 		</div>
+		<div class="col-md-1"></div>
 
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-success"
-					value="Modifer le statut" />
-			</div>
-		</div>
-
-
-	</form:form>
+	</div>
 </body>
 </html>

@@ -22,36 +22,49 @@
 		<%@ include file="/template/headerA.html"%>
 	</div>
 
-	<h1 style="color: darkred; text-align: center">Liste des
-		réservations</h1>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+					<h3>Liste des réservations</h3>
 
 
-	<table class="table table-bordered">
-		<tr>
-			<th>ID</th>
-			<th>Statut</th>
-			<th>Date de Réservation</th>
-			<th>Prix</th>
-			<th>Nombre de places Réservées</th>
-			<th>Voayge choisi</th>
-			<th>Les participants</th>
-			<th>Assurance</th>
-		</tr>
-		<c:forEach var="reservation" items="${resaListe}">
-			<tr>
-				<td>${reservation.id}</td>
-				<td>${reservation.statut}</td>
-				<td>${reservation.dateReservation}</td>
-				<td>${reservation.prix}</td>
-				<td>${reservation.nbPlaceReservees}</td>
-				<td>${reservation.voyage.titre}</td>
-				<td>${reservation.listeParticipant.nom}</td>
-				<td>${reservation.assurance.type}</td>
+					<table class="table table-bordered">
+						<tr>
+							<th>ID</th>
+							<th>Statut</th>
+							<th>Date de Réservation</th>
+							<th>Prix</th>
+							<th>Nombre de places Réservées</th>
+							<th>Voayge choisi</th>
+							<th>Les participants</th>
+							<th>Assurance</th>
+							<th>Opérations</th>
+						</tr>
+						<c:forEach var="reservation" items="${resaListe}">
+							<tr>
+								<td>${reservation.id}</td>
+								<td>${reservation.statut}</td>
+								<td>${reservation.dateReservation}</td>
+								<td>${reservation.prix}</td>
+								<td>${reservation.nbPlaceReservees}</td>
+								<td>${reservation.voyage.titre}</td>
+								<td><%-- ${reservation.listeParticipants} --%></td>
+								<td>${reservation.assurance.type}</td>
+								<td><button type="button" class="btn btn-primary"
+										onclick="location.href = 'afficherUpdate/${reservation.id}'">Modifier le statut</button></td>
+							</tr>
+						</c:forEach>
+					</table>
 
-			</tr>
-		</c:forEach>
-	</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
 
-
+	</div>
 </body>
 </html>
