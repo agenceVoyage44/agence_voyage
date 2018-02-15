@@ -66,7 +66,7 @@
 					id="list-europe">Europe</a></li>
 				<li><a
 					href="<c:url value=" /BoVoyage44//voyage/agent/listeContinent/Australie"/>"
-					id="list-australia">Australie</a></li>
+					id="list-australia">Océanie</a></li>
 				<li><a
 					href="<c:url value=" /BoVoyage44//voyage/agent/listeContinent/Afrique"/>"
 					id="list-africa">Afrique</a></li>
