@@ -4,6 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import fr.adaming.model.Notes;
+
+import java.util.List;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -23,8 +29,9 @@ public class BoVoyageController {
 
 		// recupération de l'identifiant de l'utilisateur connecté
 		String mail = authAgent.getName();
-		model.addAttribute("msg", "Accueil de l'Agent " + mail);
-
+		//model.addAttribute("msg", "Accueil de l'Agent " + mail);
+		//List<Notes> liste = notesService.getMoyennes();
+		//return new ModelAndView("notesMoyennes", "moyenneList", liste);
 		return "accueilAgent";
 	}
 
