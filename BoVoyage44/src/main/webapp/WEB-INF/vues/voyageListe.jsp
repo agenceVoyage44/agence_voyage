@@ -48,6 +48,10 @@
 			</c:forEach>
 		</ul>
 	</div>
+	
+	<div>
+		
+	</div>
 
 	<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
 
