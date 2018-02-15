@@ -58,8 +58,7 @@
 						</div>
 					</form:form>
 					<c:if test="${indice==true}">
-						<h3>Hebergement
-							recherché</h3>
+						<h3>Hebergement recherché</h3>
 
 						<table class="table table-bordered">
 							<tr>
@@ -83,7 +82,8 @@
 						</table>
 					</c:if>
 					<h3 style="color: red;">${message}</h3>
-
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'liste'">Retour vers la liste</button>
 				</div>
 			</div>
 		</div>

@@ -37,8 +37,10 @@
 
 					<button type="button" class="btn btn-primary"
 						onclick="location.href = 'afficheAdd'">+ Ajouter</button>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = 'afficheGet'">Rechercher</button>
 					<br /> <br />
-					
+
 					<table class="table table-bordered">
 						<tr>
 							<th>ID</th>
@@ -54,16 +56,15 @@
 								<td>${h.id}</td>
 								<td>${h.type}</td>
 								<td>${h.prix}euros</td>
-								<td>id:${h.formule.id} ,
-									type:${h.formule.type}</td>
+								<td>id:${h.formule.id} , type:${h.formule.type}</td>
 								<td>
 									<button type="button" class="btn btn-primary"
 										onclick="location.href = 'modifieLien?pId=${h.id}'">Modifier</button>
-										<button type="button" class="btn btn-danger"
+									<button type="button" class="btn btn-danger"
 										onclick="location.href = 'supprimeLien/${h.id}'">Supprimer</button>
-									</td>
-								<td><form
-										action="https://www.paypal.com/cgi-bin/webscr" method="post">
+								</td>
+								<td><form action="https://www.paypal.com/cgi-bin/webscr"
+										method="post">
 										<input type="hidden" name="cmd" value="_s-xclick"> <input
 											type="hidden" name="hosted_button_id" value="ADGE2BBQHZT8J">
 										<input type="hidden" name="prix" value="<?php print($prix);?>">
