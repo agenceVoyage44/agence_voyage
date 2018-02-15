@@ -12,18 +12,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajouter une Réservation</title>
-<script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.css"/>">
+	href="<c:url value="/resources/css/bootstrap.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+<script type="text/javascript"
+	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
 
 </head>
 <body>
+	<!-- Header User -->
+	<%@ include file="/template/headerU.html"%>
+
+<br><br><br><br><br>
+<div class="row" style="margin-right: 200px;margin-left: 150px;">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
 	<h1 style="text-align: center">Effectuez votre réservation</h1>
+	<br>
+	<form:form method="POST" action="soumettreAdd" modelAttribute="resaAdd" cssClass="form-horizontal" style="margin-left: 150px;">
 
-	<form:form method="POST" action="soumettreAdd"
-		modelAttribute="resaAdd" cssClass="form-horizontal">
-
-		<div class="form-group">
+		<div class="form-group" >
 			<form:label path="voyage.id" class="col-sm-2 control-label">Voyage choisi</form:label>
 			<div class="col-sm-5">
 				<form:input path="voyage.id" cssClass="form-control" />
@@ -60,5 +73,14 @@
 
 
 	</form:form>
+	
+	
+	
+					</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
 </body>
 </html>
