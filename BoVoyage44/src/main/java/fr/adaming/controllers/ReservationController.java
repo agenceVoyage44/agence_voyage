@@ -394,9 +394,16 @@ public class ReservationController {
 
 		// incrémenter le nombre de place reservées
 		Reservation rOut = reservationService.getReservationByID(client.getReservation().getId());
+
 		int placeReservee = rOut.getNbPlaceReservees() + 1;
 		rOut.setNbPlaceReservees(placeReservee);
 		reservationService.updateReservation(rOut);
+		// if (rOut.getVoyage().getNbPlaces() > placeReservee) {
+		// rOut.setNbPlaceReservees(placeReservee);
+		// reservationService.updateReservation(rOut);
+		// } else {
+		//
+		// }
 
 		if (pOut.getId() != 0) {
 			// rediriger vers la méthode afficheListe
