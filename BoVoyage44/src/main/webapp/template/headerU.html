@@ -25,84 +25,50 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li><img height="45" width="45" src="../images/logo.png"
 						alt=""></li>
-					<a class="navbar-brand" href="#"> BoVoyage </a>
-					<li class="dropdown mega-dropdown" class="dropdown-toggle"
-						data-toggle="dropdown"><a href="<c:url value=" /BoVoyage44/voyage/agent/liste"/>">Voyages
-						<span class="caret"></span></a>
-						<ul class="dropdown-menu mega-dropdown-menu">
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/boVoyage/accueil"> BoVoyage </a>
 
-							<li class="col-sm-3">
-								<ul>
+					<li><a href="<c:url value=" /BoVoyage44/voyage/agent/liste"/>">Tous
+							les voyages</a></li>
 
-									<li><a href="#">Afrique</a></li>
+					<li><a href="#">Afrique</a></li>
 
-								</ul>
-							</li>
 
-							<li class="col-sm-3">
-								<ul>
-									<li><a href="#">Amérique</a></li>
-								</ul>
-							</li>
-							<li class="col-sm-3">
-								<ul>
-									<li><a href="#">Asie</a></li>
-								</ul>
-							</li>
-							<li class="col-sm-3">
-								<ul>
-									<li><a href="#">Europe</a></li>
-								</ul>
-							</li>
-							<li class="col-sm-3">
-								<ul>
-									<li><a href="#">Océanie</a></li>
-								</ul>
-							</li>
+					<li><a href="#">Amérique</a></li>
 
-							<li class="col-sm-3">
-								<ul>
-									<li class="dropdown-header">Plus</li>
-									<li><a href="#">Navbar Inverse</a></li>
-									<li><a href="#">Pull Right Elements</a></li>
-									<li><a href="#">Coloured Headers</a></li>
-									<li><a href="#">Primary Buttons & Default</a></li>
-								</ul>
-							</li>
-							<li class="col-sm-3">
-								<ul>
-									<li class="dropdown-header">Connexion</li>
-									<li><a
-										href="${pageContext.request.contextPath}/boVoyage/agent/accueil">Espace Administrateur
-											</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/boVoyage/client/accueil">Connexion Client</a></li>
-									
-									<li><a
-										href="${pageContext.request.contextPath}/agent/client/afficheAdd">Inscription</a></li>
-								</ul>
-							</li>
-						</ul></li>
 
+					<li><a href="#">Asie</a></li>
+
+
+					<li><a href="#">Europe</a></li>
+
+
+					<li><a href="#">Océanie</a></li>
 
 				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Mon
-							compte <span class="caret"></span>
+						data-toggle="dropdown" role="button" aria-expanded="false">Connexion<span
+							class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Connexion</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}agent/client/afficheAdd">Inscription</a></li>
+								href="${pageContext.request.contextPath}/boVoyage/client/accueil">Connexion
+									Client</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/agent/client/afficheAdd">Inscription</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Connexion Agent</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/boVoyage/agent/accueil">Espace
+									Administrateur</a></li>
 						</ul></li>
+						
 					<li><a
 						href="${pageContext.request.contextPath}/contact/envoiMail">Contactez-nous</a></li>
-					<li></li>
-					<li></li>
+					
 				</ul>
+				
+				
 			</div>
 			<!-- /.nav-collapse -->
 		</div>

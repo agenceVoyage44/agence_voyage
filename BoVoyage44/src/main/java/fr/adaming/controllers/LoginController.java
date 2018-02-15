@@ -18,7 +18,7 @@ public class LoginController {
 		return "accueil";
 	}
 
-	@RequestMapping(value = "/refus", method = RequestMethod.GET)
+	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET)
 	public String accesRefuse() {
 		return "pageDenied";
 	}
