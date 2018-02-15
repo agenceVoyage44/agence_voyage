@@ -38,7 +38,15 @@
 	<!-- Header User -->
 	<%@ include file="/template/headerU.html"%>
 
-	<br><br><br><br><br>
+	<br><br><br>
+		<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+	<h2 style="text-align: center;">Choissisez votre continent pour un voyage de rêve !</h2>
+	<br>
 	<!-- Map Survol -->
 	<div class="map" id="map">
 	
@@ -109,7 +117,12 @@
 		</div>
 
 	</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
 
+	</div>
 	<script type="text/javascript"
 		src="<c:url value="/resources/js/map.js"/>"></script>
 

@@ -1,25 +1,27 @@
+
+
 .map {
 	overflow: hidden;
 }
 
 .map__image {
-	margin-top: 80px;
+	margin-top: 25px;
 	margin-bottom:50px;
 	width: 50%;
 	height: auto;
-	margin-left: 20%;
+	margin-left: 25%;
 }
 
 .map__image path {
-	fill: #FFF0BC;
-	stroke: #F6DC12;
+	fill: #00CCCB;
+	stroke: #21177D;
 	stroke-width: 1px;
 	transition: fill 0.3s;
 }
 
 
 .map__image .is-active #area-south_america_path  {
-	fill: #A9EAFE;
+	fill: #1B019B;
 }
 .map__image .is-active #area-north_america_path  {
 	fill: #C60800;
@@ -28,7 +30,7 @@
 	fill: #F9429E;
 }
 .map__image .is-active #area-europe_path  {
-	fill: #B0F2B6;
+	fill: #9EFD38;
 }
 .map__image .is-active #area-australia_path  {
 	fill: #CFA0E9;
@@ -45,7 +47,7 @@
 }
 
 .map__list #list-south_america.is-active {
-	color: #A9EAFE;
+	color: #1B019B;
 	font-weight: bold;
 }
 
@@ -59,7 +61,7 @@
 	font-weight: bold;
 }
 .map__list #list-europe.is-active {
-	color: #B0F2B6;
+	color: #54F98D	;
 	font-weight: bold;
 }
 .map__list #list-australia.is-active {
@@ -73,6 +75,7 @@
 
 
 .map__list ul li {
-	font-size: xx-large;
+	font-size: x-large;
 	display: inline;
+	margin-left: 4%;
 }
