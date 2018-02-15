@@ -68,9 +68,6 @@ public class VoyageController {
 		
 		List<Voyage> liste = voyageService.getAllVoyage();
 		
-		Voyage v = new Voyage();
-		
-		v.setContinent(continent);
 		
 		for (Voyage voyage : liste) {
 			if(voyage.getContinent().equals(continent)){
@@ -78,25 +75,9 @@ public class VoyageController {
 			}
 		}
 		
-		modele.addAttribute("voyageListContinent", listeContinents);
-		
-		return new ModelAndView("voyageListeContinents", "voyagePays", v);
+		return new ModelAndView("voyageListeContinents", "voyageListContinent", listeContinents);
 	}
 	
-	@RequestMapping(value = "/listePaysContinent", method = RequestMethod.POST)
-	public ModelAndView afficheListePaysContinent(@ModelAttribute("voyagePays") Voyage v) {
-		List<Voyage> listePays=new ArrayList<Voyage>();
-		
-		List<Voyage> liste = voyageService.getAllVoyage();
-		
-		for (Voyage voyage : liste) {
-			if(voyage.getContinent().equals(v.getContinent()) & voyage.getPays().startsWith(v.getPays())){
-				listePays.add(voyage);
-			}
-		}
-
-		return new ModelAndView("voyageListeContinents", "voyageListContinent", listePays);
-	}
 	
 	@RequestMapping(value = "/photoVoyage", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
