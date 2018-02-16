@@ -230,10 +230,7 @@ public class ReservationServiceImpl implements IReservationService {
 		// Multipart multipart = new MimeMultipart();
 		// MimeBodyPart messageBodyPart = new MimeBodyPart();
 
-		msg.setText("Vous avez effectué une réservation le " + reservation.getDateReservation() + " pour partir en "
-				+ reservation.getVoyage().getPays() + " du " + reservation.getVoyage().getDateDepart() + " au "
-				+ reservation.getVoyage().getDateRetour()
-				+ ". Pensez à valider votre séjour : \n http://localhost:8080/BoVoyage44/boVoyage/reservation/client/liste");
+		msg.setText("Vous avez effectué une réservation le " + reservation.getDateReservation()+ ". Pensez à valider votre séjour : \n http://localhost:8080/BoVoyage44/boVoyage/reservation/client/liste");
 		// multipart.addBodyPart(messageBodyPart);
 
 		// messageBodyPart = new MimeBodyPart();
