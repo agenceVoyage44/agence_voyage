@@ -25,7 +25,7 @@
 
 
 	<div style="height: 90px">
-		<%@ include file="/template/headerA.html"%>
+		<%@ include file="/template/headerC.html"%>
 	</div>
 
 
