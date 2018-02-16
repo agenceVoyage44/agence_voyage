@@ -62,6 +62,30 @@
 
 					<h1 style="color: #0131B4; text-align: center">Liste des
 						voyages</h1>
+						
+								<form:form method="POST" action="listePays"
+						modelAttribute="voyagePays" cssClass="form-horizontal">
+
+						<div class="form-group">
+							<form:label path="pays" class="col-sm-offset-2 col-sm-2 control-label">Pays</form:label>
+							<div class="col-sm-5">
+								<form:input path="pays" class="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-8">
+								<input type="submit" class="btn btn-success" value="Rechercher" />
+								<button type="button" class="btn btn-primary"
+						onclick="location.href = '${pageContext.request.contextPath}/voyage/liste'">Retour</button>
+							</div>
+						</div>
+
+					</form:form>
+					
+					<br/>
+						
+						
 					<div class="row">
 						<c:forEach var="v" items="${voyageList}">
 
