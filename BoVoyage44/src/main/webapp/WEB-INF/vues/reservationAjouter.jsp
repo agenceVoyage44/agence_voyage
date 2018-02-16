@@ -23,7 +23,7 @@
 </head>
 <body>
 	<!-- Header User -->
-	<%@ include file="/template/headerU.html"%>
+	<%@ include file="/template/headerC.html"%>
 
 <br><br><br><br><br>
 <div class="row" style="margin-right: 200px;margin-left: 150px;">
