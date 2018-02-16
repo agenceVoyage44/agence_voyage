@@ -200,8 +200,8 @@ public class ReservationController {
 
 	// ---------------------------Modifier une Reservation -------------
 	// Modification de l'agent (Seulement le statut
-	@RequestMapping(value = "/agent/afficherUpdate/{pId}", method = RequestMethod.GET)
-	public String afficherModifierReservationAgent(Model modele, @PathVariable("pId") int idResa) {
+	@RequestMapping(value = "/agent/afficherUpdate", method = RequestMethod.GET)
+	public String afficherModifierReservationAgent(Model modele, @RequestParam("pId") int idResa) {
 		System.out.println("----------je suis dans get");
 		Reservation rOut = reservationService.getReservationByID(idResa);
 		modele.addAttribute("resaUpdateA", rOut);

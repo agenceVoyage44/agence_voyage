@@ -55,7 +55,7 @@
 								<td><%-- ${reservation.listeParticipants} --%></td>
 								<td>${reservation.assurance.type}</td>
 								<td><button type="button" class="btn btn-primary"
-										onclick="location.href = 'afficherUpdate/${reservation.id}'">Modifier le statut</button></td>
+										onclick="location.href = 'afficherUpdate?pId=${reservation.id}'">Modifier le statut</button></td>
 							</tr>
 						</c:forEach>
 					</table>
