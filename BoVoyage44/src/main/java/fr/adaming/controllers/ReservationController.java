@@ -210,7 +210,9 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value = "/agent/soumettreUpdate", method = RequestMethod.POST)
-	public String soumettreModifReservationAgent(@ModelAttribute("resaUpdateA") Reservation reservation) throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException, DocumentException {
+	public String soumettreModifReservationAgent(@ModelAttribute("resaUpdateA") Reservation reservation)
+			throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException,
+			DocumentException {
 		System.out.println("----------je suis dans post");
 
 		Reservation rOut = reservationService.getReservationByID(reservation.getId());
@@ -273,7 +275,9 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value = "/client/soumettreUpdate", method = RequestMethod.POST)
-	public String soumettreModifReservation(@ModelAttribute("resaUpdateC") Reservation reservation) throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException, DocumentException {
+	public String soumettreModifReservation(@ModelAttribute("resaUpdateC") Reservation reservation)
+			throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException,
+			DocumentException {
 
 		Reservation rOut = reservationService.getReservationByID(reservation.getId());
 		System.out.println("----------------rOut : " + rOut);
@@ -332,22 +336,22 @@ public class ReservationController {
 		}
 
 		// validation de la réservation
-		
-		Client cRes = clientService.getClientByReservation(reservation.getId());
-		List<Participant> listePart = participantService.getParticipantsByReservation(reservation.getId());
+
+		Client cRes = clientService.getClientByReservation(rOut.getId());
+		List<Participant> listePart = participantService.getParticipantsByReservation(rOut.getId());
 		Reservation rOut2 = reservationService.updateReservation(rOut);
 		Document document = new Document();
 
 		try {
 
 			PdfWriter.getInstance(document, new FileOutputStream(
-					"C:/Users/inti-0257/Desktop/PDF_BoVoyage/Reservation_voyage_" + reservation.getId() + ".pdf"));
+					"C:/Users/inti-0257/Desktop/PDF_BoVoyage/Reservation_voyage_" + rOut2.getId() + ".pdf"));
 
 			document.open();
 			Font font = new Font(Font.HELVETICA, 14, Font.BOLD, Color.RED);
 
 			Image image = Image.getInstance("C:/Users/inti-0257/Desktop/logo.png");
-			
+
 			image.scalePercent((float) 10);
 			System.out.println("---------------" + cRes);
 			document.add(image);
@@ -359,7 +363,7 @@ public class ReservationController {
 					+ cRes.getCodePostal() + " " + cRes.getVille() + " " + cRes.getPays()));
 			document.add(new Paragraph("N° de téléphone : " + cRes.getTel()));
 			document.add(new Paragraph("Date de naissance : " + cRes.getDateNaissance()));
-			document.add(new Paragraph("Date de la réservation : " + reservation.getDateReservation()));
+			document.add(new Paragraph("Date de la réservation : " + rOut2.getDateReservation()));
 
 			document.add(new Paragraph(" "));
 
@@ -389,11 +393,11 @@ public class ReservationController {
 			table.addCell("Prix");
 
 			//
-			table.addCell(reservation.getVoyage().getPays());
-			table.addCell(Integer.toString(reservation.getNbPlaceReservees()));
-			table.addCell(reservation.getVoyage().getDateDepart().toString());
-			table.addCell(reservation.getVoyage().getDateRetour().toString());
-			table.addCell(Double.toString(reservation.getPrix()) + " €");
+			table.addCell(rOut2.getVoyage().getPays());
+			table.addCell(Integer.toString(rOut2.getNbPlaceReservees()));
+			table.addCell(rOut2.getVoyage().getDateDepart().toString());
+			table.addCell(rOut2.getVoyage().getDateRetour().toString());
+			table.addCell(Double.toString(rOut2.getPrix()) + " €");
 
 			document.add(table);
 
@@ -449,30 +453,30 @@ public class ReservationController {
 		msg.setSubject("BoVoyage44 - Votre réservation est validée");
 		msg.setSentDate(new Date());
 
-		Multipart multipart = new MimeMultipart();
-		MimeBodyPart messageBodyPart = new MimeBodyPart();
+		String message="Votre réservation effectuée le " + rOut2.getDateReservation().toString() + " pour partir en "
+				+ rOut2.getVoyage().getPays() + " du " + rOut2.getVoyage().getDateDepart().toString() + " au "
+				+ rOut2.getVoyage().getDateRetour().toString()
+				+ " est validée. L'équipe de BoVoyage44 vous souhaite un bon voyage !";
+		msg.setText(message);
+		
+		System.out.println(message);
 
-		msg.setText("Votre réservation effectuée le " + reservation.getDateReservation() + " pour partir en "
-				+ reservation.getVoyage().getPays() + " du " + reservation.getVoyage().getDateDepart() + " au "
-				+ reservation.getVoyage().getDateRetour()
-				+ " est validée. L'équipe de BoVoyage44 vous souhaite un bon voyage !");
-		//multipart.addBodyPart(messageBodyPart);
-
-		//messageBodyPart = new MimeBodyPart();
+		Multipart multipart2 = new MimeMultipart();
+		MimeBodyPart messageBodyPart2 = new MimeBodyPart();
 
 		DataSource source = new FileDataSource(
-				"C:/Users/inti-0257/Desktop/PDF_BoVoyage/Reservation_voyage_" + reservation.getId() + ".pdf");
-		messageBodyPart.setDataHandler(new DataHandler(source));
-		messageBodyPart.setFileName("reservation_" + reservation.getId() + ".pdf");
-		multipart.addBodyPart(messageBodyPart);
-		msg.setContent(multipart);
+				"C:/Users/inti-0257/Desktop/PDF_BoVoyage/Reservation_voyage_" + rOut2.getId() + ".pdf");
+		messageBodyPart2.setDataHandler(new DataHandler(source));
+		messageBodyPart2.setFileName("reservation_" + rOut2.getId() + ".pdf");
+		multipart2.addBodyPart(messageBodyPart2);
+		msg.setContent(multipart2);
 
 		SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
 		t.connect("smtp.gmail.com", "application.j2ee@gmail.com", "adamingintijee");
 		t.sendMessage(msg, msg.getAllRecipients());
 		System.out.println("Mail envoyé");
 		t.close();
-		//Reservation rOut2 = reservationService.updateReservation(rOut);
+		// Reservation rOut2 = reservationService.updateReservation(rOut);
 
 		if (rOut2.getId() != 0) {
 
@@ -593,7 +597,9 @@ public class ReservationController {
 
 	// La méthode pour soumettre le formulaire en Post
 	@RequestMapping(value = "/client/soumettreAddPart", method = RequestMethod.POST)
-	public String soumettreFormPartA(RedirectAttributes ra, Model modele, @ModelAttribute("partAjout") Participant p) throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException, DocumentException {
+	public String soumettreFormPartA(RedirectAttributes ra, Model modele, @ModelAttribute("partAjout") Participant p)
+			throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException,
+			DocumentException {
 		System.out.println("******************Je suis dans soumettreAddPart");
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
