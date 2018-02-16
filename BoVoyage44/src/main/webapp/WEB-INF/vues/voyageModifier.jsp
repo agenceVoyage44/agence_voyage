@@ -92,14 +92,14 @@
 						<div class="form-group">
 							<form:label path="dateDepart" cssClass="col-sm-3 control-label">Date de départ</form:label>
 							<div class="col-sm-6">
-								<form:input path="dateDepart" cssClass="form-control" />
+								<form:input path="dateDepart" cssClass="form-control" placeholder="jj-mm-aaaa"/>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<form:label path="dateRetour" cssClass="col-sm-3 control-label">Date de retour</form:label>
 							<div class="col-sm-6">
-								<form:input path="dateRetour" cssClass="form-control" />
+								<form:input path="dateRetour" cssClass="form-control" placeholder="jj-mm-aaaa"/>
 							</div>
 						</div>
 

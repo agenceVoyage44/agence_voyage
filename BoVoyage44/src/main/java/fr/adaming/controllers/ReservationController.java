@@ -216,6 +216,9 @@ public class ReservationController {
 		System.out.println("----------je suis dans post");
 
 		Reservation rOut = reservationService.getReservationByID(reservation.getId());
+		System.out.println("--------reservation : " + reservation);
+		System.out.println("--------reservation getID : " + reservation.getId());
+		System.out.println("--------rOut : " + rOut);
 		reservationService.updateReservation(rOut);
 
 		if (rOut.getId() != 0) {
@@ -667,9 +670,20 @@ public class ReservationController {
 			for (Participant element : listeParticipant) {
 				participantService.deleteParticipant(element.getId());
 			}
+
+			// On rajoute les places réservées de la réservation au nombre de
+			// place dispo pour le voyage
+			Voyage vOUt = reservation.getVoyage();
+			vOUt.setNbPlaces(vOUt.getNbPlaces() + reservation.getNbPlaceReservees());
+			voyageService.updateVoyage(vOUt);
 		} else {
 			Participant part = participantService.getParticipantIDResa(reservation.getId());
 			participantService.deleteParticipant(part.getId());
+			// On rajoute les places réservées de la réservation au nombre de
+			// place dispo pour le voyage
+			Voyage vOUt = reservation.getVoyage();
+			vOUt.setNbPlaces(vOUt.getNbPlaces() + reservation.getNbPlaceReservees());
+			voyageService.updateVoyage(vOUt);
 		}
 
 		// appel de la methode service
@@ -682,5 +696,6 @@ public class ReservationController {
 		return "reservationListeClient";
 
 	}
+
 
 }
