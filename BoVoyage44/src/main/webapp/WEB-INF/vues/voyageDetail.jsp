@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Title</title>
+<title>BoVoyage - Voyage</title>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
 <script type="text/javascript"
