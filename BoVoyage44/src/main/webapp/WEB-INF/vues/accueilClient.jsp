@@ -78,7 +78,7 @@
 									<p style="text-align: center;">Quitter votre espace client.</p>
 									<h3>
 										<button type="button" class="btn btn-primary"
-											onclick="location.href = 'deconnexion'">Se déconnecter</button>
+											onclick="location.href = '../../deconnexion'">Se déconnecter</button>
 									</h3>
 								</div>
 							</div>
