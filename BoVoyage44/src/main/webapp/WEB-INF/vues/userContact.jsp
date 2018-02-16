@@ -24,63 +24,99 @@
 	<div style="height: 90px">
 		<%@ include file="/template/headerU.html"%>
 	</div>
-<div class="row">
+	<div class="row">
 		<div class="col-md-1"></div>
 
 		<div class="col-md-10">
-	<div class="panel panel-default">
-		<div class="bs-callout bs-callout-color">
-			<h2 >Demande d'informations</h2>
-			<br>
-			<form:form method="POST" action="soumettreEnvoi"
-				modelAttribute="user" cssClass="form-horizontal" >
 
 
-				<div class="form-group">
-					<form:label path="nom" class="col-sm-2 control-label">Nom</form:label>
-					<div class="col-sm-6">
-						<form:input path="nom" cssClass="form-control" />
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
+				
+				
+				
+				
+					<div class="row"
+						style="background-color: #ffffff; border-radius: 25px; border-style: solid">
+						<div class="col-md-4">
+							<h2>
+								<b>- BoVoyage -</b>
+							</h2>
+							<br>
+							<h4>Adresse : 24 rue Crebillon, 44000 Nantes</h4>
+							<br>
+							<h4>
+								Horaires : <br /> Du Mardi au Samedi : 9h - 19h
+							</h4>
+
+						</div>
+						<div class="col-md-4">
+							<h4>
+								Tel : 02 60 60 60 60<br /> Fax : 02 80 80 80 80 <br /> <br />
+								Mail: <em>bo.voyage@bv.fr</em>
+							</h4>
+						</div>
+						<div class="col-md-4">
+							<img src="../images/agence.jpg"
+								style="border-style: solid; border-radius: 25px;" width="398px"/>
+						</div>
 					</div>
+
+
+
+
+
+					<h2>Demande d'informations</h2>
+					<br>
+					<form:form method="POST" action="soumettreEnvoi"
+						modelAttribute="user" cssClass="form-horizontal">
+
+
+						<div class="form-group">
+							<form:label path="nom" class="col-sm-3 control-label">Nom</form:label>
+							<div class="col-sm-6">
+								<form:input path="nom" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="prenom" class="col-sm-3 control-label">Prénom</form:label>
+							<div class="col-sm-6">
+								<form:input path="prenom" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="mail" class="col-sm-3 control-label">Mail</form:label>
+							<div class="col-sm-6">
+								<form:input path="mail" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="rue" class="col-sm-3 control-label">Votre message (veuillez renseigner vos coordonnées pour que nous puissions vous répondre) :</form:label>
+							<div class="col-sm-6">
+								<form:textarea class="form-control" rows="5" path="rue"></form:textarea>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6">
+								<input type="submit" class="btn btn-success" value="Envoyer" />
+							</div>
+						</div>
+
+					</form:form>
+
+					<p style="color: red; text-align: center">${message}</p>
+
 				</div>
-
-				<div class="form-group">
-					<form:label path="prenom" class="col-sm-2 control-label">Prénom</form:label>
-					<div class="col-sm-6">
-						<form:input path="prenom" cssClass="form-control" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="mail" class="col-sm-2 control-label">Mail</form:label>
-					<div class="col-sm-6">
-						<form:input path="mail" cssClass="form-control" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="rue" class="col-sm-2 control-label">Votre message (veuillez renseigner vos coordonnées pour que nous puissions vous répondre) :</form:label>
-					<div class="col-sm-6">
-					<form:textarea class="form-control" rows="5" path="rue"></form:textarea>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<input type="submit" class="btn btn-success" value="Envoyer" />
-					</div>
-				</div>
-
-			</form:form>
-
-			<p style="color: red; text-align: center">${message}</p>
-
-		</div>
-	</div>
 			</div>
 		</div>
-		<div class="col-md-1"></div>
+	</div>
+	<div class="col-md-1"></div>
 
-	
-	
+
+
 </body>
 </html>
