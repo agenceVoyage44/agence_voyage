@@ -222,26 +222,14 @@ public class ReservationServiceImpl implements IReservationService {
 		Session session = Session.getInstance(props, null);
 		Message msg = new MimeMessage(session);
 		msg.setFrom(new InternetAddress("application.j2ee@gmail.com"));
-		;
+		
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(cRes.getMail(), false));
 		msg.setSubject("BoVoyage44 - Votre réservation est en attente de validation");
 		msg.setSentDate(new Date());
 
-		// Multipart multipart = new MimeMultipart();
-		// MimeBodyPart messageBodyPart = new MimeBodyPart();
 
 		msg.setText("Vous avez effectué une réservation le " + reservation.getDateReservation()+ ". Pensez à valider votre séjour : \n http://localhost:8080/BoVoyage44/boVoyage/reservation/client/liste");
-		// multipart.addBodyPart(messageBodyPart);
 
-		// messageBodyPart = new MimeBodyPart();
-		// DataSource source = new
-		// FileDataSource("C:/Users/inti-0257/Desktop/Reservation_voyage_" +
-		// reservation.getId() + ".pdf");
-		// messageBodyPart.setDataHandler(new DataHandler(source));
-		// messageBodyPart.setFileName("reservation_" + reservation.getId() +
-		// ".pdf");
-		// multipart.addBodyPart(messageBodyPart);
-		// msg.setContent(multipart);
 
 		SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
 		t.connect("smtp.gmail.com", "application.j2ee@gmail.com", "adamingintijee");

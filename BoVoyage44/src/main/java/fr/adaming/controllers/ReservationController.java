@@ -460,16 +460,18 @@ public class ReservationController {
 		msg.setText(message);
 		
 		System.out.println(message);
-
-		Multipart multipart2 = new MimeMultipart();
-		MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+		
+		Multipart multipart = new MimeMultipart();
+		MimeBodyPart messageBodyPart = new MimeBodyPart();
+		messageBodyPart.setText(message);
+		
 
 		DataSource source = new FileDataSource(
 				"C:/Users/inti-0257/Desktop/PDF_BoVoyage/Reservation_voyage_" + rOut2.getId() + ".pdf");
-		messageBodyPart2.setDataHandler(new DataHandler(source));
-		messageBodyPart2.setFileName("reservation_" + rOut2.getId() + ".pdf");
-		multipart2.addBodyPart(messageBodyPart2);
-		msg.setContent(multipart2);
+		messageBodyPart.setDataHandler(new DataHandler(source));
+		messageBodyPart.setFileName("reservation_" + rOut2.getId() + ".pdf");
+		multipart.addBodyPart(messageBodyPart);
+		msg.setContent(multipart);
 
 		SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
 		t.connect("smtp.gmail.com", "application.j2ee@gmail.com", "adamingintijee");
