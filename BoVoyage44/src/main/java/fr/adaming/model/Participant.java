@@ -35,6 +35,8 @@ public class Participant {
 	@Column(name = "id_p")
 	protected int id;
 
+	private String typeP;
+	
 	protected String nom;
 
 	protected String prenom;
@@ -64,9 +66,12 @@ public class Participant {
 		super();
 	}
 
-	public Participant(String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance) {
+	
+
+	public Participant(String typeP, String nom, String prenom, int tel, String civilite, int numero, String rue,
+			int codePostal, String ville, String pays, Date dateNaissance) {
 		super();
+		this.typeP = typeP;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.tel = tel;
@@ -79,10 +84,11 @@ public class Participant {
 		this.dateNaissance = dateNaissance;
 	}
 
-	public Participant(int id, String nom, String prenom, int tel, String civilite, int numero, String rue,
+	public Participant(int id, String typeP, String nom, String prenom, int tel, String civilite, int numero, String rue,
 			int codePostal, String ville, String pays, Date dateNaissance) {
 		super();
 		this.id = id;
+		this.typeP = typeP;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.tel = tel;
@@ -94,6 +100,8 @@ public class Participant {
 		this.pays = pays;
 		this.dateNaissance = dateNaissance;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -189,6 +197,14 @@ public class Participant {
 
 	public void setReservation(Reservation reservation) {
 		this.reservation = reservation;
+	}
+
+	public String getTypeP() {
+		return typeP;
+	}
+
+	public void setTypeP(String typeP) {
+		this.typeP = typeP;
 	}
 
 	@Override

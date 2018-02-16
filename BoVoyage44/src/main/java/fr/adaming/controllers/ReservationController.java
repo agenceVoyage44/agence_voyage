@@ -12,6 +12,7 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.sound.midi.Synthesizer;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -39,10 +40,13 @@ import fr.adaming.model.Formule;
 import fr.adaming.model.Hebergement;
 import fr.adaming.model.Participant;
 import fr.adaming.model.Reservation;
+import fr.adaming.model.Voyage;
 import fr.adaming.service.IAssuranceService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IParticipantService;
 import fr.adaming.service.IReservationService;
+import fr.adaming.service.IVoitureService;
+import fr.adaming.service.IVoyageService;
 
 /**
  * Controller pour tous les objets de type Reservation
@@ -64,6 +68,9 @@ public class ReservationController {
 	@Autowired
 	private IClientService clientService;
 
+	@Autowired
+	private IVoyageService voyageService;
+
 	public void setReservationService(IReservationService reservationService) {
 		this.reservationService = reservationService;
 	}
@@ -78,6 +85,10 @@ public class ReservationController {
 
 	public void setClientService(IClientService clientService) {
 		this.clientService = clientService;
+	}
+
+	public void setVoyageService(IVoyageService voyageService) {
+		this.voyageService = voyageService;
 	}
 
 	@InitBinder // Pour transformer la date reçue de la page en une date java
@@ -96,10 +107,18 @@ public class ReservationController {
 	 * 
 	 */
 
-	@RequestMapping(value = "/client/afficherAdd", method = RequestMethod.GET)
-	public String afficherAjouterReservation(Model modele) {
+	@RequestMapping(value = "/client/afficherAdd/{pID}", method = RequestMethod.GET)
+	public String afficherAjouterReservation(Model modele, @PathVariable("pID") int idVoyage) {
 
-		modele.addAttribute("resaAdd", new Reservation());
+		Voyage voyage = new Voyage();
+		Voyage vOut = voyageService.getVoyageById(idVoyage);
+		System.out.println("-----------voyage : " + vOut);
+
+		Reservation reservation = new Reservation();
+		reservation.setVoyage(vOut);
+		System.out.println("-------------reservation id voyage :" + reservation.getVoyage());
+
+		modele.addAttribute("resaAdd", reservation);
 
 		// Récupérer la liste de toutes les assurances possibles
 		List<Assurance> liste = assuranceService.getAllAssurance();
@@ -124,43 +143,76 @@ public class ReservationController {
 	@RequestMapping(value = "/client/soumettreAdd", method = RequestMethod.POST)
 	public String soumettreAjoutEtudiant(RedirectAttributes ra, @ModelAttribute("resaAdd") Reservation reservation)
 			throws AddressException, FileNotFoundException, MalformedURLException, MessagingException, IOException {
+		System.out.println("--------------dans la methode post ; " + reservation + " " + reservation.getVoyage());
+
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String mail = auth.getName();
 		Client client = clientService.getClientByMail(mail);
 		System.out.println("---------client : " + client);
 
-		reservation.setStatut("non validé par " + client.getCivilite() + " " + client.getNom());
-		reservation.setDateReservation(new Date());
-		Reservation rOut = reservationService.addReservation(reservation);
-		System.out.println("----------rOut : " + rOut);
+		if (client.getReservation() == null) {
+			reservation.setNbPlaceReservees(0);
+			reservation.setStatut("non validé par " + client.getCivilite() + " " + client.getNom());
+			reservation.setDateReservation(new Date());
+			Reservation rOut = reservationService.addReservation(reservation);
+			System.out.println("----------rOut : " + rOut);
 
-		// Donner la réservation au client qui paye
-		client.setReservation(rOut);
-		Client clOut = clientService.updateClient(client);
-		System.err.println("-----------client updaté : " + clOut);
+			// Donner la réservation au client qui paye
+			client.setReservation(rOut);
+			Client clOut = clientService.updateClient(client);
+			System.err.println("-----------client updaté : " + clOut);
+			if (rOut.getId() != 0) {
 
-		if (rOut.getId() != 0) {
-
-			return "redirect:afficherAddPart";
+				return "redirect:afficherAddPart";
+			} else {
+				return "redirect:afficherAdd";
+			}
 		} else {
-			return "redirect:afficherAdd";
+			return "reservationAjouter";
 		}
 
 	}
 
 	// ---------------------------Modifier une Reservation -------------
 	// Modification de l'agent (Seulement le statut
-	@RequestMapping(value = "/agent/afficherUpdate", method = RequestMethod.GET)
-	public ModelAndView afficherModifierReservationAgent() {
-		return new ModelAndView("reservationModifierAgent", "resaUpdateA", new Reservation());
+	@RequestMapping(value = "/agent/afficherUpdate/{pId}", method = RequestMethod.GET)
+	public String afficherModifierReservationAgent(Model modele, @PathVariable("pId") int idResa) {
+		System.out.println("----------je suis dans get");
+		Reservation rOut = reservationService.getReservationByID(idResa);
+		modele.addAttribute("resaUpdateA", rOut);
+		System.out.println("---------modele : " + modele);
+		return "reservationModifierAgent";
 	}
 
 	@RequestMapping(value = "/agent/soumettreUpdate", method = RequestMethod.POST)
 	public String soumettreModifReservationAgent(@ModelAttribute("resaUpdateA") Reservation reservation) {
-		Reservation rOut = reservationService.updateReservation(reservation);
+		System.out.println("----------je suis dans post");
+
+		Reservation rOut = reservationService.getReservationByID(reservation.getId());
+		reservationService.updateReservation(rOut);
 
 		if (rOut.getId() != 0) {
+
+			List<Reservation> listeResa = reservationService.getAllReservation();
+			for (Reservation element : listeResa) {
+				if (element.getStatut() == "Validée") {
+					if (element.getNbPlaceReservees() > 1) {
+						// suppression de tous les participants (avant la
+						// reservation car FK)
+						List<Participant> listeParticipant = participantService
+								.getParticipantsByReservation(element.getId());
+						for (Participant part : listeParticipant) {
+							participantService.deleteParticipant(part.getId());
+						}
+					} else {
+						Participant participant = participantService.getParticipantIDResa(element.getId());
+						participantService.deleteParticipant(participant.getId());
+					}
+					// Puis suppression de la reservation
+					reservationService.deleteReservation(element.getId());
+				}
+			}
 
 			return "redirect:liste";
 		} else {
@@ -174,7 +226,6 @@ public class ReservationController {
 	public String modifielienC(Model modele, @RequestParam("pId") int id) {
 
 		Reservation reservation = new Reservation();
-
 		reservation.setId(id);
 
 		// recup resa de la bd
@@ -193,14 +244,6 @@ public class ReservationController {
 		modele.addAttribute("prixMax", prixMax);
 
 		System.out.println("-------------modele :" + modele);
-
-		return "reservationModifierClient";
-	}
-
-	// *****afficher le formulaire de modif*******
-	@RequestMapping(value = "/client/afficheUpdate", method = RequestMethod.GET)
-	public String updateHeberg(Model modele) {
-		modele.addAttribute("resaUpdateC", new Reservation());
 
 		return "reservationModifierClient";
 	}
@@ -274,6 +317,15 @@ public class ReservationController {
 			return "redirect:afficherUpdate";
 		}
 	}
+
+	// // *****afficher le formulaire de modif*******
+	// @RequestMapping(value = "/client/afficheUpdate", method =
+	// RequestMethod.GET)
+	// public String updateHeberg(Model modele) {
+	// modele.addAttribute("resaUpdateC", new Reservation());
+	//
+	// return "reservationModifierClient";
+	// }
 
 	// ---------------------------Supprimer une Reservation -------------
 	// --------------------------Agent--------------------
@@ -377,7 +429,7 @@ public class ReservationController {
 
 	// La méthode pour soumettre le formulaire en Post
 	@RequestMapping(value = "/client/soumettreAddPart", method = RequestMethod.POST)
-	public String soumettreFormPartA(Model modele, @ModelAttribute("partAjout") Participant p) {
+	public String soumettreFormPartA(RedirectAttributes ra, Model modele, @ModelAttribute("partAjout") Participant p) {
 		System.out.println("******************Je suis dans soumettreAddPart");
 		// recupération du client pour setter l'id reservation
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -388,29 +440,33 @@ public class ReservationController {
 		// Donner la réservation au nouveau participant
 		p.setReservation(client.getReservation());
 
-		// appel de la methode service pour Particpant
-		Participant pOut = participantService.addParticipant(p);
-		System.out.println("****************Participant pOut ajouté : " + pOut);
-
 		// incrémenter le nombre de place reservées
 		Reservation rOut = reservationService.getReservationByID(client.getReservation().getId());
 
-		int placeReservee = rOut.getNbPlaceReservees() + 1;
-		rOut.setNbPlaceReservees(placeReservee);
-		reservationService.updateReservation(rOut);
-		// if (rOut.getVoyage().getNbPlaces() > placeReservee) {
+		// int placeReservee = rOut.getNbPlaceReservees() + 1;
 		// rOut.setNbPlaceReservees(placeReservee);
 		// reservationService.updateReservation(rOut);
-		// } else {
-		//
-		// }
 
-		if (pOut.getId() != 0) {
+		int placeReservee = rOut.getNbPlaceReservees() + 1;
+		if (rOut.getVoyage().getNbPlaces() >= placeReservee) {
+
+			// appel de la methode service pour ajouter un Particpant
+			p.setTypeP("part");
+			Participant pOut = participantService.addParticipant(p);
+			System.out.println("****************Participant pOut ajouté : " + pOut);
+
+			rOut.setNbPlaceReservees(placeReservee);
+			reservationService.updateReservation(rOut);
+			Voyage vOut = rOut.getVoyage();
+			vOut.setNbPlaces(rOut.getVoyage().getNbPlaces() - placeReservee);
+			voyageService.updateVoyage(vOut);
+
 			// rediriger vers la méthode afficheListe
 			return "reservationParticipantAjouter";
 		} else {
 			// rediriger vers la méthode afficheAjout
-			return "redirect:afficheAddPart";
+			ra.addFlashAttribute("msg", "Il n'y a plus de places diponibles pour ce voyage");
+			return "participantAjouter";
 		}
 
 	}
@@ -422,6 +478,7 @@ public class ReservationController {
 	public String supprimerlienClient(Model model, @PathVariable("pId") int id) {
 
 		Reservation reservation = new Reservation();
+		reservation = reservationService.getReservationByID(id);
 
 		// recupération du client pour
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -431,14 +488,17 @@ public class ReservationController {
 		client.setReservation(null);
 		clientService.updateClient(client);
 
-		// suppression de tous les participants
-		List<Participant> listeParticipant = participantService.getParticipantsByReservation(id);
-		System.out.println("---------------" + listeParticipant);
-		for (Participant element : listeParticipant) {
-			participantService.deleteParticipant(element.getId());
+		if (reservation.getNbPlaceReservees() > 1) {
+			// suppression de tous les participants
+			List<Participant> listeParticipant = participantService.getParticipantsByReservation(id);
+			System.out.println("---------------" + listeParticipant);
+			for (Participant element : listeParticipant) {
+				participantService.deleteParticipant(element.getId());
+			}
+		} else {
+			Participant part = participantService.getParticipantIDResa(reservation.getId());
+			participantService.deleteParticipant(part.getId());
 		}
-
-		reservation.setId(id);
 
 		// appel de la methode service
 		reservationService.deleteReservation(id);

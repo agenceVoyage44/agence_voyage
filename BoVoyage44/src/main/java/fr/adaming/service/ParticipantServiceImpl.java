@@ -58,8 +58,8 @@ public class ParticipantServiceImpl implements IParticipantService {
 	}
 
 	@Override
-	public Participant getParticipantIDResaNull() {
-		return participantDao.getParticipantIDResaNull();
+	public Participant getParticipantIDResa(int idResa) {
+		return participantDao.getParticipantIDResa(idResa);
 	}
 
 }

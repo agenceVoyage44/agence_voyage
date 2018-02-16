@@ -69,7 +69,8 @@
 							<form:label path="dateNaissance"
 								cssClass="col-sm-3 control-label">Date de naissance</form:label>
 							<div class="col-sm-6">
-								<form:input type="date" path="dateNaissance" cssClass="form-control" />
+								<form:input type="date" path="dateNaissance"
+									cssClass="form-control" />
 							</div>
 						</div>
 
@@ -122,6 +123,7 @@
 								<input type="submit" class="btn btn-success" value="Ajouter">
 							</div>
 						</div>
+<h1>${message}</h1>
 					</form:form>
 					<br />
 

@@ -38,7 +38,7 @@ public class Reservation {
 
 	private double prix;
 
-	// @Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date dateReservation;
 
 	private int nbPlaceReservees;

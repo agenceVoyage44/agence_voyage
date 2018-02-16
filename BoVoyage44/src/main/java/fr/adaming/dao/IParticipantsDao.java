@@ -75,7 +75,7 @@ public interface IParticipantsDao {
 	
 	public List<Participant> getAllParticpantIDResaNULL();
 	
-	public Participant getParticipantIDResaNull();
+	public Participant getParticipantIDResa(int idResa);
 	
 	
 }

@@ -34,24 +34,24 @@ public class Client extends Participant {
 		super();
 	}
 
-	public Client(String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp, boolean active) {
-		super(nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
+
+	public Client(String typeP, String nom, String prenom, int tel, String civilite, int numero, String rue,
+			int codePostal, String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp) {
+		super(typeP, nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
 		this.numCB = numCB;
 		this.mail = mail;
 		this.mdp = mdp;
-		this.active = active;
-
 	}
+	
 
-	public Client(int id, String nom, String prenom, int tel, String civilite, int numero, String rue, int codePostal,
-			String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp, boolean active) {
-		super(id, nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
+	public Client(int id, String typeP, String nom, String prenom, int tel, String civilite, int numero, String rue,
+			int codePostal, String ville, String pays, Date dateNaissance, long numCB, String mail, String mdp) {
+		super(id, typeP, nom, prenom, tel, civilite, numero, rue, codePostal, ville, pays, dateNaissance);
 		this.numCB = numCB;
 		this.mail = mail;
 		this.mdp = mdp;
-		this.active = active;
 	}
+
 
 	public long getNumCB() {
 		return numCB;

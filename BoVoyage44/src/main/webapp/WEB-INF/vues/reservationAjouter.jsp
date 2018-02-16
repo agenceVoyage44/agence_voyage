@@ -43,13 +43,6 @@
 			</div>
 		</div>
 
-
-		<div class="form-group">
-			<form:label path="nbPlaceReservees" class="col-sm-2 control-label">Nombre de places réservées</form:label>
-			<div class="col-sm-5">
-				<form:input path="nbPlaceReservees" cssClass="form-control" />
-			</div>
-		</div>
 		
 		<div class="form-group">
 			<form:label path="assurance.id" cssClass="col-sm-2 control-label">Assurance</form:label>

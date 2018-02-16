@@ -37,8 +37,16 @@
 
 					<h3>Modifer le statut de la réservtion</h3>
 
-					<form:form method="POST" action="agent/soumettreUpdate"
+					<form:form method="POST" action="soumettreUpdate"
 						modelAttribute="resaUpdateA" cssClass="form-horizontal">
+
+						<div class="form-group">
+							<form:label path="id" class="col-sm-3 control-label">Référence de la réservation</form:label>
+							<div class="col-sm-6">
+								<form:input disabled="disabled" path="id" cssClass="form-control" />
+							</div>
+						</div>
+
 
 						<div class="form-group">
 							<form:label path="statut" class="col-sm-3 control-label">Statut de la réservation</form:label>

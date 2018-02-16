@@ -37,10 +37,11 @@ public class ParticipantDaoImpl implements IParticipantsDao {
 
 	@Override
 	public List<Participant> getParticipantsByReservation(int idRes) {
-		String req = "select p from Participant as p where p.reservation.id=:pId";
+		String req = "select p from Participant as p where p.reservation.id=:pId AND p.typeP=:pType";
 		Query query = em.createQuery(req);
 
 		query.setParameter("pId", idRes);
+		query.setParameter("pType", "part");
 
 		@SuppressWarnings("unchecked")
 		List<Participant> listeP = query.getResultList();
@@ -89,13 +90,15 @@ public class ParticipantDaoImpl implements IParticipantsDao {
 	}
 
 	@Override
-	public Participant getParticipantIDResaNull() {
-		String req = "SELECT p FROM Participant AS p WHERE p.reservation.id IS NULL";
+	public Participant getParticipantIDResa(int idResa) {
+		String req = "SELECT p FROM Participant AS p WHERE p.reservation.id=:pID AND p.typeP=:pType";
 		Query query = em.createQuery(req);
+		
+		query.setParameter("pID", idResa);
+		query.setParameter("pType", "part");
+		
 		Participant pOut = (Participant) query.getSingleResult();
 		return pOut;
 	}
-
-
 
 }
