@@ -75,7 +75,7 @@
 					</c:if>
 					<div class="col-sm-offset-4 col-sm-8">
 						<a href="<c:url value=" /BoVoyage44/agent/client/afficheAdd"/>">Pas
-							encore incrit ?</a>
+							encore inscrit ?</a>
 					</div>
 					</br/>
 
