@@ -8,6 +8,8 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import com.lowagie.text.DocumentException;
+
 import fr.adaming.model.Reservation;
 /**
  * Interface de définition des méthodes métiers des objets de type Reservation
@@ -35,8 +37,14 @@ public interface IReservationService {
 	 * 
 	 * @param Reservation
 	 * @return Reservation
+	 * @throws MessagingException 
+	 * @throws AddressException 
+	 * @throws FileNotFoundException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
+	 * @throws DocumentException 
 	 */
-	public Reservation updateReservation(Reservation reservation);
+	public Reservation updateReservation(Reservation reservation) throws AddressException, MessagingException, FileNotFoundException, MalformedURLException, IOException, DocumentException;
 
 	
 	/**
