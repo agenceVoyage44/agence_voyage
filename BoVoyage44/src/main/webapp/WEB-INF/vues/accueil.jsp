@@ -49,7 +49,7 @@
 				<div class="bs-callout bs-callout-color">
 					<h2>
 						<img alt="" src="../images/logo.png"
-							style="height: 70px; width: 70px;">Choissisez votre
+							style="height: 70px; width: 70px;">Choisissez votre
 						continent pour un voyage de rêve !
 					</h2>
 					<br>
