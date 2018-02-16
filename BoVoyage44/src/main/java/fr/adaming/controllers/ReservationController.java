@@ -348,12 +348,12 @@ public class ReservationController {
 		try {
 
 			PdfWriter.getInstance(document, new FileOutputStream(
-					"C:/Users/inti-0257/Desktop/PDF_BoVoyage/Reservation_voyage_" + rOut2.getId() + ".pdf"));
+					"C:/PDF_BoVoyage/Reservation_voyage_" + rOut2.getId() + ".pdf"));
 
 			document.open();
 			Font font = new Font(Font.HELVETICA, 14, Font.BOLD, Color.RED);
 
-			Image image = Image.getInstance("C:/Users/inti-0257/Desktop/logo.png");
+			Image image = Image.getInstance("C:/PDF_BoVoyage/logo.png");
 
 			image.scalePercent((float) 10);
 			System.out.println("---------------" + cRes);
@@ -470,7 +470,7 @@ public class ReservationController {
 		
 
 		DataSource source = new FileDataSource(
-				"C:/Users/inti-0257/Desktop/PDF_BoVoyage/Reservation_voyage_" + rOut2.getId() + ".pdf");
+				"C:/PDF_BoVoyage/Reservation_voyage_" + rOut2.getId() + ".pdf");
 		messageBodyPart.setDataHandler(new DataHandler(source));
 		messageBodyPart.setFileName("reservation_" + rOut2.getId() + ".pdf");
 		multipart.addBodyPart(messageBodyPart);
