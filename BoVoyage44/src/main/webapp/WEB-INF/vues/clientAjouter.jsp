@@ -41,7 +41,15 @@
 						<div class="form-group">
 							<form:label path="civilite" cssClass="col-sm-3 control-label">Civilité</form:label>
 							<div class="col-sm-6">
-								<form:input path="civilite" cssClass="form-control" />
+
+								<form:select path="civilite" cssClass="form-control">
+									<form:option value="M.">
+										<c:out value="Monsieur"></c:out>
+									</form:option>
+									<form:option value="Mme.">
+										<c:out value="Madame"></c:out>
+									</form:option>
+								</form:select>
 							</div>
 						</div>
 
