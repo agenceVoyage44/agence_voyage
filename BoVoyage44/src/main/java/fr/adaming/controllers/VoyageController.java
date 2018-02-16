@@ -56,10 +56,27 @@ public class VoyageController {
 	 * @return La liste des voyages et la page dans laquelle ils sont affichés. 
 	 */
 	@RequestMapping(value = "/agent/liste", method = RequestMethod.GET)
-	public ModelAndView afficheListe() {
+	public ModelAndView afficheListe(Model modele) {
 		List<Voyage> liste = voyageService.getAllVoyage(); 
 
-		return new ModelAndView("voyageListe", "voyageList", liste);
+		modele.addAttribute("voyageList", liste);
+		
+		return new ModelAndView("voyageListe", "voyagePays", new Voyage());
+	}
+	
+	@RequestMapping(value = "/agent/listePaysAgent", method = RequestMethod.POST)
+	public ModelAndView afficheListePaysAgent(@ModelAttribute("voyagePays") Voyage v) {
+		List<Voyage> listePays=new ArrayList<Voyage>();
+		
+		List<Voyage> liste = voyageService.getAllVoyage();
+		
+		for (Voyage voyage : liste) {
+			if(voyage.getPays().startsWith(v.getPays())){
+				listePays.add(voyage);
+			}
+		}
+
+		return new ModelAndView("voyageListe", "voyageList", listePays);
 	}
 	
 	@RequestMapping(value = "/listeContinent/{pContinent}", method = RequestMethod.GET)

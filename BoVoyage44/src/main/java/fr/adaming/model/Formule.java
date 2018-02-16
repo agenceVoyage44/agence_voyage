@@ -107,8 +107,9 @@ public class Formule {
 
 	@Override
 	public String toString() {
-		return "Formule [id=" + id + ", type=" + type + ", prix=" + prix + ", listeVoyages=" + listeVoyages
-				+ ", listeHebergements=" + listeHebergements + ", listeVoitures=" + listeVoitures + "]";
+		return "Formule [id=" + id + ", type=" + type + ", prix=" + prix + "]";
 	}
+
+
 
 }

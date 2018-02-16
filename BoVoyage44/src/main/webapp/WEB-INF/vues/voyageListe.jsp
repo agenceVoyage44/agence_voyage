@@ -59,9 +59,31 @@
 		</ul>
 	</div>
 
-	<div></div>
+	
 
 	<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
+
+	<form:form method="POST" action="listePaysAgent"
+						modelAttribute="voyagePays" cssClass="form-horizontal">
+
+						<div class="form-group">
+							<form:label path="pays" class="col-sm-2 control-label">Pays</form:label>
+							<div class="col-sm-5">
+								<form:input path="pays" class="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<input type="submit" class="btn btn-success" value="Rechercher" />
+							</div>
+						</div>
+
+					</form:form>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/liste'">Retour</button>
+
+	
 
 	<c:forEach var="v" items="${voyageList}">
 		<div class="row">
