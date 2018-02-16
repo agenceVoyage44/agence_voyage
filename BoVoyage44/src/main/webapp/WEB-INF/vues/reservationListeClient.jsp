@@ -58,7 +58,30 @@
 									la réservation</button>
 								<button type="button" class="btn btn-danger"
 									onclick="location.href = 'supprimeLien/${resa.id}'">Supprimer</button>
-							
+								<br /> <br />
+								<form action="https://www.paypal.com/cgi-bin/webscr"
+									method="post">
+									<input type="hidden" name="cmd" value="_s-xclick"> <input
+										type="hidden" name="hosted_button_id" value="ADGE2BBQHZT8J">
+									<input type="hidden" name="prix" value="<?php print($prix);?>">
+									<input type="hidden" name="page_style" value="PayPal">
+									<input type="hidden" name="no_shipping" value="0"> <input
+										type="hidden" name="return"
+										value="http://www.ton_site/confirm_paiement.php"> <input
+										type="hidden" name="cancel_return"
+										value="http://www.ton_site.fr/annule_transaction.php">
+									<input type="hidden" name="no_note" value="1"> <input
+										type="hidden" name="currency_code" value="EUR"> <input
+										type="hidden" name="lc" value="FR"> <input
+										type="hidden" name="bn" value="PP-BuyNowBF"> <input
+										type="image"
+										src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif"
+										border="0" name="submit"
+										alt="PayPal, le réflexe sécurité pour payer en ligne">
+									<img alt="" border="0"
+										src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif"
+										width="1" height="1">
+								</form>
 							</td>
 
 						</tr>
