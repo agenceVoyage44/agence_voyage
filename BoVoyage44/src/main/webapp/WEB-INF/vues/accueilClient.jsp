@@ -44,7 +44,8 @@
 
 								<div class="caption">
 									<h3>Votre réservation</h3>
-									<p style="text-align: center;">Voir et confirmer votre réservation en attente.</p>
+									<p style="text-align: center;">Voir et confirmer votre
+										réservation en attente.</p>
 									<h3>
 
 										<button type="button" class="btn btn-primary"
@@ -70,7 +71,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-6 col-md-4">
 							<div class="thumbnail">
 								<div class="caption">
@@ -78,7 +79,8 @@
 									<p style="text-align: center;">Quitter votre espace client.</p>
 									<h3>
 										<button type="button" class="btn btn-primary"
-											onclick="location.href = '../../deconnexion'">Se déconnecter</button>
+											onclick="location.href = '../../deconnexion'">Se
+											déconnecter</button>
 									</h3>
 								</div>
 							</div>
@@ -88,10 +90,16 @@
 
 					<br /> <br /> <br />
 
-					<p style="text-align: center;">
-						<em>BoVoyage - Tous droits réservés - 2018</em>
-					</p>
-
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4"
+							style="background-color: #ffffff; padding-top: 10px; border-radius: 15px">
+							<p style="text-align: center;">
+								<em><b>BoVoyage - Tous droits réservés - 2018</b></em>
+							</p>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
 
 
 				</div>
