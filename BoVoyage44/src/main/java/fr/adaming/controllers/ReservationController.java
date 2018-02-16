@@ -193,6 +193,7 @@ public class ReservationController {
 				return "redirect:afficherAdd";
 			}
 		} else {
+			ra.addFlashAttribute("message","Vous avez déjà une reservation");
 			return "reservationAjouter";
 		}
 

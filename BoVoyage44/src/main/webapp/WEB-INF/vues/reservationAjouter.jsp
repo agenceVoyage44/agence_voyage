@@ -39,7 +39,7 @@
 		<div class="form-group" >
 			<form:label path="voyage.id" class="col-sm-2 control-label">Voyage choisi</form:label>
 			<div class="col-sm-5">
-				<form:input path="voyage.id" cssClass="form-control" />
+				<form:input path="voyage.id" cssClass="form-control" readonly="true"/>
 			</div>
 		</div>
 
@@ -67,7 +67,9 @@
 
 	</form:form>
 	
-	
+	<c:if test="${not empty msg}">
+						<h4 style="text-align: center; color: red">Vous avez déjà une reservation 
+					</c:if>
 	
 					</div>
 			</div>
