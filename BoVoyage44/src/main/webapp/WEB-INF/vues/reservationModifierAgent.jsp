@@ -43,7 +43,8 @@
 						<div class="form-group">
 							<form:label path="id" class="col-sm-3 control-label">Référence de la réservation</form:label>
 							<div class="col-sm-6">
-								<form:input disabled="disabled" path="id" cssClass="form-control" />
+								<form:input disabled="disabled" path="id"
+									cssClass="form-control" />
 							</div>
 						</div>
 
@@ -51,7 +52,17 @@
 						<div class="form-group">
 							<form:label path="statut" class="col-sm-3 control-label">Statut de la réservation</form:label>
 							<div class="col-sm-6">
-								<form:input path="statut" cssClass="form-control" />
+
+
+								<form:select path="statut" cssClass="form-control">
+									<form:option value="Validée">
+										<c:out value="Valider"></c:out>
+									</form:option>
+									<form:option value="Annulée">
+										<c:out value="Annuler"></c:out>
+									</form:option>
+								</form:select>
+
 							</div>
 						</div>
 
