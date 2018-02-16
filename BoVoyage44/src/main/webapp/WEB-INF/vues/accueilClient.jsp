@@ -43,9 +43,8 @@
 							<div class="thumbnail">
 
 								<div class="caption">
-									<h3>Vos réservations</h3>
-									<p style="text-align: center;">Voir et confirmer vos
-										réservations en attente.</p>
+									<h3>Votre réservation</h3>
+									<p style="text-align: center;">Voir et confirmer votre réservation en attente.</p>
 									<h3>
 
 										<button type="button" class="btn btn-primary"

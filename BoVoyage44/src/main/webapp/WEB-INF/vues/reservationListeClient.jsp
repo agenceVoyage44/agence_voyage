@@ -29,7 +29,7 @@
 		<div class="col-md-10">
 			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
-					<h3>Liste de vos réservations</h3>
+					<h3>Votre réservation</h3>
 
 
 					<table class="table table-bordered">
