@@ -53,27 +53,6 @@
 		</ul>
 	</div>
 
-	<form:form method="POST" action="listePaysContinent"
-		modelAttribute="voyagePays" cssClass="form-horizontal">
-
-		<div class="form-group">
-			<form:label path="pays" class="col-sm-2 control-label">Pays</form:label>
-			<div class="col-sm-5">
-				<form:input path="pays" class="form-control" />
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-success" value="Rechercher" />
-			</div>
-		</div>
-
-	</form:form>
-	<button type="button" class="btn btn-primary"
-		onclick="location.href = '${pageContext.request.contextPath}/voyage/listePaysContinent'">Retour</button>
-
-
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">

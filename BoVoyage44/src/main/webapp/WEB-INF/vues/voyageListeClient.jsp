@@ -23,7 +23,7 @@
 
 </head>
 <body>
-	<div style="height: 90px">
+	<div>
 		<%@ include file="/template/headerU.html"%>
 	</div>
 
@@ -41,8 +41,7 @@
 									alt="" width="450" height="300" />
 								<figcaption>
 									<h1 id="titreDiapo">${v.titre}</h1>
-									<h1 id="reducDiapo">${v.remise}%deréduction pour ce voyage
-										!</h1>
+									<h1 id="reducDiapo">${v.remise}%deréductionpourcevoyage !</h1>
 									<h1 id="prixDiapo">${v.prixSolde}euros</h1>
 								</figcaption>
 							</figure>
@@ -52,63 +51,65 @@
 		</ul>
 	</div>
 
-	<form:form method="POST" action="listePays" modelAttribute="voyagePays"
-		cssClass="form-horizontal">
-
-		<div class="form-group">
-			<form:label path="pays" class="col-sm-2 control-label">Pays</form:label>
-			<div class="col-sm-5">
-				<form:input path="pays" class="form-control" />
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-success" value="Rechercher" />
-			</div>
-		</div>
-
-	</form:form>
-	<button type="button" class="btn btn-primary"
-		onclick="location.href = '${pageContext.request.contextPath}/voyage/liste'">Retour</button>
-
-
-
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
 
+					<h1 style="color: darkred; text-align: center">Liste des
+						voyages</h1>
 
-			<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
-			<div class="row">
-				<c:forEach var="v" items="${voyageList}">
+					<form:form method="POST" action="listePays"
+						modelAttribute="voyagePays" cssClass="form-horizontal">
 
-					<div class="col-md-6">
-						<div class="thumbnail">
-							<p>Voyage : ${v.titre}</p>
-							<a
-								href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
-								<img class="imageAccueil" style="width: 100%; height: 300px;"
-								"
-								src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
-								alt="imageVoyage"">
-								<div class="caption">
-									<p>
-										Continent : ${v.continent}<br> Prix Soldé :
-										${v.prixSolde}<br> Prix : <s>${v.prixDepart}</s><br>
-										Date : du ${v.dateDepart} au ${v.dateRetour}<br>
-									</p>
-								</div>
-							</a>
+						<div class="form-group">
+							<form:label path="pays" class="col-sm-2 control-label">Pays</form:label>
+							<div class="col-sm-5">
+								<form:input path="pays" class="form-control" />
+							</div>
 						</div>
-					</div>
 
-				</c:forEach>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<input type="submit" class="btn btn-success" value="Rechercher" />
+							</div>
+						</div>
+
+					</form:form>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href = '${pageContext.request.contextPath}/voyage/liste'">Retour</button>
+
+
+
+
+					<div class="row">
+						<c:forEach var="v" items="${voyageList}">
+
+							<div class="col-md-6">
+								<div class="thumbnail">
+									<p>Voyage : ${v.titre}</p>
+									<a
+										href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
+										<img class="imageAccueil" style="width: 100%; height: 300px;"
+										"
+								src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+										alt="imageVoyage"">
+										<div class="caption">
+											<p>
+												Continent : ${v.continent}<br> Prix Soldé :
+												${v.prixSolde}<br> Prix : <s>${v.prixDepart}</s><br>
+												Date : du ${v.dateDepart} au ${v.dateRetour}<br>
+											</p>
+										</div>
+									</a>
+								</div>
+							</div>
+
+						</c:forEach>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-1"></div>
-
 	</div>
-
 </body>
 </html>
