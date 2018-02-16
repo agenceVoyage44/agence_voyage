@@ -3,7 +3,7 @@
 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +21,11 @@
 <body>
 	<!-- Header User -->
 	<%@ include file="/template/headerU.html"%>
-	
-	<br><br><br><br>
+
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="row">
 		<div class="col-md-1"></div>
 
@@ -33,20 +36,24 @@
 					<center>
 						<img
 							src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${voyage.id}"
-							height="20%" width="50%" />
+							height="20%" width="50%" style="box-shadow: 1px 1px 25px #555;" />
 					</center>
 					<br />
 					<div style="text-align: center;">
 						<p>
-							Pays : ${voyage.pays}<br>							 
-							  Prix :${voyage.prixSolde} <br> 
-							  Date de depart :	<fmt:formatDate value="${voyage.dateDepart}" pattern="dd-MM-yyyy " />
-							<br> Date de retour :<fmt:formatDate value="${voyage.dateRetour}" pattern="dd-MM-yyyy " />
-							<br> Nombre de place : ${voyage.nbPlaces}<br>
+							<b style="font-size: 20px">Pays : ${voyage.pays}</b><br> <b
+								style="color: red"> Prix : ${voyage.prixSolde} Euros</b> <br> <b>Date
+								de depart :</b>
+							<fmt:formatDate value="${voyage.dateDepart}"
+								pattern="dd-MM-yyyy " />
+							<br> <b>Date de retour :</b>
+							<fmt:formatDate value="${voyage.dateRetour}"
+								pattern="dd-MM-yyyy " />
+							<br> <b>Nombre de place :</b> ${voyage.nbPlaces}<br>
 							Description : ${voyage.description}
 						</p>
-					<button type="button" class="btn btn-primary"
-										onclick="location.href = 
+						<button type="button" class="btn btn-primary"
+							onclick="location.href = 
 										'<c:url value=" /BoVoyage44/boVoyage/reservation/client/afficherAdd?pID=${voyage.id}"/>'">Réserver</button>
 					</div>
 
