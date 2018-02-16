@@ -9,11 +9,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste Formules</title>
-<script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
-
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-3.2.1.js"/>"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
-
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 <script type="text/javascript"
 	src="<c:url value="/resources/js/script_navbar.js"/>"></script>
