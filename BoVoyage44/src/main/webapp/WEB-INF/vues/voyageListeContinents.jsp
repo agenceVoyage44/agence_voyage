@@ -68,7 +68,7 @@
 									src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
 									alt="" width="450" height="300" "/> <figcaption>
 								<h1 id="titreDiapo">${v.titre}</h1>
-								<h1 id="reducDiapo">${v.remise}% de réduction pour ce voyage !</h1>
+								<h1 id="reducDiapo">${v.remise}% de réduction !</h1>
 								<h1 id="prixDiapo">${v.prixSolde}euros</h1>
 								</figcaption> </figure>
 						</a></li>
