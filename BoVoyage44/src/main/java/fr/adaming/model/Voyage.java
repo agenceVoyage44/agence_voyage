@@ -260,9 +260,10 @@ public class Voyage {
 	public String toString() {
 		return "Voyage [id=" + id + ", continent=" + continent + ", pays=" + pays + ", prixDepart=" + prixDepart
 				+ ", remise=" + remise + ", prixSolde=" + prixSolde + ", dateDepart=" + dateDepart + ", dateRetour="
-				+ dateRetour + ", photo=" + Arrays.toString(photo) + ", nbPlaces=" + nbPlaces + ", dispo=" + dispo
-				+ ", titre=" + titre + ", description=" + description + ", priorite=" + priorite
-				+ ", listeReservations=" + listeReservations + ", formule=" + formule + "]";
+				+ dateRetour + ", photo=" + Arrays.toString(photo) + ", file=" + file + ", nbPlaces=" + nbPlaces
+				+ ", dispo=" + dispo + ", titre=" + titre + ", description=" + description + ", priorite=" + priorite
+				+ "]";
 	}
 
+	
 }
