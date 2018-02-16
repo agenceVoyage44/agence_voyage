@@ -7,7 +7,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -46,11 +46,13 @@
 							<figure>
 								<img
 									src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
-									alt="" width="450" height="300" />
+									alt="" width="450" height="300"
+									style="box-shadow: 1px 1px 25px #555;" />
 								<figcaption>
-								<h1 id="titreDiapo">${v.titre}</h1>
-								<h1 id="reducDiapo">${v.remise}% de réduction pour ce voyage !</h1>
-								<h1 id="prixDiapo">${v.prixSolde} euros</h1>
+									<h1 id="titreDiapo">${v.titre}</h1>
+									<h1 id="reducDiapo">${v.remise}%deréduction pour ce voyage
+										!</h1>
+									<h1 id="prixDiapo">${v.prixSolde}euros</h1>
 								</figcaption>
 							</figure>
 					</a></li>
@@ -59,11 +61,16 @@
 		</ul>
 	</div>
 
-	
+	<div class="row">
+		<div class="col-md-12">
 
-	<h1 style="color: darkred; text-align: center">Liste des voyages</h1>
+			<div class="panel panel-default">
+				<div class="bs-callout bs-callout-color">
 
-	<form:form method="POST" action="listePaysAgent"
+					<h1 style="color: darkred; text-align: center">Liste des
+						voyages</h1>
+
+					<form:form method="POST" action="listePaysAgent"
 						modelAttribute="voyagePays" cssClass="form-horizontal">
 
 						<div class="form-group">
@@ -83,33 +90,45 @@
 					<button type="button" class="btn btn-primary"
 						onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/liste'">Retour</button>
 
-	
 
-	<c:forEach var="v" items="${voyageList}">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="thumbnail">
-					<p>Voyage : ${v.titre}</p>
-					<a
-						href="${pageContext.request.contextPath}/voyage/agent/lienDetail?pId=${v.id}">
-						<img class="imageAccueil" style="max-width: 400px; height: auto;"
-						src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
-						alt="imageVoyage" style="width: 400px; height: 300px;">
-						<div class="caption">
-							<p>
-								Continent : ${v.continent}<br> Prix Soldé : ${v.prixSolde}<br>
-								Prix : <s>${v.prixDepart}</s><br> Date : du <fmt:formatDate value="${v.dateDepart}" pattern="dd-MM-yyyy " />
-								au <fmt:formatDate value="${v.dateRetour}" pattern="dd-MM-yyyy " /><br> Description : ${v.description}<br>
-							</p>
-						</div>
-					</a>
-					<button type="button" class="btn btn-primary"
-						onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}'">Modifier</button>
-					<button type="button" class="btn btn-danger"
-						onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}'">Supprimer</button>
+
+					<c:forEach var="v" items="${voyageList}">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="thumbnail">
+									<p>Voyage : ${v.titre}</p>
+									<a
+										href="${pageContext.request.contextPath}/voyage/agent/lienDetail?pId=${v.id}">
+										<img class="imageAccueil"
+										style="max-width: 400px; height: auto;"
+										src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
+										alt="imageVoyage"
+										style="width: 400px; height: 300px; box-shadow: 1px 1px 25px #555;">
+										<div class="caption">
+											<p>
+												Continent : ${v.continent}<br> Prix Soldé :
+												${v.prixSolde}<br> Prix : <s>${v.prixDepart}</s><br>
+												Date : du
+												<fmt:formatDate value="${v.dateDepart}"
+													pattern="dd-MM-yyyy " />
+												au
+												<fmt:formatDate value="${v.dateRetour}"
+													pattern="dd-MM-yyyy " />
+												<br> Description : ${v.description}<br>
+											</p>
+										</div>
+									</a>
+									<button type="button" class="btn btn-primary"
+										onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/modifierButton?pId=${v.id}'">Modifier</button>
+									<button type="button" class="btn btn-danger"
+										onclick="location.href = '${pageContext.request.contextPath}/voyage/agent/supprimerButton/${v.id}'">Supprimer</button>
+								</div>
+							</div>
+					</c:forEach>
 				</div>
 			</div>
-	</c:forEach>
 
+		</div>
+	</div>
 </body>
 </html>

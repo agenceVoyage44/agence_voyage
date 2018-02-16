@@ -41,10 +41,10 @@
 							<figure>
 								<img
 									src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
-									alt="" width="450" height="300" />
+									alt="" width="450" height="300" style="box-shadow: 1px 1px 25px #555;"/>
 								<figcaption>
 									<h1 id="titreDiapo">${v.titre}</h1>
-									<h1 id="reducDiapo">${v.remise}%deréductionpourcevoyage !</h1>
+									<h1 id="reducDiapo">${v.remise}%deréductionpourcevoyage!</h1>
 									<h1 id="prixDiapo">${v.prixSolde}euros</h1>
 								</figcaption>
 							</figure>
@@ -70,14 +70,15 @@
 									<h1>${v.titre}</h1>
 									<a
 										href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
-										<img class="imageAccueil" style="max-width: 100%; height: 300px;"
+										<img class="imageAccueil"
+										style="max-width: 100%; height: 300px; box-shadow: 1px 1px 25px #555;"
 										"
 								src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
 										alt="imageVoyage"">
 										<div class="caption">
 											<p>
-												<b>Prix initial :</b> <s>${v.prixDepart}</s> 
-												<br><b style="color:red"> Prix soldé : ${v.prixSolde}</b><br>
+												<b>Prix initial :</b> <s>${v.prixDepart}</s> <br>
+												<b style="color: red"> Prix soldé : ${v.prixSolde}</b><br>
 												<b>Dates :</b> du
 												<fmt:formatDate value="${v.dateDepart}"
 													pattern="dd-MM-yyyy " />
