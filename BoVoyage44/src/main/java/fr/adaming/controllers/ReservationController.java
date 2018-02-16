@@ -131,8 +131,8 @@ public class ReservationController {
 	 * 
 	 */
 
-	@RequestMapping(value = "/client/afficherAdd/{pID}", method = RequestMethod.GET)
-	public String afficherAjouterReservation(Model modele, @PathVariable("pID") int idVoyage) {
+	@RequestMapping(value = "/client/afficherAdd", method = RequestMethod.GET)
+	public String afficherAjouterReservation(Model modele, @RequestParam("pID") int idVoyage) {
 
 		Voyage voyage = new Voyage();
 		Voyage vOut = voyageService.getVoyageById(idVoyage);

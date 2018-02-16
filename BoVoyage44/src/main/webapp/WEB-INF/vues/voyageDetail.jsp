@@ -47,7 +47,7 @@
 						</p>
 					<button type="button" class="btn btn-primary"
 										onclick="location.href = 
-										'<c:url value=" /BoVoyage44/boVoyage/reservation/client/afficherAdd/${voyage.id}"/>'">Réserver</button>
+										'<c:url value=" /BoVoyage44/boVoyage/reservation/client/afficherAdd?pID=${voyage.id}"/>'">Réserver</button>
 					</div>
 
 
