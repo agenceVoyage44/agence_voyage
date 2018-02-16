@@ -85,12 +85,19 @@ public class VoyageController {
 		
 		List<Voyage> liste = voyageService.getAllVoyage();
 		
-		
+		int compteur=0;
 		for (Voyage voyage : liste) {
 			if(voyage.getContinent().equals(continent)){
 				listeContinents.add(voyage);
+				
+				if(voyage.isPriorite()){
+					compteur++;
+				}
 			}
 		}
+		
+		
+		modele.addAttribute("compteur", compteur);
 		
 		return new ModelAndView("voyageListeContinents", "voyageListContinent", listeContinents);
 	}

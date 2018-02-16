@@ -39,7 +39,7 @@
 					<div class="bs-callout bs-callout-color">
 					<br/>
 					<br/>
-						<h1 style="text-align: center"">Oups ! Pas de
+						<h1 style="text-align: center"">Oups ! Pas de 
 							voyage disponible pour le moment pour ce continent...</h1>
 					</div>
 				</div>
@@ -51,8 +51,13 @@
 
 	<c:if test="${!voyageListContinent.isEmpty() }">
 
+<c:if test="${compteur<3 }">
+<br/>
+<br/>
+</c:if>
 
-		<!-- Galerie Dynamique -->
+<c:if test="${compteur>=2 }">
+<!-- Galerie Dynamique -->
 		<div class="slideshow">
 			<ul>
 				<c:forEach var="v" items="${voyageListContinent}">
@@ -71,6 +76,8 @@
 				</c:forEach>
 			</ul>
 		</div>
+</c:if>
+
 
 		<div class="row">
 			<div class="col-md-12">
@@ -80,6 +87,7 @@
 
 						<h1 style="color: #0131B4; text-align: center">Liste des
 							voyages</h1>
+							
 						<div class="row">
 							<c:forEach var="v" items="${voyageListContinent}">
 
