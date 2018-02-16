@@ -29,11 +29,16 @@
 			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
 					<h3>Souhaitez vous ajouter un autre particpant ?</h3>
-					<br /> <a
-						href="${pageContext.request.contextPath}/boVoyage/reservation/client/afficherAddPart">Oui</a>
-					<a
-						href="${pageContext.request.contextPath}/boVoyage/client/accueil">Non</a>
-
+					<!-- 					<br /> <a -->
+					<%-- 						href="${pageContext.request.contextPath}/boVoyage/reservation/client/afficherAddPart">Oui</a> --%>
+					<!-- 					<a -->
+					<%-- 						href="${pageContext.request.contextPath}/boVoyage/client/accueil">Non</a> --%>
+					<div style="text-align: center;">
+						<button type="button" class="btn btn-primary"
+							onclick="location.href = 'afficherAddPart'">Oui</button>
+						<button type="button" class="btn btn-danger"
+							onclick="location.href = '../../client/accueil'">Non</button>
+					</div>
 				</div>
 			</div>
 		</div>
