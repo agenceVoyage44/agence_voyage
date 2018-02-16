@@ -274,4 +274,14 @@ public class VoyageController {
 		return "voyageDetail";
 	}
 	
+	@RequestMapping(value = "/agent/lienDetail", method = RequestMethod.GET)
+	public String voyageLienDetailAgent(ModelMap model, @RequestParam("pId") int id) {
+		Voyage v = voyageService.getVoyageById(id);
+		if (v.getFormule()!=null){
+			v.setFormule(formuleService.getFormuleById(v.getFormule().getId()));
+		}
+		model.addAttribute("voyage", v);
+		return "voyageDetailAgent";
+	}
+	
 }

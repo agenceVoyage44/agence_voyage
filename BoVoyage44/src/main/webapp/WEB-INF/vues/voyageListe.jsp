@@ -91,7 +91,7 @@
 				<div class="thumbnail">
 					<p>Voyage : ${v.titre}</p>
 					<a
-						href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
+						href="${pageContext.request.contextPath}/voyage/agent/lienDetail?pId=${v.id}">
 						<img class="imageAccueil" style="max-width: 400px; height: auto;"
 						src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
 						alt="imageVoyage" style="width: 400px; height: 300px;">
