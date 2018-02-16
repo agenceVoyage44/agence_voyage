@@ -29,13 +29,9 @@
 
 </head>
 <body>
-	<div style="height: 90px">
+	<div style="height: 0px">
 		<%@ include file="/template/headerA.html"%>
 	</div>
-
-
-
-
 	<!-- Galerie Dynamique -->
 	<div class="slideshow">
 		<ul>
