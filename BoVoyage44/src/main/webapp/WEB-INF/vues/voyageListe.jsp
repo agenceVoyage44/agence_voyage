@@ -46,7 +46,7 @@
 									style="box-shadow: 1px 1px 25px #555;" />
 								<figcaption>
 									<h1 id="titreDiapo" style="letter-spacing: 3px;">${v.titre}</h1>
-									<h1 id="reducDiapo">${v.remise}% de réduction pour ce voyage !</h1>
+									<h1 id="reducDiapo">${v.remise}% de réduction !</h1>
 									<h1 id="prixDiapo">${v.prixSolde}euros</h1>
 								</figcaption>
 							</figure>
