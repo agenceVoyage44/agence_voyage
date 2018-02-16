@@ -3,7 +3,7 @@
 
 <!-- Ajout de la taglib spring mvc form -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- Ajouter la librairie JSTL -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -61,7 +61,8 @@
 									<td>${c.mail}</td>
 									<td>${c.numero} ${c.rue} ${c.codePostal} ${c.ville}</td>
 									<td>${c.tel}</td>
-									<td>${c.dateNaissance}</td>
+									<td><fmt:formatDate value="${c.dateNaissance}"
+								pattern="dd-MM-yyyy " /></td>
 
 									<td>
 										<button type="button" class="btn btn-primary"
