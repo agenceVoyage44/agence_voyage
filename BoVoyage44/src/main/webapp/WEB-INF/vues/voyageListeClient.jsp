@@ -3,6 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,53 +55,37 @@
 
 	<div class="row">
 		<div class="col-md-12">
+
 			<div class="panel panel-default">
 				<div class="bs-callout bs-callout-color">
 
-					<h1 style="color: darkred; text-align: center">Liste des
+					<h1 style="color: #0131B4; text-align: center">Liste des
 						voyages</h1>
-
-					<form:form method="POST" action="listePays"
-						modelAttribute="voyagePays" cssClass="form-horizontal">
-
-						<div class="form-group">
-							<form:label path="pays" class="col-sm-2 control-label">Pays</form:label>
-							<div class="col-sm-5">
-								<form:input path="pays" class="form-control" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" class="btn btn-success" value="Rechercher" />
-							</div>
-						</div>
-
-					</form:form>
-					<button type="button" class="btn btn-primary"
-						onclick="location.href = '${pageContext.request.contextPath}/voyage/liste'">Retour</button>
-
-
-
-
 					<div class="row">
 						<c:forEach var="v" items="${voyageList}">
 
 							<div class="col-md-6">
-								<div class="thumbnail">
-									<p>Voyage : ${v.titre}</p>
+								<div id="voyage" class="thumbnail">
+									<h1>${v.titre}</h1>
 									<a
 										href="${pageContext.request.contextPath}/voyage/lienDetail?pId=${v.id}">
-										<img class="imageAccueil" style="width: 100%; height: 300px;"
+										<img class="imageAccueil" style="max-width: 100%; height: 300px;"
 										"
 								src="${pageContext.request.contextPath}/voyage/photoVoyage?idV=${v.id}"
 										alt="imageVoyage"">
 										<div class="caption">
 											<p>
-												Continent : ${v.continent}<br> Prix Soldé :
-												${v.prixSolde}<br> Prix : <s>${v.prixDepart}</s><br>
-												Date : du ${v.dateDepart} au ${v.dateRetour}<br>
+												<b>Prix initial :</b> <s>${v.prixDepart}</s> 
+												<br><b style="color:red"> Prix soldé : ${v.prixSolde}</b><br>
+												<b>Dates :</b> du
+												<fmt:formatDate value="${v.dateDepart}"
+													pattern="dd-MM-yyyy " />
+
+												au
+												<fmt:formatDate value="${v.dateRetour}"
+													pattern="dd-MM-yyyy " />
 											</p>
+
 										</div>
 									</a>
 								</div>
@@ -108,6 +94,7 @@
 						</c:forEach>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>

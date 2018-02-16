@@ -57,7 +57,13 @@ html {
 	height: 100%;
 }
 
+/*Style pour les pages des voyages */
 
+#voyage h1{
+	margin-top:2px;
+	font-size: 30px;
+	text-align: center;
+}
 
 a:hover {
 	text-decoration: none;
